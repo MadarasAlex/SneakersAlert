@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    tools:context=".MainActivity">
+
+    <include layout="@layout/content_main" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:backgroundTint="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:addStatesFromChildren="false"
+        android:theme="@style/Theme.SneakersAlert.NoActionBar"
+        android:fitsSystemWindows="true"
+        style="@style/Theme.SneakersAlert.NoActionBar"
+        app:statusBarForeground="@drawable/back">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:clickable="false"
+            android:elevation="4dp"
+            android:fitsSystemWindows="true"
+            android:forceDarkAllowed="false"
+            android:isScrollContainer="true"
+            android:minHeight="100dp"
+            android:theme="@style/Theme.SneakersAlert.NoActionBar"
+            android:visibility="visible"
+            app:buttonGravity="center_vertical"
+            app:navigationIcon="@drawable/short_text_24px"
+            app:navigationIconTint="@color/black"
+            app:popupTheme="@style/Theme.SneakersAlert.NoActionBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tback"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/white"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginRight="28dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/shop"
+                    app:layout_constraintEnd_toStartOf="@+id/shop"
+                    app:layout_constraintHeight_percent="0.3"
+                    app:layout_constraintTop_toTopOf="@+id/shop"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintWidth_percent="0.15"
+                    app:srcCompat="@drawable/search" />
+
+                <ImageView
+                    android:id="@+id/shop"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.15"
+                    app:srcCompat="@drawable/shopping_cart" />
+
+                <SearchView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:iconifiedByDefault="true"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal|left"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginLeft="48dp"
+                    android:foregroundGravity="left|center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHeight_percent="0.6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:srcCompat="@drawable/ic_logo"
+                    tools:ignore="VectorDrawableCompat" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

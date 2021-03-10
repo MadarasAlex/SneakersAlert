@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.sneakersalert.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_sneakers"
+        android:name="com.example.sneakersalert.ui.sneakers.SneakersFragment"
+        android:label="Sneakers"
+        tools:layout="@layout/fragment_sneakers" />
+    <fragment
+        android:id="@+id/nav_wishlist"
+        android:name="com.example.sneakersalert.WishlistFragment"
+        tools:layout="@layout/fragment_wishlist"
+        />
+    <fragment
+        android:id="@+id/nav_airmax1"
+        android:name="com.example.sneakersalert.ui.airmax1.Airmax1Fragment"
+        android:label="Air Max 1"
+        tools:layout="@layout/fragment_airmax1" />
+
+    <fragment
+        android:id="@+id/nav_jordan"
+        android:name="com.example.sneakersalert.JordanFragment"
+        android:label="Jordan"
+        tools:layout="@layout/fragment_jordan" />
+
+    <fragment
+        android:id="@+id/nav_airmax90"
+        android:name="com.example.sneakersalert.ui.airmax90.Airmax90Fragment"
+        android:label="Air Max 90"
+        tools:layout="@layout/fragment_airmax90" />
+
+    <fragment
+        android:id="@+id/nav_faq"
+        android:name="com.example.sneakersalert.ui.faq.FAQFragment"
+        android:label="FAQ"
+        tools:layout="@layout/fragment_f_a_q" />
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.example.sneakersalert.ui.account.AccountFragment"
+        android:label="FAQ"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.example.sneakersalert.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+
+</navigation>

@@ -1,0 +1,66 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SneakersAlert" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+
+
+        <item name="percentHeight">0.9</item>
+        <item name="navigationIcon">@drawable/short_text_24px</item>
+        <item name="backgroundColor">@color/gray</item>
+        <item name="background">@color/gray</item>
+        <item name="colorOnPrimary">@color/gray</item>
+
+
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+
+
+        <!-- Secondary brand color. -->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.MyFancyTheme" parent="android:Theme.Holo">
+        <item name="android:homeAsUpIndicator">@color/black</item>
+    </style>
+
+    <style name="NavigationViewStyle" parent="android:Widget.Material.Toolbar.Button.Navigation" tools:targetApi="lollipop">
+        <item name="android:fontFamily">@font/rubik</item>
+        <item name="android:textSize">14sp</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="background">@color/white</item>
+        <item name="android:buttonStyleToggle">@drawable/short_text_24px</item>
+        <item name="listPreferredItemHeightSmall">40dp</item>
+        <item name="collapseIcon">@drawable/back</item>
+        <item name="android:homeAsUpIndicator">@drawable/short_text_24px</item>
+        <item name="android:listPreferredItemHeight">37dp</item>
+        <item name="android:listPreferredItemHeightLarge">37dp</item>
+        <item name="percentHeight">0.8</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <style name="BottomNav" parent="Widget.MaterialComponents.BottomNavigationView" tools:targetApi="lollipop">
+        <item name="android:fontFamily">@font/rubik</item>
+    </style>
+
+    <style name="DrawerColor" parent="Widget.AppCompat.DrawerArrowToggle">
+
+        <item name="navigationIcon">@drawable/short_text_24px</item>
+        <item name="navigationIconTint">@drawable/short_text_24px</item>
+
+    </style>
+
+    <style name="Theme.SneakersAlert.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorOnPrimary">@color/gray</item>
+
+    </style>
+
+    <style name="Theme.SneakersAlert.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SneakersAlert.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
