@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CartActivity"
-    >
+    tools:context=".CartActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -33,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         tools:itemCount="3"
-        tools:listitem="@layout/card_product_in_cart" />
+        tools:listitem="@layout/activity_cart" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,9 +49,9 @@
             android:text="€"
             android:textColor="#000000"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/discount_price"
+            app:layout_constraintBottom_toBottomOf="@+id/textView10"
             app:layout_constraintStart_toStartOf="@+id/euro_cart"
-            app:layout_constraintTop_toTopOf="@+id/discount_price"
+            app:layout_constraintTop_toTopOf="@+id/textView10"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -149,7 +147,7 @@
             android:textColor="#000000"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/final_amount"
-            app:layout_constraintStart_toStartOf="@+id/discount_price" />
+            app:layout_constraintStart_toStartOf="@+id/textView10" />
 
         <TextView
             android:id="@+id/euro_cart3"
@@ -161,7 +159,7 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/price_final"
             app:layout_constraintStart_toStartOf="@+id/euro_cart"
-            app:layout_constraintTop_toTopOf="@+id/price_final"
+            app:layout_constraintTop_toTopOf="@+id/textView10"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button

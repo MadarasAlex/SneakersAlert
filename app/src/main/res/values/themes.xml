@@ -42,14 +42,16 @@
 
     </style>
 
-    <style name="BottomNav" parent="Widget.MaterialComponents.BottomNavigationView" tools:targetApi="lollipop">
+    <style name="BottomNav" parent="Widget.MaterialComponents.BottomNavigationView" tools:targetApi="lollipop" >
         <item name="android:fontFamily">@font/rubik</item>
+        <item name="background">@color/white</item>
+
     </style>
 
     <style name="DrawerColor" parent="Widget.AppCompat.DrawerArrowToggle">
 
         <item name="navigationIcon">@drawable/short_text_24px</item>
-        <item name="navigationIconTint">@drawable/short_text_24px</item>
+
 
     </style>
 

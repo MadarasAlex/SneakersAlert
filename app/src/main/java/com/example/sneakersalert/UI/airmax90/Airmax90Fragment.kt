@@ -9,18 +9,39 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.Adapters.AdapterJordan
+import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.R
 import drawable.NewShoe
 
 class Airmax90Fragment : Fragment(R.layout.fragment_airmax90) {
     val a=ArrayList<NewShoe>()
     override fun onCreate(savedInstanceState: Bundle?) {
-        a.add(NewShoe(R.drawable.airmax_90_crock, "Nike airmax 90", "Croc", 190))
-        a.add(NewShoe(R.drawable.dance_floor_green, "Nike airmax 90", "90S Dancefloor Green", 190))
-        a.add(NewShoe(R.drawable.duck_camo, "Nike airmax 90", "Duck Camo Orange", 140))
-        a.add(NewShoe(0, "", "",0 ))
-        a.add(NewShoe(0, "", "",0 ))
-        a.add(NewShoe(0, "", "",0 ))
+        a.add(NewShoe(R.drawable.airmax_90_crock, "Nike airmax 90", "Croc", 190,"",
+            arrayListOf(39,40,41), arrayListOf(Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"),Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection "))))
+        a.add(NewShoe(R.drawable.dance_floor_green, "Nike airmax 90", "90S Dancefloor Green", 190,"",
+            arrayListOf(39,40,41), arrayListOf(Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"),Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection "))))
+        a.add(NewShoe(R.drawable.duck_camo, "Nike airmax 90", "Duck Camo Orange", 140,"",
+            arrayListOf(39,40,41), arrayListOf(Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"),Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection "))))
+        a.add(NewShoe(0, "", "",0,"",
+            arrayListOf(39,40,41), arrayListOf(
+                Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"), Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection ")
+            )))
+        a.add(NewShoe(0, "", "",0,"",
+            arrayListOf(39,40,41), arrayListOf(Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"),Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection "))))
+        a.add(NewShoe(0, "", "",0,"",
+            arrayListOf(39,40,41), arrayListOf(Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"),Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection "))))
         super.onCreate(savedInstanceState)
     }
 

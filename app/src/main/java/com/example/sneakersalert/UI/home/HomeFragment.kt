@@ -5,16 +5,27 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.R
 import drawable.AdapterNewShoe
 import drawable.NewShoe
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     val l=ArrayList<NewShoe>()
+    val sizeHaveANikeDay=ArrayList<Int>(3)
     override fun onCreate(savedInstanceState: Bundle?) {
-        l.add(NewShoe(R.drawable.air_max_1_have_a_nikeday,"Nike Air Max 1","Have A Nike Day",149))
-        l.add(NewShoe(R.drawable.limeade,"Nike Air Max 1","Limeade",209))
-        l.add(NewShoe(R.drawable.limeade2,"Nike Air Max 1","Limeade",289))
+        l.add(NewShoe(R.drawable.air_max_1_have_a_nikeday,"Nike Air Max 1","Have A Nike Day",149,"",
+            arrayListOf(39,40,41), arrayListOf(Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"),Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection "))))
+        l.add(NewShoe(R.drawable.limeade,"Nike Air Max 1","Limeade",209,"",
+            arrayListOf(39,40,41), arrayListOf(Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"),Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection "))))
+        l.add(NewShoe(R.drawable.limeade2,"Nike Air Max 1","Limeade",289,"",
+            arrayListOf(39,40,41), arrayListOf(Spec(0,"Anti-pollution, anti-dust"),
+                Spec(0,"Reusable"),Spec(0,"Pleated at sides for extra comfort"), Spec(0,"Wider face coverage for maximum \n" +
+                        "protection "))))
         super.onCreate(savedInstanceState)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

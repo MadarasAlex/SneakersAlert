@@ -82,7 +82,7 @@
                     app:layout_constraintHeight_percent="0.3"
                     app:layout_constraintStart_toStartOf="@+id/contact2"
                     app:layout_constraintWidth_percent="0.12"
-                    app:srcCompat="@drawable/mask_group_1" />
+                    app:srcCompat="@drawable/delivery2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView

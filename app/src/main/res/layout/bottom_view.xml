@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/contact"
         app:layout_constraintStart_toStartOf="@+id/contact"
-        app:srcCompat="@drawable/mask_group_1" />
+        app:srcCompat="@drawable/delivery" />
 
     <TextView
         android:id="@+id/eu"

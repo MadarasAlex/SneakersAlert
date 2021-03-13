@@ -28,6 +28,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_image"
@@ -35,9 +36,10 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/capsule"
-                    android:layout_width="40dp"
+                    android:layout_width="45dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="32dp"
+                    android:elevation="4dp"
                     android:layout_marginRight="32dp"
                     android:background="@drawable/capsule_button_product"
                     app:layout_constraintBottom_toBottomOf="@+id/remove_product"
@@ -48,10 +50,10 @@
                     <Button
                         android:id="@+id/plus"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_margin="1dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="0dp"
                         android:background="@drawable/capsule_button_plus"
-                        android:elevation="0dp"
+                        android:elevation="4dp"
                         android:fontFamily="@font/rubik"
                         android:insetLeft="0dp"
                         android:insetTop="0dp"
@@ -60,7 +62,7 @@
                         android:text="+"
                         android:textAllCaps="false"
                         android:textColor="#000000"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         app:backgroundTint="#FFFFFF"
                         app:iconPadding="0dp"
@@ -73,14 +75,11 @@
                         android:id="@+id/amount_products"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
                         android:fontFamily="@font/rubik"
                         android:text="1"
                         android:textColor="#000000"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/minus"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -89,24 +88,26 @@
                     <Button
                         android:id="@+id/minus"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_margin="1dp"
-
+                        android:layout_height="40dp"
+                        android:layout_margin="0dp"
                         android:background="@drawable/capsule_button_minus"
-                        android:backgroundTint="@color/white"
-                        android:elevation="0dp"
+                        android:elevation="4dp"
                         android:fontFamily="@font/rubik"
-                        android:insetTop="1dp"
-                        android:insetBottom="1dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:insetBottom="0dp"
                         android:text="-"
                         android:textColor="#000000"
-
+                        android:textStyle="bold"
                         android:textSize="20sp"
                         app:backgroundTint="#FFFFFF"
                         app:iconPadding="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:gravity="center_vertical|center_horizontal" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
@@ -192,7 +193,7 @@
                     android:layout_marginTop="12dp"
                     android:text="REMOVE"
                     android:textColor="#FF1212"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/size_text"
                     app:layout_constraintTop_toBottomOf="@+id/size_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>

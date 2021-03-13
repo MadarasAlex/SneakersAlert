@@ -94,7 +94,7 @@
                     app:layout_constraintStart_toStartOf="@+id/contact"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.14"
-                    app:srcCompat="@drawable/mask_group_1" />
+                    app:srcCompat="@drawable/delivery" />
 
                 <TextView
                     android:id="@+id/eu"
