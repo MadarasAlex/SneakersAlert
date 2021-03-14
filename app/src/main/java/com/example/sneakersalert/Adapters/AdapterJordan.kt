@@ -3,15 +3,20 @@ package com.example.sneakersalert.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.R
 import drawable.NewShoe
 
-class AdapterJordan( private var li:ArrayList<NewShoe>, val onClickListener:OnClickListener):
+class AdapterJordan( private var li:ArrayList<NewShoe>,val onClickListener:OnClickListener):
     RecyclerView.Adapter<AdapterJordan.ViewHolder>()
     {
+        private var search=ArrayList<NewShoe>(li)
+
         interface OnClickListener
         {
             fun onItemClick(position:Int)
@@ -22,6 +27,7 @@ class AdapterJordan( private var li:ArrayList<NewShoe>, val onClickListener:OnCl
             val view= LayoutInflater.from(parent.context.applicationContext).inflate(R.layout.card_jordan, null)
             return ViewHolder(view)
         }
+
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.apply {
@@ -43,6 +49,11 @@ class AdapterJordan( private var li:ArrayList<NewShoe>, val onClickListener:OnCl
         override fun getItemCount(): Int {
             return li.size
         }
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+
 
 
 

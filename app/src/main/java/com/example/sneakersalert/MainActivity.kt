@@ -86,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
         actionBar?.setDisplayShowCustomEnabled(true);
 
-        findViewById<ImageView>(R.id.search).isInvisible=false
         navController.addOnDestinationChangedListener { _, _, _ ->
            toolbar.setNavigationIcon(R.drawable.short_text_24px)
 

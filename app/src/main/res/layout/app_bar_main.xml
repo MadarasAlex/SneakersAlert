@@ -47,20 +47,6 @@
                 android:background="@color/white">
 
                 <ImageView
-                    android:id="@+id/search"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginRight="28dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/shop"
-                    app:layout_constraintEnd_toStartOf="@+id/shop"
-                    app:layout_constraintHeight_percent="0.3"
-                    app:layout_constraintTop_toTopOf="@+id/shop"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:layout_constraintWidth_percent="0.15"
-                    app:srcCompat="@drawable/search" />
-
-                <ImageView
                     android:id="@+id/shop"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -71,25 +57,14 @@
                     app:layout_constraintWidth_percent="0.15"
                     app:srcCompat="@drawable/shopping_cart" />
 
-                <SearchView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:iconifiedByDefault="true"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.5"
-                    app:layout_constraintStart_toStartOf="parent" />
-
                 <ImageView
                     android:id="@+id/logo"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal|left"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginLeft="48dp"
                     android:foregroundGravity="left|center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/shop"
                     app:layout_constraintHeight_percent="0.6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

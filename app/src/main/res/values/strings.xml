@@ -114,4 +114,6 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="title_activity_buying_products">ScrollingActivity</string>
+    <string name="Search">Search</string>
+    <string name="_39">39</string>
 </resources>

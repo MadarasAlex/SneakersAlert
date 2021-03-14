@@ -22,7 +22,7 @@
         android:background="@drawable/bottom_card_jordan"
         app:cardCornerRadius="10dp"
         android:scaleX="1"
-        tools:targetApi="@tools:sample/full_names">
+        tools:targetApi="lollipop">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

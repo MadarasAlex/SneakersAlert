@@ -14,7 +14,7 @@ class CartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
-        toolbar2.setNavigationOnClickListener {
+        toolbar3.setNavigationOnClickListener {
             onBackPressed()
         }
         p.add(ProductCart(R.drawable.air_max_london,"Nike air max 1","London",289,40,1))

@@ -1,5 +1,6 @@
 package com.example.sneakersalert
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.Adapters.AdapterJordan
 import com.example.sneakersalert.DataClasses.Spec
+import com.example.sneakersalert.UI.BuyingProducts
 
 
 import drawable.NewShoe
@@ -49,7 +51,8 @@ class JordanFragment : Fragment(R.layout.fragment_jordan) {
         recyclerView.isNestedScrollingEnabled=true
         recyclerView.adapter=AdapterJordan(j,object:AdapterJordan.OnClickListener{
             override fun onItemClick(position: Int) {
-
+                val i= Intent(activity, BuyingProducts::class.java)
+                startActivity(i)
             }
 
         })

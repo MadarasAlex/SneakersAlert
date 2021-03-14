@@ -1,3 +1,7 @@
 package com.example.sneakersalert.DataClasses
 
-data class Spec(var pic:Int?,var text:String) {}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Spec(var pic:Int?,var text:String):Parcelable {}

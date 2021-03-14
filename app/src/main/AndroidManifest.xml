@@ -16,7 +16,11 @@
             android:theme="@style/Theme.SneakersAlert.NoActionBar" />
         <activity
             android:name=".SearchFragment"
-            tools:ignore="Instantiatable" />
+            tools:ignore="Instantiatable">
+
+
+        </activity>
+
         <activity android:name=".CartActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>

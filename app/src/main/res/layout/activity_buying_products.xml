@@ -1,46 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Platform.MaterialComponents"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".UI.BuyingProducts">
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".UI.BuyingProducts">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            android:layout_height="100dp"
+            android:elevation="0dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+            app:buttonGravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/back"
+            app:title="Info"
+            app:titleMargin="0dp"
+            app:titleMarginEnd="50dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tback"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/Theme.SneakersAlert" />
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:backgroundTint="@color/white">
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+                <ImageView
+                    android:id="@+id/shop"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.15"
+                    app:srcCompat="@drawable/shopping_cart" />
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal|left"
+                    android:foregroundGravity="left|center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/shop"
+                    app:layout_constraintHeight_percent="0.6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:srcCompat="@drawable/ic_logo"
+                    tools:ignore="VectorDrawableCompat" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/gray"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+
+            <TextView
+                android:id="@+id/text_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:fontFamily="@font/rubik"
+                android:gravity="center_horizontal"
+                android:text="Nike Air max 1"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shoe_pic" />
+
+            <TextView
+                android:id="@+id/london_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:fontFamily="@font/rubik"
+                android:text="Have A Nike Day"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/euro_item"
+                app:layout_constraintStart_toStartOf="@+id/text_home"
+                app:layout_constraintTop_toBottomOf="@+id/text_home" />
+
+            <ImageView
+                android:id="@+id/shoe_pic"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+
+                android:foregroundGravity="top|right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.75"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.8"
+                app:srcCompat="@drawable/air_max_1_have_a_nikeday" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/ic_baseline_favorite_border_24"
+                app:backgroundTint="#000000"
+                app:layout_constraintBottom_toBottomOf="@+id/london_text"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/euro_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="€"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/text_home"
+                app:layout_constraintTop_toBottomOf="@+id/text_home" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:text="149"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/euro_item"
+                app:layout_constraintStart_toEndOf="@+id/euro_item"
+                app:layout_constraintTop_toTopOf="@+id/euro_item"
+                app:layout_constraintVertical_bias="0.0" />
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/size1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/sizebullet"
+            android:backgroundTint="@color/white"
+            android:bufferType="normal"
+            android:contentDescription="39"
+            android:elevation="20dp"
+            android:enabled="true"
+            android:fitsSystemWindows="true"
+            android:fontFamily="@font/rubik"
+            android:hapticFeedbackEnabled="true"
+            android:text="@string/_39"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:backgroundTint="#F9F3F3"
+            app:borderWidth="12dp"
+            app:elevation="20dp"
+            app:ensureMinTouchTargetSize="false"
+            app:iconPadding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeColor="#000000"
+            app:strokeWidth="10dp"
+            app:useCompatPadding="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/size2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sizebullet"
+            android:backgroundTint="@color/white"
+            android:bufferType="normal"
+            android:contentDescription="40"
+            android:elevation="20dp"
+            android:enabled="true"
+            android:fitsSystemWindows="true"
+            android:fontFamily="@font/rubik"
+            android:hapticFeedbackEnabled="true"
+            android:text="40"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:backgroundTint="#F9F3F3"
+            app:borderWidth="12dp"
+            app:elevation="20dp"
+            app:ensureMinTouchTargetSize="false"
+            app:iconPadding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintStart_toEndOf="@+id/size1"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeColor="#000000"
+            app:strokeWidth="10dp"
+            app:useCompatPadding="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/size3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sizebullet"
+            android:backgroundTint="@color/white"
+            android:bufferType="normal"
+            android:contentDescription="39"
+            android:elevation="20dp"
+            android:enabled="true"
+            android:fitsSystemWindows="true"
+            android:fontFamily="@font/rubik"
+            android:hapticFeedbackEnabled="true"
+            android:text="41"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:backgroundTint="#F9F3F3"
+            app:borderWidth="12dp"
+            app:elevation="20dp"
+            app:ensureMinTouchTargetSize="false"
+            app:iconPadding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintStart_toEndOf="@+id/size2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeColor="#000000"
+            app:strokeWidth="10dp"
+            app:useCompatPadding="false" />
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/rubik"
+            android:text="100% Original Products  \nThis item is not returnable. Items like inner-wear, personal care, make-up, socks and certain accessories do not come under our return policy. "
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/size1"
+            app:layout_constraintTop_toBottomOf="@+id/size2" />
+
+        <TextView
+            android:id="@+id/read_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read More."
+            android:textColor="#F72626"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/info_text"
+            app:layout_constraintTop_toBottomOf="@+id/info_text" />
+
+        <TextView
+            android:id="@+id/spec_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bottom_card_jordan"
+            android:fontFamily="@font/rubik"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Spec"
+            android:textColor="#000000"
+            android:textScaleX="1"
+            android:textSize="16sp"
+            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintStart_toStartOf="@+id/read_more"
+            app:layout_constraintTop_toBottomOf="@+id/read_more"
+            app:layout_constraintWidth_percent="0.13" />
+
+        <Button
+            android:id="@+id/add_cart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/checkout_shape"
+            android:fontFamily="@font/rubik"
+            android:text="Add To Cart"
+            android:textSize="15sp"
+            app:backgroundTint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewSpec"
+            app:layout_constraintWidth_percent="0.7" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSpec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spec_title"
+            tools:itemCount="4"
+            tools:listitem="@layout/card_spec">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

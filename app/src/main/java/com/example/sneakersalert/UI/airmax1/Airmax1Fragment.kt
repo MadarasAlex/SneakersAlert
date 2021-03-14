@@ -1,5 +1,6 @@
 package com.example.sneakersalert.ui.airmax1
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.Adapters.AdapterJordan
 import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.R
+import com.example.sneakersalert.UI.BuyingProducts
 import drawable.NewShoe
 
 class Airmax1Fragment : Fragment(R.layout.fragment_airmax1) {
@@ -53,7 +55,8 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1) {
         recyclerView.isNestedScrollingEnabled=false
         recyclerView.adapter= AdapterJordan(a,object: AdapterJordan.OnClickListener{
             override fun onItemClick(position: Int) {
-
+                val i= Intent(activity, BuyingProducts::class.java)
+                startActivity(i)
             }
 
         })

@@ -1,28 +1,39 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scroll"
+    android:id="@+id/scroll2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fillViewport="false"
+    android:fillViewport="true"
     android:filterTouchesWhenObscured="false"
     android:fitsSystemWindows="false"
 
     android:keepScreenOn="true">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:background="#FFFFFF">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewSearch"
             android:layout_width="match_parent"
             android:layout_height="900dp"
             android:layout_gravity="top"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
             android:fitsSystemWindows="false"
             android:layerType="software"
             android:orientation="vertical"
@@ -31,11 +42,12 @@
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
             app:spanCount="2"
             tools:itemCount="4"
             tools:listitem="@layout/card_jordan" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
