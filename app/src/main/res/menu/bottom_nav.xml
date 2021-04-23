@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
         android:title="Home"
-        android:icon="@drawable/ic_baseline_home_24"
-        />
+        android:icon="@drawable/ic_baseline_home_24" />
     <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search"
-        android:actionLayout="@layout/fragment_search"
-        />
+        android:actionLayout="@layout/fragment_search" />
 
         <item
             android:id="@+id/nav_wishlist"
@@ -20,8 +17,9 @@
             android:icon="@drawable/ic_baseline_favorite_border_24"
             />
         <item
-            android:id="@+id/nav_account"
+            android:id="@+id/nav_orders"
             android:title="Account"
+            android:actionLayout="@layout/fragment_info_orders"
             android:icon="@drawable/ic_baseline_person_outline_24"
             />
 

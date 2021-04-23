@@ -3,56 +3,178 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.sneakersalert.ui.home.HomeFragment"
+        android:name="com.example.sneakersalert.UI.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_account"
+            app:destination="@id/nav_account" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_airmax1"
+            app:destination="@id/nav_airmax1" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_wishlist"
+            app:destination="@id/nav_wishlist" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_sneakers"
+            app:destination="@id/nav_sneakers" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_airmax90"
+            app:destination="@id/nav_airmax90" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_sneakers2"
+            app:destination="@id/nav_sneakers" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_search"
+            app:destination="@id/nav_search" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_cart"
+            app:destination="@id/nav_cart" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_jordan"
+            app:destination="@id/nav_jordan" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_sneakers"
-        android:name="com.example.sneakersalert.ui.sneakers.SneakersFragment"
+        android:name="com.example.sneakersalert.UI.sneakers.SneakersFragment"
         android:label="Sneakers"
-        tools:layout="@layout/fragment_sneakers" />
+        tools:layout="@layout/fragment_sneakers">
+        <action
+            android:id="@+id/action_nav_sneakers_to_nav_account"
+            app:destination="@id/nav_account" />
+        <action
+            android:id="@+id/action_nav_sneakers_to_buyingProducts"
+            app:destination="@id/buyingProducts" />
+    </fragment>
     <fragment
         android:id="@+id/nav_wishlist"
         android:name="com.example.sneakersalert.WishlistFragment"
-        tools:layout="@layout/fragment_wishlist"
-        />
+        tools:layout="@layout/fragment_wishlist">
+        <action
+            android:id="@+id/action_nav_wishlist_to_nav_account"
+            app:destination="@id/nav_account" />
+        <action
+            android:id="@+id/action_nav_wishlist_to_nav_sneakers"
+            app:destination="@id/nav_sneakers" />
+        <action
+            android:id="@+id/action_nav_wishlist_to_buyingProducts"
+            app:destination="@id/buyingProducts" />
+    </fragment>
     <fragment
         android:id="@+id/nav_airmax1"
-        android:name="com.example.sneakersalert.ui.airmax1.Airmax1Fragment"
+        android:name="com.example.sneakersalert.UI.Airmax1Fragment"
         android:label="Air Max 1"
-        tools:layout="@layout/fragment_airmax1" />
-
-    <fragment
-        android:id="@+id/nav_jordan"
-        android:name="com.example.sneakersalert.JordanFragment"
-        android:label="Jordan"
-        tools:layout="@layout/fragment_jordan" />
+        tools:layout="@layout/fragment_airmax1">
+        <action
+            android:id="@+id/action_nav_airmax1_to_nav_account"
+            app:destination="@id/nav_account" />
+        <action
+            android:id="@+id/action_nav_airmax1_to_buyingProducts"
+            app:destination="@id/buyingProducts" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_airmax90"
-        android:name="com.example.sneakersalert.ui.airmax90.Airmax90Fragment"
+        android:name="com.example.sneakersalert.UI.Airmax90Fragment"
         android:label="Air Max 90"
-        tools:layout="@layout/fragment_airmax90" />
+        tools:layout="@layout/fragment_airmax90">
+        <action
+            android:id="@+id/action_nav_airmax90_to_nav_account"
+            app:destination="@id/nav_account" />
+        <action
+            android:id="@+id/action_nav_airmax90_to_nav_faq"
+            app:destination="@id/nav_faq" />
+        <action
+            android:id="@+id/action_nav_airmax90_to_buyingProducts"
+            app:destination="@id/buyingProducts" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_faq"
         android:name="com.example.sneakersalert.ui.faq.FAQFragment"
         android:label="FAQ"
-        tools:layout="@layout/fragment_f_a_q" />
+        tools:layout="@layout/fragment_f_a_q">
+        <action
+            android:id="@+id/action_nav_faq_to_nav_account"
+            app:destination="@id/nav_account" />
+    </fragment>
     <fragment
         android:id="@+id/nav_account"
-        android:name="com.example.sneakersalert.ui.account.AccountFragment"
-        android:label="FAQ"
-        tools:layout="@layout/fragment_account" />
+        android:name="com.example.sneakersalert.UI.account.AccountFragment"
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/in"
+            app:destination="@id/nav_orders"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_orders"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.example.sneakersalert.SearchFragment"
+        android:name="com.example.sneakersalert.UI.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_nav_search_to_nav_account"
+            app:destination="@id/nav_account" />
+        <action
+            android:id="@+id/action_nav_search_to_buyingProducts"
+            app:destination="@id/buyingProducts" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_orders"
+        android:name="com.example.sneakersalert.UI.account.InfoOrdersFragment"
+        android:label="InfoOrdersFragment"
+        tools:layout="@layout/fragment_info_orders">
+        <action
+            android:id="@+id/out"
+            app:destination="@id/nav_account"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_account"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_jordan"
+        android:name="com.example.sneakersalert.UI.JordanFragment"
+        android:label="Jordan"
+        tools:layout="@layout/fragment_jordan">
+        <action
+            android:id="@+id/action_nav_jordan_to_nav_account"
+            app:destination="@id/nav_account" />
+        <action
+            android:id="@+id/action_nav_jordan_to_buyingProducts"
+            app:destination="@id/buyingProducts" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.example.sneakersalert.UI.CartFragment"
+        android:label="CartActivity"
+        tools:layout="@layout/activity_cart" />
+    <fragment
+        android:id="@+id/buyingProducts"
+        android:name="com.example.sneakersalert.UI.BuyingProducts"
+        android:label="BuyingProducts"
+        tools:layout="@layout/activity_buying_products">
+        <action
+            android:id="@+id/action_buyingProducts_to_nav_cart"
+            app:destination="@id/nav_cart" />
+    </fragment>
+    <activity
+        android:id="@+id/splashScreen"
+        android:name="com.example.sneakersalert.UI.SplashScreen"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.sneakersalert.MainActivity"
+        android:label="app_bar_main"
+        tools:layout="@layout/app_bar_main" />
+
 
 </navigation>

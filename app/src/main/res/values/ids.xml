@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="forgot" type="id" />
+    <item name="noaccount" type="id" />
+    <item name="textView7" type="id" />
+    <item name="login_button" type="id" />
+    <item name="search_logo" type="id" />
+    <item name="scroll2" type="id" />
+    <item name="searchView" type="id" />
+    <item name="recyclerViewSearch" type="id" />
+    <item name="iv_auto_image_slider" type="id" />
+    <item name="iv_gif_container" type="id" />
+    <item name="fl_shadow_container" type="id" />
+    <item name="tv_auto_image_slider" type="id" />
+</resources>

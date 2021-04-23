@@ -1,17 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-android:shape="ring"
-    android:visible="true"
-    android:tint="@color/white"
+    android:shape="oval">
 
-    >
-    <stroke android:width="2dip"
-        android:color="@color/black"/>
-<solid android:color="@color/white"
+    <solid android:color="#666666" />
 
-    />
-<corners
-android:radius="50dp"
-    />
-
+    <size
+        android:width="120dp"
+        android:height="120dp" />
 </shape>

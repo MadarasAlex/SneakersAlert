@@ -11,40 +11,41 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
-        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:addStatesFromChildren="false"
-        android:theme="@style/Theme.SneakersAlert.NoActionBar"
+        android:background="@color/alert"
+        android:backgroundTint="@color/alert"
         android:fitsSystemWindows="true"
-        style="@style/Theme.SneakersAlert.NoActionBar"
+        android:foregroundTint="@color/alert"
         app:statusBarForeground="@drawable/back">
+        '<!--' This one changes color(BACKGROUND TINT) '-->'
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
+            android:layout_height="85dp"
+            android:background="@color/alert"
+            android:backgroundTint="@color/alert"
             android:clickable="false"
-            android:elevation="4dp"
+            android:elevation="2dp"
             android:fitsSystemWindows="true"
-            android:forceDarkAllowed="false"
+            android:forceDarkAllowed="true"
+            android:foregroundTint="@color/alert"
             android:isScrollContainer="true"
             android:minHeight="100dp"
-            android:theme="@style/Theme.SneakersAlert.NoActionBar"
             android:visibility="visible"
             app:buttonGravity="center_vertical"
             app:navigationIcon="@drawable/short_text_24px"
-            app:navigationIconTint="@color/black"
-            app:popupTheme="@style/Theme.SneakersAlert.NoActionBar">
+            app:navigationIconTint="@color/white"
+            app:titleTextColor="#000000">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tback"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/white"
-                android:background="@color/white">
+                android:background="#292C2F"
+                android:backgroundTint="@color/alert">
 
                 <ImageView
                     android:id="@+id/shop"
@@ -57,22 +58,37 @@
                     app:layout_constraintWidth_percent="0.15"
                     app:srcCompat="@drawable/shopping_cart" />
 
-                <ImageView
+                <TextView
+                    android:id="@+id/your_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/liberation_sans"
+                    android:text="Your Cart"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25sp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/logo"
+                    app:layout_constraintEnd_toStartOf="@+id/shop"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/logo" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/logo"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|left"
                     android:foregroundGravity="left|center_vertical"
+                    android:src="@drawable/logo4"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/shop"
                     app:layout_constraintHeight_percent="0.6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.2"
-                    app:srcCompat="@drawable/ic_logo"
-                    tools:ignore="VectorDrawableCompat" />
+                    app:layout_constraintWidth_percent="0.3"
+                    tools:ignore="RtlHardcoded" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

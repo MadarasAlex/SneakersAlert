@@ -3,7 +3,7 @@ package layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.R
@@ -19,8 +19,12 @@ class AdapterSpec(private val l:ArrayList<Spec>):RecyclerView.Adapter<AdapterSpe
 
     override fun onBindViewHolder(holder: AdapterSpec.ViewHolder, position: Int) {
         holder.apply {
-            itemView.text_spec.text=l[position].text
-            l[position].pic?.let { itemView.logo_spec.setImageResource(it) }
+            itemView.text_spec.text = l[position].text
+            l[position].pic?.let {
+                itemView.findViewById<ImageView>(R.id.logo_spec).setImageResource(
+                    it
+                )
+            }
         }
     }
 

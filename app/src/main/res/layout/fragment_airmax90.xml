@@ -15,19 +15,14 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFF">
 
-        <TextView
-            android:id="@+id/airmax90_title"
+        <Spinner
+            android:id="@+id/spinner3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/rubik"
-            android:layerType="software"
-            android:text="Air max 90"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -35,9 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="700dp"
             android:layout_gravity="top"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
             android:fitsSystemWindows="false"
             android:layerType="software"
             android:orientation="vertical"
@@ -47,7 +42,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/airmax90_title"
+            app:layout_constraintTop_toBottomOf="@+id/spinner3"
             app:spanCount="2"
             tools:itemCount="4"
             tools:listitem="@layout/card_jordan" />

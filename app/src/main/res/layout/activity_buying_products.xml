@@ -12,60 +12,9 @@
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         android:fitsSystemWindows="true"
         tools:context=".UI.BuyingProducts">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar3"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:elevation="0dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-
-            app:buttonGravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/back"
-            app:title="Info"
-            app:titleMargin="0dp"
-            app:titleMarginEnd="50dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/tback"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:backgroundTint="@color/white">
-
-                <ImageView
-                    android:id="@+id/shop"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.3"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.15"
-                    app:srcCompat="@drawable/shopping_cart" />
-
-                <ImageView
-                    android:id="@+id/logo"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center_horizontal|left"
-                    android:foregroundGravity="left|center_vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/shop"
-                    app:layout_constraintHeight_percent="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.2"
-                    app:srcCompat="@drawable/ic_logo"
-                    tools:ignore="VectorDrawableCompat" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -74,9 +23,55 @@
             android:background="@color/gray"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintHeight_percent="0.44"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/pic1"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/change_button"
+                android:shadowColor="#FFFFFF"
+                android:text="Button"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/text_home"
+                app:layout_constraintStart_toStartOf="@+id/shoe_pic"
+                app:rippleColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/pic2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/change_button"
+                android:shadowColor="#FFFFFF"
+                android:text="Button"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#F5DEDE"
+                app:layout_constraintBottom_toBottomOf="@+id/pic1"
+                app:layout_constraintStart_toEndOf="@+id/pic1"
+                app:layout_constraintTop_toTopOf="@+id/pic1"
+                app:rippleColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/pic3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/change_button"
+                android:shadowColor="#FFFFFF"
+                android:text="Button"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#F5DEDE"
+                app:layout_constraintBottom_toBottomOf="@+id/pic2"
+                app:layout_constraintStart_toEndOf="@+id/pic2"
+                app:layout_constraintTop_toTopOf="@+id/pic1"
+                app:rippleColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/text_home"
@@ -84,7 +79,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
-                android:fontFamily="@font/rubik"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/rubik_medium"
                 android:gravity="center_horizontal"
                 android:text="Nike Air max 1"
                 android:textAlignment="center"
@@ -102,7 +98,7 @@
                 android:fontFamily="@font/rubik"
                 android:text="Have A Nike Day"
                 android:textColor="#000000"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/euro_item"
                 app:layout_constraintStart_toStartOf="@+id/text_home"
                 app:layout_constraintTop_toBottomOf="@+id/text_home" />
@@ -121,12 +117,24 @@
                 app:srcCompat="@drawable/air_max_1_have_a_nikeday" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/wish"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/ic_baseline_favorite_border_24"
+                app:backgroundTint="#000000"
+                app:layout_constraintBottom_toBottomOf="@+id/london_text"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/wish2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/ic_baseline_favorite_24"
+                android:visibility="invisible"
                 app:backgroundTint="#000000"
                 app:layout_constraintBottom_toBottomOf="@+id/london_text"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -142,7 +150,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/text_home" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/price_shoe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -303,15 +311,17 @@
             android:background="@drawable/checkout_shape"
             android:fontFamily="@font/rubik"
             android:text="Add To Cart"
+            android:textColor="#FFFFFF"
             android:textSize="15sp"
             app:backgroundTint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintHeight_percent="0.06"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewSpec"
-            app:layout_constraintWidth_percent="0.7" />
+            app:layout_constraintWidth_percent="0.7"
+            app:rippleColor="#FEFEFE" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewSpec"

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NavigationViewStyle." />
+
+    <string-array name="planets_array">
+        <item>Recommended</item>
+        <item>What\'s New</item>
+        <item>Best Selling</item>
+        <item>Price: High to Low</item>
+        <item>Price: Low to High</item>
+
+    </string-array>
+</resources>

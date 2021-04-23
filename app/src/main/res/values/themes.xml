@@ -2,50 +2,66 @@
     <!-- Base application theme. -->
     <style name="Theme.SneakersAlert" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorSecondary">@color/item_color</item>
 
-
+        <item name="fontFamily">@font/liberation_sans_regular</item>
+        <item name="android:textColor">@color/item_color</item>
         <item name="percentHeight">0.9</item>
         <item name="navigationIcon">@drawable/short_text_24px</item>
-        <item name="backgroundColor">@color/gray</item>
-        <item name="background">@color/gray</item>
-        <item name="colorOnPrimary">@color/gray</item>
-
-
+        <item name="backgroundColor">@color/item_color</item>
+        <item name="background">@color/item_color</item>
+        <item name="colorOnPrimary">@color/item_color</item>
+        <item name="backgroundTint">@null</item>
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
-
-
         <!-- Secondary brand color. -->
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/alert</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="Theme.MyFancyTheme" parent="android:Theme.Holo">
-        <item name="android:homeAsUpIndicator">@color/black</item>
+        <item name="android:homeAsUpIndicator">@color/alert</item>
     </style>
 
     <style name="NavigationViewStyle" parent="android:Widget.Material.Toolbar.Button.Navigation" tools:targetApi="lollipop">
-        <item name="android:fontFamily">@font/rubik</item>
-        <item name="android:textSize">14sp</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="background">@color/white</item>
+        <item name="android:fontFamily">@font/liberation_sans</item>
+        <item name="android:textSize">23sp</item>
+        <item name="colorOnPrimary">@color/alert</item>
+        <item name="background">@color/alert</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:buttonStyleToggle">@drawable/short_text_24px</item>
         <item name="listPreferredItemHeightSmall">40dp</item>
-        <item name="collapseIcon">@drawable/back</item>
+        <item name="collapseIcon">@drawable/back2</item>
         <item name="android:homeAsUpIndicator">@drawable/short_text_24px</item>
         <item name="android:listPreferredItemHeight">37dp</item>
         <item name="android:listPreferredItemHeightLarge">37dp</item>
-        <item name="percentHeight">0.8</item>
+        <item name="percentHeight">0.5</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="itemBackground">@drawable/nav_view_select</item>
 
     </style>
 
-    <style name="BottomNav" parent="Widget.MaterialComponents.BottomNavigationView" tools:targetApi="lollipop" >
+    <style name="Tab" parent="Widget.MaterialComponents.TabLayout">
+        <item name="selectableItemBackground">@drawable/tab_selected</item>
+
+    </style>
+
+    <style name="BottomNav" parent="Widget.MaterialComponents.BottomNavigationView" tools:targetApi="lollipop">
         <item name="android:fontFamily">@font/rubik</item>
         <item name="background">@color/white</item>
 
+    </style>
+
+    <style name="Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="navigationIconTint">@color/black</item>
+        <item name="title">"Your Cart("+Global.p.size+")"</item>
+        <item name="titleTextColor">@color/colorPrimary</item>
     </style>
 
     <style name="DrawerColor" parent="Widget.AppCompat.DrawerArrowToggle">
@@ -58,7 +74,7 @@
     <style name="Theme.SneakersAlert.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorOnPrimary">@color/gray</item>
+        <item name="colorOnPrimary">@color/alert</item>
 
     </style>
 

@@ -2,74 +2,42 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group
-        android:id="@+id/group0"
+<group
+    android:id="@+id/gr"
+    android:checkableBehavior="single"
+    android:visible="true">
+    <item
+        android:id="@+id/nav_home"
         android:checkableBehavior="single"
-        android:visible="true">
-        <item
-            android:id="@+id/nav_home"
-            android:title="HOME" />
-    </group>
-    <group
-        android:id="@+id/group1"
+        android:title="Home Page"
+        android:visible="true"></item>
+    <item
+        android:id="@+id/nav_sneakers"
         android:checkableBehavior="single"
-        android:visible="true">
-        <item
-            android:id="@+id/nav_sneakers"
-            android:title="SNEAKERS" />
-    </group>
-    <group
+        android:title="Shop Products"
+        android:visible="true"></item>
+    <item
+        android:id="@+id/nav_orders"
         android:checkableBehavior="single"
-        android:id="@+id/group2"
-        android:visible="true">
-        <item
-            android:id="@+id/nav_airmax1"
+        android:title="My Account"
+        android:visible="true"></item>
+    <item
+        android:id="@+id/nav_cart"
+        android:checkableBehavior="single"
+        android:title="My Cart"
+        android:visible="true" />
+    <item
+        android:checkableBehavior="single"
+        android:id="@+id/nav_faq"
+        android:title="FAQ"
+        android:visible="true"></item>
+    <item
+        android:id="@+id/nav_wishlist"
+        android:checkableBehavior="single"
+        android:title="Whishlist"
+        android:visible="true"></item>
 
-            android:title="AIR MAX 1" />
-    </group>
-    <group
-        android:id="@+id/group3"
-        android:checkableBehavior="single"
-        android:visible="true">
-        <item
-            android:id="@+id/nav_jordan"
+</group>
 
-            android:title="JORDAN 1" />
-    </group>
-    <group
-        android:checkableBehavior="single"
-        android:id="@+id/group4"
-        android:visible="true">
-        <item
-            android:id="@+id/nav_airmax90"
-
-            android:title="AIR MAX 90" />
-    </group>
-    <group
-        android:id="@+id/group5"
-        android:checkableBehavior="single"
-        android:visible="true">
-        <item
-            android:id="@+id/nav_faq"
-            android:title="FAQ" />
-    </group>
-    <group
-        android:checkableBehavior="single"
-        android:id="@+id/group6"
-        android:visible="true">
-        <item
-            android:id="@+id/nav_account"
-            android:title="ACCOUNT" />
-    </group>
-    <group
-        android:checkableBehavior="single"
-        android:id="@+id/group7"
-
-        android:visible="true">
-        <item
-            android:checkable="false"
-
-            android:title="" />
-    </group>
 
 </menu>
