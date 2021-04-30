@@ -127,4 +127,11 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="buy_with_googlepay_button_content_description" />
     <string name="sneakers">Sneakers</string>
+
+
+    <string-array name="profiles">
+        <item>Particular</item>
+        <item>Business</item>
+
+    </string-array>
 </resources>

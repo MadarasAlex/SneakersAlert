@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F7F7F7"
+        android:paddingBottom="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/type_customer2"
+        app:layout_constraintStart_toStartOf="@+id/type_customer2"
+        tools:context=".ui.account.FillDetailsFragment">
+
+        <TextView
+            android:id="@+id/type_customer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Phone number"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
+
+        <TextView
+            android:id="@+id/type_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Type customer"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/last_name" />
+
+        <TextView
+            android:id="@+id/email_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="E-mail"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="none"
+            android:padding="10dp"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/name_fill"
+            app:layout_constraintTop_toBottomOf="@+id/last_name_section" />
+
+        <TextView
+            android:id="@+id/name_fill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_info" />
+
+        <TextView
+            android:id="@+id/account_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Account Information"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_country3" />
+
+        <TextView
+            android:id="@+id/account_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Your Name"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/account_country3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans_regular"
+            android:text="Romania"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/account_name3"
+            app:layout_constraintStart_toStartOf="@+id/account_name3"
+            app:layout_constraintTop_toBottomOf="@+id/account_name3" />
+
+        <EditText
+            android:id="@+id/name_section"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="28dp"
+            android:autofillHints="@string/common_google_play_services_enable_button"
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="none"
+            android:padding="10dp"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/name_fill"
+            app:layout_constraintTop_toBottomOf="@+id/name_fill" />
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="28dp"
+            android:autofillHints="@string/prompt_email"
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/name_fill"
+            app:layout_constraintTop_toBottomOf="@+id/email_section" />
+
+        <TextView
+            android:id="@+id/last_name_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Last name"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_section" />
+
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/fill_text_back"
+            android:clickable="true"
+            android:dropDownHeight="wrap_content"
+            android:focusable="true"
+            android:fontFamily="@font/liberation_sans"
+            android:inputType="none"
+            android:labelFor="@+id/autoComplete"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/last_name"
+            app:layout_constraintStart_toStartOf="@+id/type_customer"
+            app:layout_constraintTop_toBottomOf="@+id/type_customer"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/drop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
+            app:backgroundTint="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/autoCompleteTextView"
+            app:layout_constraintEnd_toEndOf="@+id/autoCompleteTextView"
+            app:layout_constraintTop_toTopOf="@+id/autoCompleteTextView"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout
+            android:id="@+id/phone_field"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/fill_text_back"
+            android:hint=""
+            app:layout_constraintEnd_toEndOf="@+id/autoCompleteTextView"
+            app:layout_constraintStart_toStartOf="@+id/autoCompleteTextView"
+            app:layout_constraintTop_toBottomOf="@+id/type_customer2"
+            app:phonemoji_flagFor="@id/phonemojiTextInputEditText">
+
+            <com.tfcporciuncula.phonemoji.PhonemojiTextInputEditText
+                android:id="@+id/phonemojiTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:phonemoji_initialRegionCode="NL" />
+
+        </com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout>
+
+        <TextView
+            android:id="@+id/birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Birthday"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phone_field" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/fill_text_back"
+            android:clickable="true"
+            android:dropDownHeight="wrap_content"
+            android:focusable="true"
+            android:fontFamily="@font/liberation_sans"
+            android:inputType="none"
+            android:labelFor="@+id/autoComplete2"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/autoCompleteYear"
+            app:layout_constraintStart_toEndOf="@id/autoCompleteYear"
+            app:layout_constraintTop_toTopOf="@id/autoCompleteYear"
+            app:layout_constraintWidth_percent="0.4"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/drop_month"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
+            app:backgroundTint="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/autoCompleteMonth"
+            app:layout_constraintEnd_toEndOf="@+id/autoCompleteMonth"
+            app:layout_constraintTop_toTopOf="@+id/autoCompleteMonth"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/fill_text_back"
+            android:clickable="true"
+            android:dropDownHeight="wrap_content"
+            android:focusable="true"
+            android:fontFamily="@font/liberation_sans"
+            android:inputType="none"
+            android:labelFor="@+id/autoComplete3"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/autoCompleteMonth"
+            app:layout_constraintStart_toEndOf="@id/autoCompleteMonth"
+            app:layout_constraintTop_toTopOf="@id/autoCompleteMonth"
+            app:layout_constraintWidth_percent="0.2"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/drop_day"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
+            app:backgroundTint="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/autoCompleteDay"
+            app:layout_constraintEnd_toEndOf="@+id/autoCompleteDay"
+            app:layout_constraintTop_toTopOf="@+id/autoCompleteDay"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/fill_text_back"
+            android:clickable="true"
+            android:dropDownHeight="wrap_content"
+            android:focusable="true"
+            android:fontFamily="@font/liberation_sans"
+            android:inputType="none"
+            android:labelFor="@+id/autoComplete4"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/birthday"
+            app:layout_constraintTop_toBottomOf="@+id/birthday"
+            app:layout_constraintWidth_percent="0.25"
+
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/drop_year"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
+            app:backgroundTint="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/autoCompleteYear"
+            app:layout_constraintEnd_toEndOf="@+id/autoCompleteYear"
+            app:layout_constraintTop_toTopOf="@+id/autoCompleteYear"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <TextView
+            android:id="@+id/pass_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Password information"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/autoCompleteMonth" />
+
+        <EditText
+            android:id="@+id/password_fill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="28dp"
+            android:autofillHints="@string/prompt_email"
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/pass_info"
+            app:layout_constraintTop_toBottomOf="@+id/pass_info"
+            tools:ignore="LabelFor" />
+
+        <CheckedTextView
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Change Password"
+            app:layout_constraintStart_toStartOf="@id/password_fill"
+            app:layout_constraintTop_toBottomOf="@id/password_fill" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="24dp"
+            android:enabled="true"
+            android:fontFamily="@font/lato"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="SAVE"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="#292C2F"
+            app:cornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkbox"
+            app:rippleColor="#707070" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

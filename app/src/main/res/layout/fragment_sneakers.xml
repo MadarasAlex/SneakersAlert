@@ -25,7 +25,10 @@
             app:tabIndicatorGravity="center"
             app:tabRippleColor="#000000"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/item_color" />
+            app:tabTextColor="@color/item_color">
+
+
+        </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
@@ -43,8 +46,8 @@
             android:id="@+id/sneakers_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/rubik"
             android:layerType="software"

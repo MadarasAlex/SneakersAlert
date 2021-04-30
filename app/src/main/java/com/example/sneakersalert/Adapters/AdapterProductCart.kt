@@ -1,5 +1,6 @@
 package com.example.sneakersalert.Adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +13,22 @@ import kotlinx.android.synthetic.main.card_product_in_cart.view.*
 
 
 class AdapterProductCart(
-    private var l: ArrayList<ProductCart>, price_total: TextView, price_final: TextView
+    private var l: ArrayList<ProductCart>,
+    price_total: TextView?,
+    price_final: TextView?,
+    your_cart: TextView?
 ) :
     RecyclerView.Adapter<AdapterProductCart.ViewHolder>() {
     var price: TextView? = null
     var final: TextView? = null
+    var your: TextView? = null
+
 
     init {
         this.price = price_total
         this.final = price_final
+        this.your = your_cart
+
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -37,6 +45,7 @@ class AdapterProductCart(
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AdapterProductCart.ViewHolder, position: Int) {
         holder.apply {
             itemView.product_image.setImageResource(l[position].image)
@@ -75,11 +84,15 @@ class AdapterProductCart(
                 price?.text = Global.total.toString()
                 final?.text = price?.text
                 l.removeAt(position)
+                your?.text = "Your Cart(" + l.size.toString() + ")"
                 notifyDataSetChanged()
             }
+
+
         }
     }
     override fun getItemCount(): Int {
         return l.size
     }
+
 }

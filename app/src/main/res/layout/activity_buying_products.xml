@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:fitsSystemWindows="true"
-        tools:context=".UI.BuyingProducts">
+        tools:context=".ui.BuyingProducts">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -183,7 +183,8 @@
             android:fontFamily="@font/rubik"
             android:hapticFeedbackEnabled="true"
             android:text="@string/_39"
-            android:textColor="@color/black"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@color/item_color"
             android:textSize="12sp"
             android:textStyle="bold"
             app:backgroundTint="#F9F3F3"
@@ -191,11 +192,13 @@
             app:elevation="20dp"
             app:ensureMinTouchTargetSize="false"
             app:iconPadding="10dp"
+            android:textIsSelectable="true"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.0"
             app:strokeColor="#000000"
+            app:iconTint="#FFFFFF"
             app:strokeWidth="10dp"
             app:useCompatPadding="false" />
 
@@ -208,12 +211,13 @@
             android:bufferType="normal"
             android:contentDescription="40"
             android:elevation="20dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:enabled="true"
             android:fitsSystemWindows="true"
             android:fontFamily="@font/rubik"
             android:hapticFeedbackEnabled="true"
             android:text="40"
-            android:textColor="@color/black"
+            android:ellipsize="none"
             android:textSize="12sp"
             android:textStyle="bold"
             app:backgroundTint="#F9F3F3"
@@ -227,6 +231,7 @@
             app:layout_constraintVertical_bias="0.0"
             app:strokeColor="#000000"
             app:strokeWidth="10dp"
+            android:textColor="@color/item_color"
             app:useCompatPadding="false" />
 
         <com.google.android.material.button.MaterialButton
@@ -243,18 +248,20 @@
             android:fontFamily="@font/rubik"
             android:hapticFeedbackEnabled="true"
             android:text="41"
-            android:textColor="@color/black"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:textSize="12sp"
             android:textStyle="bold"
             app:backgroundTint="#F9F3F3"
             app:borderWidth="12dp"
             app:elevation="20dp"
+            android:textColor="@color/item_color"
             app:ensureMinTouchTargetSize="false"
             app:iconPadding="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintStart_toEndOf="@+id/size2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.0"
+            app:rippleColor="@color/item_color"
             app:strokeColor="#000000"
             app:strokeWidth="10dp"
             app:useCompatPadding="false" />

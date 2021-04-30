@@ -1,10 +1,10 @@
 package com.example.sneakersalert.DataClasses
 
-import java.time.LocalDateTime
+import java.util.*
 
 data class Order(
     var number: Int,
-    var date: LocalDateTime,
+    var date: Date,
     var size: String,
     var price: Double,
     var status: String

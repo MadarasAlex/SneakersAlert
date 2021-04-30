@@ -9,43 +9,33 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ExpandableListAdapter
-import android.widget.ExpandableListView
 import android.widget.ImageView
 import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
-import com.example.sneakersalert.DataClasses.ItemNav
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlin.collections.set
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var appBarConfiguration: AppBarConfiguration
-    val navigationDest = ArrayList<ItemNav>()
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var drawerToggle: ActionBarDrawerToggle
-    lateinit var expandableListAdapter: ExpandableListAdapter
-    val listDataHeader = ArrayList<ItemNav>()
-    val listDataChild = HashMap<ItemNav, ArrayList<ItemNav>>()
-    lateinit var expandableListView: ExpandableListView
     var open = false
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint(
         "RestrictedApi", "UseCompatLoadingForDrawables", "ResourceAsColor",
-        "ResourceType", "NewApi", "RtlHardcoded"
+        "ResourceType", "NewApi", "RtlHardcoded", "SetTextI18n"
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,11 +66,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_airmax90,
                 R.id.nav_faq,
                 R.id.nav_cart,
+                R.id.nav_menuLogin,
+                R.id.nav_signup,
+                R.id.nav_login,
                 R.id.nav_orders,
                 R.id.nav_wishlist
             ), drawerLayout
         )
-        navigationDest.add(ItemNav("Home", 0))
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         setupActionBarWithNavController(navController)
         navigationView.setupWithNavController(navController)
@@ -112,26 +104,66 @@ class MainActivity : AppCompatActivity() {
             open = false
             if (navController.currentDestination?.id == R.id.nav_cart) {
                 supportActionBar?.setDisplayShowTitleEnabled(true)
-
-                toolbar.title = "Your Cart(" + Global.p.size + ")"
                 toolbar.setTitleTextColor(Color.WHITE)
-                toolbar.title = "Your Cart(" + Global.p.size + ")"
-
                 findViewById<ConstraintLayout>(R.id.tback).setBackgroundColor(Color.WHITE)
-                actionBar?.title = "Your Cart(" + Global.p.size + ")"
-                supportActionBar?.title = "Your Cart(" + Global.p.size + ")"
                 supportActionBar?.setDisplayShowTitleEnabled(true)
                 your_cart.visibility = View.VISIBLE
                 logo.visibility = View.INVISIBLE
-                your_cart.text = "Your Cart(" + Global.p.size + ")"
                 shop.visibility = View.INVISIBLE
             } else {
                 your_cart.visibility = View.INVISIBLE
                 logo.visibility = View.VISIBLE
                 shop.visibility = View.VISIBLE
             }
+            if (navController.currentDestination?.id == R.id.nav_login) {
+                navigationView.menu.getItem(2).isCheckable = true
+                navigationView.menu.getItem(2).isChecked = true
+                navigationView.setCheckedItem(R.id.nav_menuLogin)
+                your_cart.visibility = View.INVISIBLE
+                logo.visibility = View.INVISIBLE
+                shop.visibility = View.INVISIBLE
+                text_login.text = "Log In"
+                text_login.visibility = View.VISIBLE
 
+            }
+            if (navController.currentDestination?.id == R.id.nav_signup) {
+                your_cart.visibility = View.INVISIBLE
+                logo.visibility = View.INVISIBLE
+                shop.visibility = View.INVISIBLE
+                text_login.text = "Sign Up"
+                text_login.visibility = View.VISIBLE
+            }
+            if (navController.currentDestination?.id == R.id.nav_orders) {
+                navigationView.menu.getItem(2).isCheckable = true
+                navigationView.menu.getItem(2).isChecked = true
+                navigationView.setCheckedItem(R.id.nav_menuLogin)
+                your_cart.visibility = View.INVISIBLE
+                logo.visibility = View.INVISIBLE
+                shop.visibility = View.INVISIBLE
+                text_login.text = "My Account"
+                text_login.visibility = View.VISIBLE
+
+            }
+            if (navController.currentDestination?.id == R.id.nav_details) {
+                navigationView.menu.getItem(2).isCheckable = true
+                navigationView.menu.getItem(2).isChecked = true
+                navigationView.setCheckedItem(R.id.nav_menuLogin)
+                your_cart.visibility = View.INVISIBLE
+                logo.visibility = View.INVISIBLE
+                shop.visibility = View.INVISIBLE
+                text_login.text = "Account"
+                text_login.visibility = View.VISIBLE
+
+            }
+            if (navController.currentDestination?.id != R.id.nav_signup
+                && navController.currentDestination?.id != R.id.nav_login
+                && navController.currentDestination?.id != R.id.nav_orders
+                && navController.currentDestination?.id != R.id.nav_details
+            ) {
+                text_login.visibility = View.INVISIBLE
+            }
         }
+
         if (navController.currentDestination?.id != R.id.nav_search) {
             toolbar.setNavigationOnClickListener {
                 supportActionBar?.setHomeAsUpIndicator(R.drawable.back2)
@@ -145,6 +177,7 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
                 onSupportNavigateUp()
             }
+
         }
 
 
@@ -155,38 +188,22 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("ResourceAsColor")
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            supportActionBar?.setHomeAsUpIndicator(R.drawable.back2)
-            actionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-            toolbar.setBackgroundColor(R.color.alert)
-            supportActionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-            actionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_24px)
-            super.onBackPressed()
-        }
+
     }
 
-    fun changeFragment(fragment: Fragment){
+    fun changeFragment(fragment: Fragment) {
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.nav_host_fragment, fragment).addToBackStack(null)
         ft.commit()
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.nav_cart) {
-            toolbar.title = "Your Cart(" + Global.p.size + ")"
-            findViewById<ConstraintLayout>(R.id.tback).setBackgroundColor(Color.WHITE)
-            actionBar?.title = "Your Cart(" + Global.p.size + ")"
-            supportActionBar?.title = "Your Cart(" + Global.p.size + ")"
-            your_cart.visibility = View.VISIBLE
-            logo.visibility = View.INVISIBLE
-            your_cart.text = "Your Cart(" + Global.p.size + ")"
 
-            setTheme(R.style.Toolbar)
-        }
+    @SuppressLint("SetTextI18n")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
         return super.onOptionsItemSelected(item)
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu this adds items to the action bar if it is present.
 
@@ -207,24 +224,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
-    private fun prepareListData() {
 
-
-        // Adding child data
-        listDataHeader.add(ItemNav("Home Page", 0))
-        listDataHeader.add(ItemNav("Shop Products", R.drawable.dropdown))
-        listDataHeader.add(ItemNav("My Account", 0))
-        listDataHeader.add(ItemNav("My Cart", 0))
-        listDataHeader.add(ItemNav("FAQ", 0))
-        // Adding child data
-        val shoes = ArrayList<ItemNav>()
-        shoes.add(ItemNav("AIR MAX 1", 0))
-        shoes.add(ItemNav("AIR MAX 90", 0))
-        shoes.add(ItemNav("JORDAN 1", 0))
-
-        listDataChild[listDataHeader[1]] = shoes // Header, Child data
-
-    }
 
 }
 

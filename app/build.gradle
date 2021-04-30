@@ -6,14 +6,14 @@ plugins {
     id 'com.google.gms.google-services'
 
 }
-apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.sneakersalert"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         multiDexEnabled true
         versionCode 1
@@ -42,12 +42,20 @@ android {
 
 dependencies {
     //noinspection GradleCompatible
+    def fragment_version = "1.3.3"
 
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'com.google.firebase:firebase-database:19.7.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+   def androidArchVersion = '1.1.1'
+    implementation "android.arch.lifecycle:viewmodel:$androidArchVersion"
+    implementation "android.arch.lifecycle:livedata:$androidArchVersion"
+
+    implementation 'com.borjabravo:footernavigationview:1.0.0'
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.android.support:design:30.0.0'
@@ -80,5 +88,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    implementation 'com.github.tfcporciuncula:phonemoji:1.0.0'
 }

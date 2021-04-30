@@ -12,20 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SneakersAlert">
-        <activity android:name=".UI.payment.Checkout" />
+        <activity android:name=".ui.payment.Checkout" />
         <activity
-            android:name=".UI.account.ForgotPassword"
+            android:name=".ui.account.ForgotPassword"
             android:label="@string/title_activity_forgot_password"
             android:theme="@style/Theme.SneakersAlert.NoActionBar" />
         <activity
-            android:name=".UI.search.SearchFragment"
+            android:name=".ui.search.SearchFragment"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.SplashScreen">
+        <activity android:name=".ui.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

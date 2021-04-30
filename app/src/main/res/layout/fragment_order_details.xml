@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        tools:context=".ui.account.OrderDetails">
+
+        <Button
+            android:id="@+id/change_3"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/checkout_shape"
+            android:enabled="true"
+            android:fontFamily="@font/lato"
+            android:text="Change"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="#292C2F"
+            app:iconTint="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/shipping_address_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/business_name_shipping"
+            app:layout_constraintWidth_percent="0.3"
+            app:rippleColor="#707070" />
+
+        <TextView
+            android:id="@+id/order_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Order History"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/shipping_address_text"
+            app:layout_constraintTop_toBottomOf="@+id/shipping_address_text" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="32dp"
+            android:enabled="true"
+            android:fontFamily="@font/lato"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="5dp"
+            android:text="Back to the Account"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="#292C2F"
+            app:cornerRadius="0dp"
+            app:icon="@drawable/ic_baseline_arrow_back_ios_24"
+            app:iconPadding="1dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewOrders"
+            app:layout_constraintWidth_percent="0.65"
+            app:rippleColor="#707070" />
+
+        <Button
+            android:id="@+id/change_2"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/checkout_shape"
+            android:enabled="true"
+            android:fontFamily="@font/lato"
+            android:text="Change"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="#292C2F"
+            app:iconTint="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/person_name3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/person_name3"
+            app:layout_constraintWidth_percent="0.3"
+            app:rippleColor="#707070" />
+
+        <Button
+            android:id="@+id/change_1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/checkout_shape"
+            android:enabled="true"
+            android:fontFamily="@font/lato"
+            android:text="Change"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="#292C2F"
+            app:iconTint="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/person_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/business_name"
+            app:layout_constraintWidth_percent="0.3"
+            app:rippleColor="#707070" />
+
+        <TextView
+            android:id="@+id/shipping_address_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Lisbon, Portugal \nRua do Quelhas 85"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/person_name_shipping" />
+
+        <TextView
+            android:id="@+id/person_name_shipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Alex Madaras"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/mail_shipping" />
+
+        <TextView
+            android:id="@+id/mail_shipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:inputType="textEmailAddress"
+            android:text="alexmad56.am@gmail.com"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/business_name"
+            app:layout_constraintTop_toBottomOf="@+id/business_name_shipping" />
+
+        <TextView
+            android:id="@+id/business_name_shipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Sneakers Alert"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/shipping_address" />
+
+        <TextView
+            android:id="@+id/shipping_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Shipping Address"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_name3" />
+
+        <TextView
+            android:id="@+id/person_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="RO International Post"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/shipping" />
+
+        <TextView
+            android:id="@+id/shipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Shipping"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_address" />
+
+        <TextView
+            android:id="@+id/person_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Alex Madaras"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/mail_contact" />
+
+        <TextView
+            android:id="@+id/person_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Lisbon, Portugal \nRua do Quelhas 85"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/person_name" />
+
+        <TextView
+            android:id="@+id/mail_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/liberation_sans"
+            android:inputType="textEmailAddress"
+            android:text="alexmad56.am@gmail.com"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/business_name"
+            app:layout_constraintTop_toBottomOf="@+id/business_name" />
+
+        <TextView
+            android:id="@+id/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Contact"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_country2" />
+
+        <TextView
+            android:id="@+id/account_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Your Name"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/account_country2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans_regular"
+            android:text="Romania"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/account_name2"
+            app:layout_constraintStart_toStartOf="@+id/account_name2"
+            app:layout_constraintTop_toBottomOf="@+id/account_name2" />
+
+        <TextView
+            android:id="@+id/business_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Sneakers Alert"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/contact" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewOrders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/orders_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_history"
+            tools:listitem="@layout/card_order" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

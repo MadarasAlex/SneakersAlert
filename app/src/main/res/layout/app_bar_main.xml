@@ -47,6 +47,21 @@
                 android:background="#292C2F"
                 android:backgroundTint="@color/alert">
 
+                <TextView
+                    android:id="@+id/text_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/liberation_sans"
+                    android:text="Log In"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25sp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/logo"
+                    app:layout_constraintEnd_toStartOf="@+id/shop"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/logo" />
+
                 <ImageView
                     android:id="@+id/shop"
                     android:layout_width="0dp"
@@ -76,8 +91,10 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/logo"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="120dp"
                     android:layout_gravity="center_horizontal|left"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
                     android:foregroundGravity="left|center_vertical"
                     android:src="@drawable/logo4"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +102,7 @@
                     app:layout_constraintHeight_percent="0.6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.3"
+                    app:layout_constraintWidth_percent="0.5"
                     tools:ignore="RtlHardcoded" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.MaterialToolbar>

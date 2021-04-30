@@ -12,4 +12,5 @@
     <item name="iv_gif_container" type="id" />
     <item name="fl_shadow_container" type="id" />
     <item name="tv_auto_image_slider" type="id" />
+    <item name="autoCompleteYear" type="id" />
 </resources>

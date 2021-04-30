@@ -4,23 +4,23 @@
     tools:showIn="navigation_view">
 <group
     android:id="@+id/gr"
-    android:checkableBehavior="single"
+    android:checkableBehavior="all"
     android:visible="true">
     <item
         android:id="@+id/nav_home"
         android:checkableBehavior="single"
         android:title="Home Page"
-        android:visible="true"></item>
+        android:visible="true" />
     <item
         android:id="@+id/nav_sneakers"
         android:checkableBehavior="single"
         android:title="Shop Products"
-        android:visible="true"></item>
+        android:visible="true" />
     <item
         android:id="@+id/nav_orders"
-        android:checkableBehavior="single"
+        android:checkableBehavior="all"
         android:title="My Account"
-        android:visible="true"></item>
+        android:visible="true" />
     <item
         android:id="@+id/nav_cart"
         android:checkableBehavior="single"
@@ -30,12 +30,12 @@
         android:checkableBehavior="single"
         android:id="@+id/nav_faq"
         android:title="FAQ"
-        android:visible="true"></item>
+        android:visible="true" />
     <item
         android:id="@+id/nav_wishlist"
         android:checkableBehavior="single"
         android:title="Whishlist"
-        android:visible="true"></item>
+        android:visible="true" />
 
 </group>
 

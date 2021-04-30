@@ -7,12 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.sneakersalert.UI.home.HomeFragment"
+        android:name="com.example.sneakersalert.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_nav_home_to_nav_account"
-            app:destination="@id/nav_account" />
         <action
             android:id="@+id/action_nav_home_to_nav_airmax1"
             app:destination="@id/nav_airmax1" />
@@ -37,16 +34,16 @@
         <action
             android:id="@+id/action_nav_home_to_nav_jordan"
             app:destination="@id/nav_jordan" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_menuLogin"
+            app:destination="@id/nav_menuLogin" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_sneakers"
-        android:name="com.example.sneakersalert.UI.sneakers.SneakersFragment"
+        android:name="com.example.sneakersalert.ui.sneakers.SneakersFragment"
         android:label="Sneakers"
         tools:layout="@layout/fragment_sneakers">
-        <action
-            android:id="@+id/action_nav_sneakers_to_nav_account"
-            app:destination="@id/nav_account" />
         <action
             android:id="@+id/action_nav_sneakers_to_buyingProducts"
             app:destination="@id/buyingProducts" />
@@ -56,9 +53,6 @@
         android:name="com.example.sneakersalert.WishlistFragment"
         tools:layout="@layout/fragment_wishlist">
         <action
-            android:id="@+id/action_nav_wishlist_to_nav_account"
-            app:destination="@id/nav_account" />
-        <action
             android:id="@+id/action_nav_wishlist_to_nav_sneakers"
             app:destination="@id/nav_sneakers" />
         <action
@@ -67,12 +61,9 @@
     </fragment>
     <fragment
         android:id="@+id/nav_airmax1"
-        android:name="com.example.sneakersalert.UI.Airmax1Fragment"
+        android:name="com.example.sneakersalert.ui.Airmax1Fragment"
         android:label="Air Max 1"
         tools:layout="@layout/fragment_airmax1">
-        <action
-            android:id="@+id/action_nav_airmax1_to_nav_account"
-            app:destination="@id/nav_account" />
         <action
             android:id="@+id/action_nav_airmax1_to_buyingProducts"
             app:destination="@id/buyingProducts" />
@@ -80,12 +71,9 @@
 
     <fragment
         android:id="@+id/nav_airmax90"
-        android:name="com.example.sneakersalert.UI.Airmax90Fragment"
+        android:name="com.example.sneakersalert.ui.Airmax90Fragment"
         android:label="Air Max 90"
         tools:layout="@layout/fragment_airmax90">
-        <action
-            android:id="@+id/action_nav_airmax90_to_nav_account"
-            app:destination="@id/nav_account" />
         <action
             android:id="@+id/action_nav_airmax90_to_nav_faq"
             app:destination="@id/nav_faq" />
@@ -99,66 +87,42 @@
         android:name="com.example.sneakersalert.ui.faq.FAQFragment"
         android:label="FAQ"
         tools:layout="@layout/fragment_f_a_q">
-        <action
-            android:id="@+id/action_nav_faq_to_nav_account"
-            app:destination="@id/nav_account" />
     </fragment>
-    <fragment
-        android:id="@+id/nav_account"
-        android:name="com.example.sneakersalert.UI.account.AccountFragment"
-        tools:layout="@layout/fragment_account">
-        <action
-            android:id="@+id/in"
-            app:destination="@id/nav_orders"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_orders"
-            app:popUpToInclusive="true" />
-    </fragment>
+
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.example.sneakersalert.UI.search.SearchFragment"
+        android:name="com.example.sneakersalert.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
-        <action
-            android:id="@+id/action_nav_search_to_nav_account"
-            app:destination="@id/nav_account" />
+
         <action
             android:id="@+id/action_nav_search_to_buyingProducts"
             app:destination="@id/buyingProducts" />
     </fragment>
     <fragment
         android:id="@+id/nav_orders"
-        android:name="com.example.sneakersalert.UI.account.InfoOrdersFragment"
+        android:name="com.example.sneakersalert.ui.account.InfoOrdersFragment"
         android:label="InfoOrdersFragment"
         tools:layout="@layout/fragment_info_orders">
-        <action
-            android:id="@+id/out"
-            app:destination="@id/nav_account"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_account"
-            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_jordan"
-        android:name="com.example.sneakersalert.UI.JordanFragment"
+        android:name="com.example.sneakersalert.ui.JordanFragment"
         android:label="Jordan"
         tools:layout="@layout/fragment_jordan">
-        <action
-            android:id="@+id/action_nav_jordan_to_nav_account"
-            app:destination="@id/nav_account" />
         <action
             android:id="@+id/action_nav_jordan_to_buyingProducts"
             app:destination="@id/buyingProducts" />
     </fragment>
     <fragment
         android:id="@+id/nav_cart"
-        android:name="com.example.sneakersalert.UI.CartFragment"
+        android:name="com.example.sneakersalert.ui.CartFragment"
         android:label="CartActivity"
         tools:layout="@layout/activity_cart" />
     <fragment
         android:id="@+id/buyingProducts"
-        android:name="com.example.sneakersalert.UI.BuyingProducts"
+        android:name="com.example.sneakersalert.ui.BuyingProducts"
         android:label="BuyingProducts"
         tools:layout="@layout/activity_buying_products">
         <action
@@ -167,7 +131,7 @@
     </fragment>
     <activity
         android:id="@+id/splashScreen"
-        android:name="com.example.sneakersalert.UI.SplashScreen"
+        android:name="com.example.sneakersalert.ui.SplashScreen"
         android:label="activity_splash_screen"
         tools:layout="@layout/activity_splash_screen" />
     <activity
@@ -175,6 +139,36 @@
         android:name="com.example.sneakersalert.MainActivity"
         android:label="app_bar_main"
         tools:layout="@layout/app_bar_main" />
+    <fragment
+        android:id="@+id/nav_menuLogin"
+        android:name="com.example.sneakersalert.ui.account.MenuLogin"
+        android:label="fragment_menu_login"
+        tools:layout="@layout/fragment_menu_login" />
+    <fragment
+        android:id="@+id/nav_signup"
+        android:name="com.example.sneakersalert.ui.account.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.example.sneakersalert.ui.account.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/nav_details"
+        android:name="com.example.sneakersalert.ui.account.OrderDetails"
+        android:label="OrderDetails"
+        tools:layout="@layout/fragment_order_details" />
+    <fragment
+        android:id="@+id/nav_invoice"
+        android:name="com.example.sneakersalert.ui.account.InvoiceFragment"
+        android:label="fragment_invoice"
+        tools:layout="@layout/fragment_invoice" />
+    <fragment
+        android:id="@+id/nav_fill"
+        android:name="com.example.sneakersalert.ui.account.FillDetailsFragment"
+        android:label="FillDetailsFragment"
+        tools:layout="@layout/fragment_fill_details" />
 
 
 </navigation>
