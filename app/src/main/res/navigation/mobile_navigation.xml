@@ -169,6 +169,11 @@
         android:name="com.example.sneakersalert.ui.account.FillDetailsFragment"
         android:label="FillDetailsFragment"
         tools:layout="@layout/fragment_fill_details" />
+    <fragment
+        android:id="@+id/nav_fillAddress"
+        android:name="com.example.sneakersalert.ui.account.FillAddress"
+        android:label="fragment_fill_address"
+        tools:layout="@layout/fragment_fill_address" />
 
 
 </navigation>

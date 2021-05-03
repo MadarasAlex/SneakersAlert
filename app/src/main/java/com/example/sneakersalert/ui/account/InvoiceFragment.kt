@@ -28,7 +28,7 @@ class InvoiceFragment : Fragment(R.layout.fragment_invoice) {
             requireActivity().navigationView.menu.getItem(2).isCheckable = true
             requireActivity().navigationView.menu.getItem(2).isChecked = true
         }
-        save.setOnClickListener {
+        save_address.setOnClickListener {
             findNavController().navigate(R.id.nav_details)
         }
     }

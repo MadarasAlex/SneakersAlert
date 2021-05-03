@@ -112,7 +112,7 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
 
         }
 
-        save.setOnClickListener {
+        save_address.setOnClickListener {
             findNavController().navigate(R.id.nav_details)
         }
     }

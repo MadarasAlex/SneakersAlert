@@ -1,6 +1,9 @@
 package com.example.sneakersalert.ui.account
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -42,8 +45,13 @@ class OrderDetails : Fragment() {
         return inflater.inflate(R.layout.fragment_order_details, container, false)
     }
 
+    @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val colorDrawable = ColorDrawable(Color.WHITE)
+        activity?.actionBar?.setBackgroundDrawable(colorDrawable)
+
+
         if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
             requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
             requireActivity().navigationView.menu.setGroupCheckable(R.id.nav_orders, true, false)
@@ -56,11 +64,14 @@ class OrderDetails : Fragment() {
         recyclerViewOrders.layoutManager = LinearLayoutManager(activity)
         recyclerViewOrders.adapter = AdapterOrders(o)
 
-        save.setOnClickListener {
+        save_address.setOnClickListener {
             findNavController().navigate(R.id.nav_orders)
         }
         change_1.setOnClickListener {
             findNavController().navigate(R.id.nav_fill)
+        }
+        change_2.setOnClickListener {
+            findNavController().navigate(R.id.nav_fillAddress)
         }
     }
 
@@ -73,5 +84,11 @@ class OrderDetails : Fragment() {
 
                 }
             }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val colorDrawable = ColorDrawable(Color.WHITE)
+        activity?.actionBar?.setBackgroundDrawable(colorDrawable)
     }
 }
