@@ -5,9 +5,9 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fillViewport="false"
+    android:fillViewport="true"
     android:filterTouchesWhenObscured="false"
-    android:fitsSystemWindows="false"
+    android:fitsSystemWindows="true"
     android:keepScreenOn="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,19 +15,107 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFF">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/empty_wishlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/no_wishes2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_thin"
+                android:text="Wish list."
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/no_wishes"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="@+id/no_wishes"
+                app:layout_constraintTop_toBottomOf="@+id/no_wishes" />
+
+            <Button
+                android:id="@+id/continue_shopping2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="144dp"
+                android:background="@drawable/checkout_shape"
+                android:fontFamily="@font/lato_bold"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Continue Shopping"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.08"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/no_wishes2"
+                app:layout_constraintWidth_percent="0.7" />
+
+            <TextView
+                android:id="@+id/wishlist_is_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Wishlist is Empty "
+                android:textColor="#000000"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/no_items_logo"
+                app:layout_constraintHorizontal_bias="0.511"
+                app:layout_constraintStart_toStartOf="@+id/no_items_logo"
+                app:layout_constraintTop_toBottomOf="@+id/no_items_logo" />
+
+            <TextView
+                android:id="@+id/no_wishes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/lato_thin"
+                android:text="You don’t currently have anything in your"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/wishlist_is_empty"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="@+id/wishlist_is_empty"
+                app:layout_constraintTop_toBottomOf="@+id/wishlist_is_empty" />
+
+            <ImageView
+                android:id="@+id/no_items_logo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="140dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5"
+                app:srcCompat="@drawable/empty_wish" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/wishlist_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/rubik"
             android:layerType="software"
             android:text="Wishlist"
             android:textColor="#000000"
             android:textSize="20sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,14 +125,13 @@
             android:layout_height="900dp"
             android:layout_gravity="top"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:fitsSystemWindows="false"
             android:layerType="software"
             android:orientation="vertical"
             android:outlineProvider="bounds"
             android:overScrollMode="never"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

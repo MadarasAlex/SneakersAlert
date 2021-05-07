@@ -10,15 +10,89 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
+        android:id="@+id/items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F7F7F7"
         android:fitsSystemWindows="true">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/empty_shopping"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="164dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.4"
+                app:srcCompat="@drawable/empty_cart" />
+
+            <Button
+                android:id="@+id/continue_shopping"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="164dp"
+                android:background="@drawable/checkout_shape"
+                android:fontFamily="@font/lato_bold"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Continue Shopping"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.08"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/no_items"
+                app:layout_constraintWidth_percent="0.7" />
+
+            <TextView
+                android:id="@+id/shopping_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Shopping cart"
+                android:textColor="#000000"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/empty_shopping" />
+
+            <TextView
+                android:id="@+id/no_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/lato_thin"
+                android:text="You have no items in your cart."
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/shopping_cart"
+                app:layout_constraintStart_toStartOf="@+id/shopping_cart"
+                app:layout_constraintTop_toBottomOf="@+id/shopping_cart" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/details"
             app:layout_constraintHeight_percent="0.45"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +107,7 @@
 
             android:layout_marginTop="16dp"
             android:background="#F7F7F7"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -226,5 +301,6 @@
                 app:layout_constraintStart_toStartOf="@+id/discount"
                 app:layout_constraintTop_toTopOf="@+id/line" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

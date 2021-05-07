@@ -92,7 +92,7 @@
             android:layout_gravity="start"
             android:layout_marginTop="60dp"
             android:background="@drawable/checkout_shape"
-            android:enabled="false"
+            android:enabled="true"
             android:fontFamily="@font/lato"
             android:text="CREATE ACCOUNT"
             android:textColor="#FFFFFF"

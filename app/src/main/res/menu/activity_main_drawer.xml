@@ -9,33 +9,39 @@
     <item
         android:id="@+id/nav_home"
         android:checkableBehavior="single"
-        android:title="Home Page"
+        android:title="@string/home_page"
         android:visible="true" />
     <item
         android:id="@+id/nav_sneakers"
         android:checkableBehavior="single"
-        android:title="Shop Products"
+        android:title="@string/shop_products"
         android:visible="true" />
     <item
         android:id="@+id/nav_orders"
         android:checkableBehavior="all"
-        android:title="My Account"
+        android:title="@string/my_account"
         android:visible="true" />
     <item
         android:id="@+id/nav_cart"
         android:checkableBehavior="single"
-        android:title="My Cart"
+        android:title="@string/my_cart"
         android:visible="true" />
     <item
+        android:id="@+id/nav_request"
         android:checkableBehavior="single"
-        android:id="@+id/nav_faq"
-        android:title="FAQ"
+        android:title="@string/request_a_sneaker2"
         android:visible="true" />
     <item
         android:id="@+id/nav_wishlist"
         android:checkableBehavior="single"
-        android:title="Whishlist"
+        android:title="@string/wishlist"
         android:visible="true" />
+    <item
+        android:id="@+id/nav_faq"
+        android:checkableBehavior="single"
+        android:title="@string/faq"
+        android:visible="true" />
+
 
 </group>
 

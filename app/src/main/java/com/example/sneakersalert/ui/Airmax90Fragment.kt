@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.Adapters.AdapterJordan
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_airmax90.*
 
 class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnItemSelectedListener {
     val a = ArrayList<NewShoe>()
-    var sp = ArrayList<Spec>()
+    private var sp = ArrayList<Spec>()
     val adapter = AdapterJordan(a, object : AdapterJordan.OnClickListener {
         override fun onItemClick(position: Int) {
             Global.price = a[position].price!!
@@ -28,11 +29,10 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
             Global.pic = a[position].image!!
             Global.sp = a[position].spec
             Global.infoText = a[position].text
-            view?.findNavController()?.navigate(R.id.buyingProducts)
+            findNavController().navigate(R.id.buyingProducts)
         }
 
     })
-
     override fun onCreate(savedInstanceState: Bundle?) {
         sp.add(Spec(R.drawable.shield, "Anti-pollution, anti-dust"))
         sp.add(Spec(R.drawable.crossing, "Reusable"))

@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.sneakersalert.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_fill_details.*
 import kotlin.properties.Delegates
 
@@ -34,7 +36,40 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
         drop.setOnClickListener {
             autoCompleteTextView.showDropDown()
         }
+        autoCompleteTextView.setOnItemClickListener { parent, _, position, id ->
+            val type = parent.getItemAtPosition(position).toString()
+            if (type == "Business") {
+                val constraint = frameLayout3
+                val cset = ConstraintSet()
+                business.visibility = View.VISIBLE
+                checkbox2.visibility = View.VISIBLE
+                checkbox.visibility = View.GONE
+                save_address2.visibility = View.VISIBLE
+                save_address.visibility = View.GONE
+                cset.connect(R.id.checkbox2, ConstraintSet.TOP, R.id.business, ConstraintSet.BOTTOM)
+                cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
+                cset.applyTo(constraint)
 
+            } else {
+                val constraint = frameLayout3
+                val cset = ConstraintSet()
+                business.visibility = View.GONE
+                checkbox2.visibility = View.GONE
+                checkbox.visibility = View.VISIBLE
+                save_address2.visibility = View.GONE
+                save_address.visibility = View.VISIBLE
+                cset.connect(
+                    R.id.checkbox,
+                    ConstraintSet.TOP,
+                    R.id.password_fill,
+                    ConstraintSet.BOTTOM
+                )
+                cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
+                cset.applyTo(constraint)
+
+
+            }
+        }
         val years = ArrayList<Int>()
         for (i in 2021 downTo 1900)
             years.add(i)
@@ -115,6 +150,10 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
         save_address.setOnClickListener {
             findNavController().navigate(R.id.nav_details)
         }
+        save_address2.setOnClickListener {
+            findNavController().navigate(R.id.nav_details)
+        }
+
     }
 
     fun isLeap(year: Int): Boolean {
@@ -129,6 +168,21 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
         return false
 
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
+            requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
+            requireActivity().navigationView.menu.setGroupCheckable(
+                R.id.nav_orders,
+                true,
+                false
+            )
+            requireActivity().navigationView.menu.getItem(2).isCheckable = true
+            requireActivity().navigationView.menu.getItem(2).isChecked = true
+
+        }
     }
 
 }

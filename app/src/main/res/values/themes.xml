@@ -4,7 +4,6 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorSecondary">@color/item_color</item>
-
         <item name="fontFamily">@font/liberation_sans_regular</item>
         <item name="android:textColor">@color/item_color</item>
         <item name="percentHeight">0.9</item>
@@ -34,11 +33,11 @@
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_marginBottom">5dp</item>
         <item name="android:buttonStyleToggle">@drawable/short_text_24px</item>
-        <item name="listPreferredItemHeightSmall">40dp</item>
+        <item name="listPreferredItemHeightSmall">38dp</item>
         <item name="collapseIcon">@drawable/back2</item>
         <item name="android:homeAsUpIndicator">@drawable/short_text_24px</item>
-        <item name="android:listPreferredItemHeight">37dp</item>
-        <item name="android:listPreferredItemHeightLarge">37dp</item>
+        <item name="android:listPreferredItemHeight">35dp</item>
+        <item name="android:listPreferredItemHeightLarge">35dp</item>
         <item name="percentHeight">0.5</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -58,8 +57,8 @@
     </style>
 
     <style name="Toolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="backgroundTint">@color/colorPrimary</item>
-        <item name="navigationIconTint">@color/black</item>
+        <item name="backgroundTint">@color/alert</item>
+        <item name="navigationIconTint">@color/alert</item>
         <item name="title">"Your Cart("+Global.p.size+")"</item>
         <item name="titleTextColor">@color/colorPrimary</item>
     </style>

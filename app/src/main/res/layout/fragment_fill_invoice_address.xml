@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true"
-
-    tools:context=".ui.account.FillAddress">
+    android:layout_height="match_parent"
+    tools:context=".ui.account.FillInvoiceAddress">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,10 +33,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="28dp"
             android:background="@drawable/fill_text_back"
-            android:ems="1"
+            android:ems="10"
             android:fontFamily="@font/liberation_sans"
             android:gravity="start|top"
-            android:inputType="none|text"
+            android:inputType="text"
             android:padding="10dp"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +110,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/liberation_sans"
-            android:text="Shipping address"
+            android:text="Invoice address"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -140,7 +138,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="28dp"
             android:background="@drawable/fill_text_back"
-            android:ems="10"
+            android:ems="1"
             android:fontFamily="@font/liberation_sans"
             android:gravity="start|top"
             android:inputType="textPersonName"
@@ -268,14 +266,13 @@
         <com.hbb20.CountryPickerView
             android:id="@+id/country_selector3"
             android:layout_width="0dp"
-            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
             android:background="@drawable/fill_text_back"
+            app:cpDialog_showTitle="true"
+            app:cpList_preferredCountryCodes="NL,FR,RO,GR,PT,BG,CZ,SK,PL,IT,BG,HU,HR,CY,DK"
             app:layout_constraintEnd_toEndOf="@+id/place_section"
             app:layout_constraintStart_toStartOf="@+id/place_section"
-            app:layout_constraintTop_toBottomOf="@+id/country"
-            app:cpDialog_showTitle="true"
-            app:cpList_preferredCountryCodes="NL,FR,RO,GR,PT,BG,CZ,SK,PL,IT,BG,HU,HR,CY,DK" />
+            app:layout_constraintTop_toBottomOf="@+id/country" />
 
         <Button
             android:id="@+id/save_address"
@@ -303,4 +300,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

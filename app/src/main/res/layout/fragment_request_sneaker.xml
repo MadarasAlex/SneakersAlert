@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.request.RequestSneakerFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F7F7F7"
+        android:paddingBottom="40dp">
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Phone number"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/account_info3"
+            app:layout_constraintTop_toBottomOf="@+id/eu_size" />
+
+        <AutoCompleteTextView
+            android:id="@+id/eu_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/brand_name2"
+            app:layout_constraintTop_toBottomOf="@+id/brand_name2"
+            app:layout_constraintWidth_percent="0.4"
+            tools:ignore="LabelFor" />
+
+        <com.hbb20.CountryPickerView
+            android:id="@+id/country_selector3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fill_text_back"
+            app:cpDialog_showTitle="true"
+            app:layout_constraintBottom_toBottomOf="@+id/eu_size"
+            app:layout_constraintEnd_toEndOf="@+id/model_name_section"
+            app:layout_constraintStart_toStartOf="@+id/model_name_section"
+            app:layout_constraintTop_toTopOf="@+id/eu_size" />
+
+        <TextView
+            android:id="@+id/country2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Country"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/model_name_section"
+            app:layout_constraintTop_toTopOf="@+id/brand_name2" />
+
+        <TextView
+            android:id="@+id/brand_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="EU size"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/account_info3"
+            app:layout_constraintTop_toBottomOf="@+id/brand_name_section" />
+
+        <EditText
+            android:id="@+id/model_name_section"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints=""
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+
+            android:inputType="number"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/brand_name_section"
+            app:layout_constraintEnd_toEndOf="@+id/email_section2"
+            app:layout_constraintStart_toEndOf="@+id/brand_name_section"
+            app:layout_constraintTop_toTopOf="@+id/brand_name_section"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/brand_name_section"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/name_text"
+            app:layout_constraintTop_toBottomOf="@+id/brand_name"
+            app:layout_constraintWidth_percent="0.4"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/model_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Model name"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/model_name_section"
+            app:layout_constraintTop_toTopOf="@+id/brand_name" />
+
+        <TextView
+            android:id="@+id/brand_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Brand name"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/account_info3"
+            app:layout_constraintTop_toBottomOf="@+id/email_section2" />
+
+        <EditText
+            android:id="@+id/email_section2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/last_name_section2"
+            app:layout_constraintStart_toStartOf="@+id/name_text"
+            app:layout_constraintTop_toBottomOf="@+id/email2"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/email2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="E-mail"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/account_info3"
+            app:layout_constraintTop_toBottomOf="@+id/name_section2" />
+
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/account_info3"
+            app:layout_constraintTop_toBottomOf="@+id/account_info3" />
+
+        <EditText
+            android:id="@+id/name_section2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/name_text"
+            app:layout_constraintTop_toBottomOf="@+id/name_text"
+            app:layout_constraintWidth_percent="0.4"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/last_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Last name"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/last_name_section2"
+            app:layout_constraintTop_toTopOf="@+id/name_text" />
+
+        <EditText
+            android:id="@+id/last_name_section2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="28dp"
+            android:autofillHints=""
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="number"
+
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/name_section2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/name_section2"
+            app:layout_constraintTop_toTopOf="@+id/name_section2"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/account_info3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Account Information"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/request_sneaker_text"
+            app:layout_constraintTop_toBottomOf="@+id/request_sneaker_text" />
+
+        <TextView
+            android:id="@+id/request_sneaker_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/request_a_sneaker2"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/drop_sizes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_baseline_arrow_drop_down_24"
+            app:layout_constraintBottom_toBottomOf="@+id/eu_size"
+            app:layout_constraintEnd_toEndOf="@+id/eu_size"
+            app:layout_constraintTop_toTopOf="@+id/eu_size"
+            app:layout_constraintVertical_bias="0.476" />
+
+        <com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout
+            android:id="@+id/phone_field"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/country_selector3"
+            app:layout_constraintStart_toStartOf="@id/phone"
+            app:layout_constraintTop_toBottomOf="@id/phone"
+            app:phonemoji_flagFor="@id/phonemojiTextInputEditText">
+
+            <com.tfcporciuncula.phonemoji.PhonemojiTextInputEditText
+                android:id="@+id/phonemojiTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/fill_text_back"
+                app:phonemoji_initialRegionCode="NL" />
+
+        </com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout>
+
+        <TextView
+            android:id="@+id/want_to_pay_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="@string/how_much_do_you_want_to_pay_for_the_sneaker"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/email_section2"
+            app:layout_constraintTop_toBottomOf="@+id/phone_field" />
+
+        <EditText
+            android:id="@+id/want_to_pay_section"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/last_name_section2"
+            app:layout_constraintStart_toStartOf="@+id/brand_name_section"
+            app:layout_constraintTop_toBottomOf="@+id/want_to_pay_text"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/when_to_receive_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="@string/how_much_do_you_want_to_pay_for_the_sneaker"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/email_section2"
+            app:layout_constraintTop_toBottomOf="@+id/want_to_pay_section" />
+
+        <EditText
+            android:id="@+id/when_to_receive_section"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/fill_text_back"
+            android:ems="10"
+            android:fontFamily="@font/liberation_sans"
+            android:gravity="start|top"
+            android:inputType="date"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/last_name_section2"
+            app:layout_constraintStart_toStartOf="@+id/name_text"
+            app:layout_constraintTop_toBottomOf="@+id/when_to_receive_text"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/request_sneaker_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/checkout_shape"
+            android:fontFamily="@font/lato_bold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/request_sneaker"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.065"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/when_to_receive_section"
+            app:layout_constraintWidth_percent="0.7" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

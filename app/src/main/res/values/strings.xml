@@ -127,6 +127,19 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="buy_with_googlepay_button_content_description" />
     <string name="sneakers">Sneakers</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="faq">FAQ</string>
+    <string name="my_account">My Account</string>
+    <string name="my_cart">My Cart</string>
+    <string name="shop_products">Shop Products</string>
+    <string name="home_page">Home Page</string>
+    <string name="request_a_sneaker2">Request Sneaker</string>
+    <string name="how_much_do_you_want_to_pay_for_the_sneaker">How much do you want to pay for the sneaker?</string>
+    <string name="request_sneaker">Request Sneaker</string>
+    <string name="airmax">AIR MAX 1</string>
+    <string name="airmax90">AIR MAX 90</string>
+    <string name="jordan">JORDAN 1</string>
+    <string name="save">SAVE</string>
 
 
     <string-array name="profiles">

@@ -45,7 +45,7 @@ class OrderDetails : Fragment() {
         return inflater.inflate(R.layout.fragment_order_details, container, false)
     }
 
-    @SuppressLint("ResourceType")
+    @SuppressLint("ResourceType", "UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val colorDrawable = ColorDrawable(Color.WHITE)
@@ -59,7 +59,8 @@ class OrderDetails : Fragment() {
             requireActivity().navigationView.menu.getItem(2).isChecked = true
             requireActivity().toolbar.setBackgroundColor(Color.WHITE)
             requireActivity().tback.setBackgroundColor(Color.WHITE)
-            requireActivity().toolbar.background.setTint(Color.WHITE)
+            requireActivity().logo.setImageDrawable(resources.getDrawable(R.drawable.logo, null))
+            requireActivity().actionBar?.setHomeAsUpIndicator(R.drawable.short_text_black24px)
         }
         recyclerViewOrders.layoutManager = LinearLayoutManager(activity)
         recyclerViewOrders.adapter = AdapterOrders(o)
@@ -73,6 +74,10 @@ class OrderDetails : Fragment() {
         change_2.setOnClickListener {
             findNavController().navigate(R.id.nav_fillAddress)
         }
+        change_3.setOnClickListener {
+            findNavController().navigate(R.id.nav_fillInvoice)
+        }
+
     }
 
     companion object {

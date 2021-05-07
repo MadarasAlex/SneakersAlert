@@ -3,7 +3,6 @@ package com.example.sneakersalert
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -14,7 +13,6 @@ import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -70,7 +68,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_signup,
                 R.id.nav_login,
                 R.id.nav_orders,
-                R.id.nav_wishlist
+                R.id.nav_wishlist,
+                R.id.nav_request
             ), drawerLayout
         )
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
@@ -88,24 +87,13 @@ class MainActivity : AppCompatActivity() {
             }
             navigationView.setItemBackgroundResource(R.drawable.nav_view_select)
             navigationView.setItemTextAppearance(R.color.alert)
-            if (navController.currentDestination?.id == R.id.nav_home) {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-                findViewById<ConstraintLayout>(R.id.tback).setBackgroundColor(R.color.alert)
-                toolbar.setBackgroundColor(R.color.alert)
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-                actionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-            } else {
-                findViewById<ConstraintLayout>(R.id.tback).setBackgroundColor(R.color.alert)
-                toolbar.setBackgroundColor(R.color.alert)
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-                actionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            }
             open = false
+            if (navController.currentDestination?.id == R.id.nav_orders)
+                logout.visibility = View.VISIBLE
+            else logout.visibility = View.INVISIBLE
             if (navController.currentDestination?.id == R.id.nav_cart) {
                 supportActionBar?.setDisplayShowTitleEnabled(true)
                 toolbar.setTitleTextColor(Color.WHITE)
-                findViewById<ConstraintLayout>(R.id.tback).setBackgroundColor(Color.WHITE)
                 supportActionBar?.setDisplayShowTitleEnabled(true)
                 your_cart.visibility = View.VISIBLE
                 logo.visibility = View.INVISIBLE
@@ -122,8 +110,7 @@ class MainActivity : AppCompatActivity() {
                 your_cart.visibility = View.INVISIBLE
                 logo.visibility = View.INVISIBLE
                 shop.visibility = View.INVISIBLE
-                text_login.text = "Log In"
-                text_login.visibility = View.VISIBLE
+                text_login.visibility = View.INVISIBLE
 
             }
             if (navController.currentDestination?.id == R.id.nav_signup) {
@@ -162,22 +149,86 @@ class MainActivity : AppCompatActivity() {
             ) {
                 text_login.visibility = View.INVISIBLE
             }
+            if (navController.currentDestination?.id == R.id.nav_signup)
+                text_login.setTextColor(Color.WHITE)
+            if (navController.currentDestination?.id == R.id.nav_login)
+                toolbar.elevation = 0F
+            else
+                toolbar.elevation = 2F
+            if (navController.currentDestination?.id != R.id.nav_fill
+                && navController.currentDestination?.id != R.id.nav_fillInvoice
+                && navController.currentDestination?.id != R.id.nav_fillAddress
+                && navController.currentDestination?.id != R.id.nav_details
+                && navController.currentDestination?.id != R.id.nav_orders
+                && navController.currentDestination?.id != R.id.nav_login
+                && navController.currentDestination?.id != R.id.nav_invoice
+            ) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_24px)
+                toolbar.setNavigationIcon(R.drawable.short_text_24px)
+                toolbar.navigationIcon?.setTint(Color.WHITE)
+                your_cart.setTextColor(Color.WHITE)
+                toolbar.setBackgroundColor(Color.BLACK)
+                tback.setBackgroundColor(Color.BLACK)
+                tback.background.setTint(Color.BLACK)
+                toolbar.background.setTint(Color.BLACK)
+                logo.setImageDrawable(resources.getDrawable(R.drawable.logo4, theme))
+                toolbar.elevation = 2F
+                tback.elevation = 2F
+                appBarLayout.elevation = 2F
+            } else {
+
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                text_login.setTextColor(Color.BLACK)
+                tback.elevation = 0F
+                appBarLayout.elevation = 0F
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_black24px)
+                toolbar.setNavigationIcon(R.drawable.short_text_black24px)
+                toolbar.navigationIcon?.setTint(Color.BLACK)
+                toolbar.setBackgroundColor(Color.WHITE)
+                your_cart.setTextColor(Color.BLACK)
+                toolbar.background.setTint(Color.WHITE)
+                tback.background.setTint(Color.WHITE)
+                tback.setBackgroundColor(Color.WHITE)
+                logo.setImageDrawable(resources.getDrawable(R.drawable.logo, theme))
+            }
+
+            if (navController.currentDestination?.id == R.id.nav_request || navController.currentDestination?.id == R.id.nav_sneakers) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                toolbar.elevation = 0F
+                tback.elevation = 0F
+                appBarLayout.elevation = 0F
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_black24px)
+                toolbar.setNavigationIcon(R.drawable.short_text_black24px)
+                toolbar.navigationIcon?.setTint(Color.BLACK)
+                shop.drawable.setTint(Color.BLACK)
+                toolbar.setBackgroundColor(Color.WHITE)
+                toolbar.background.setTint(Color.WHITE)
+                tback.background.setTint(Color.WHITE)
+                tback.setBackgroundColor(Color.WHITE)
+                logo.setImageDrawable(resources.getDrawable(R.drawable.logo, theme))
+            } else {
+                shop.drawable.setTint(Color.WHITE)
+                toolbar.elevation = 2F
+                tback.elevation = 2F
+                appBarLayout.elevation = 2F
+            }
         }
 
         if (navController.currentDestination?.id != R.id.nav_search) {
             toolbar.setNavigationOnClickListener {
                 supportActionBar?.setHomeAsUpIndicator(R.drawable.back2)
                 toolbar.setNavigationIcon(R.drawable.back2)
-                if (navController.currentDestination?.id == R.id.nav_home) {
-                    actionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-                } else {
-                    toolbar.popupTheme = R.style.NavigationViewStyle
-                    actionBar?.setBackgroundDrawable(ColorDrawable(R.color.alert))
-                }
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
                 onSupportNavigateUp()
             }
 
+        }
+        if (navController.currentDestination?.id != R.id.nav_fill && navController.currentDestination?.id != R.id.nav_fillInvoice
+            && navController.currentDestination?.id != R.id.nav_fillAddress && navController.currentDestination?.id != R.id.nav_details
+        ) {
+
+            logo.setImageDrawable(resources.getDrawable(R.drawable.logo4, null))
         }
 
 

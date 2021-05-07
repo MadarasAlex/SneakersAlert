@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F7F7F7"
-        android:paddingBottom="40dp"
+        android:paddingBottom="5dp"
         app:layout_constraintEnd_toStartOf="@+id/phone_text"
         app:layout_constraintStart_toStartOf="@+id/phone_text"
         tools:context=".ui.account.FillDetailsFragment">
@@ -99,7 +99,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="Account Information"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/account_fill_country" />
@@ -324,7 +324,7 @@
             android:id="@+id/autoCompleteYear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/fill_text_back"
             android:clickable="true"
@@ -390,6 +390,7 @@
             tools:ignore="LabelFor" />
 
         <CheckedTextView
+            android:visibility="visible"
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -398,8 +399,19 @@
             app:layout_constraintStart_toStartOf="@id/password_fill"
             app:layout_constraintTop_toBottomOf="@id/password_fill" />
 
+        <CheckedTextView
+            android:id="@+id/checkbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="10dp"
+            android:text="Change Password"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/business"
+            app:layout_constraintTop_toBottomOf="@id/business" />
+
         <Button
-            android:id="@+id/save_address"
+            android:id="@+id/save_address2"
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_gravity="start"
@@ -416,12 +428,153 @@
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
+            android:visibility="gone"
+            app:backgroundTint="#292C2F"
+            app:cornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkbox2"
+            app:rippleColor="#707070" />
+
+        <Button
+            android:id="@+id/save_address"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="80dp"
+            android:enabled="true"
+            android:fontFamily="@font/lato"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
             app:backgroundTint="#292C2F"
             app:cornerRadius="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/checkbox"
             app:rippleColor="#707070" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/business"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_fill">
+
+            <TextView
+                android:id="@+id/business_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Business information"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Company name"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/business_info" />
+
+            <EditText
+                android:id="@+id/company_name_section"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/fill_text_back"
+                android:ems="10"
+                android:fontFamily="@font/liberation_sans"
+                android:gravity="start|top"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/company_name"
+                app:layout_constraintTop_toBottomOf="@+id/company_name" />
+
+            <TextView
+                android:id="@+id/vat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="VAT"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/company_name_section"
+                app:layout_constraintTop_toBottomOf="@+id/company_name_section" />
+
+            <EditText
+                android:id="@+id/vat_section"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/fill_text_back"
+                android:ems="10"
+                android:fontFamily="@font/liberation_sans"
+                android:gravity="start|top"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/vat"
+                app:layout_constraintTop_toBottomOf="@+id/vat" />
+
+            <TextView
+                android:id="@+id/tax_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Tax number"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/vat_section"
+                app:layout_constraintTop_toBottomOf="@+id/vat_section" />
+
+            <EditText
+                android:id="@+id/tax_number_section"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/fill_text_back"
+                android:ems="10"
+                android:fontFamily="@font/liberation_sans"
+                android:gravity="start|top"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tax_number"
+                app:layout_constraintTop_toBottomOf="@+id/tax_number" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

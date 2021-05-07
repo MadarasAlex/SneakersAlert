@@ -11,7 +11,6 @@
         android:layout_height="45dp"
         android:layout_gravity="start"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:background="@drawable/checkout_shape"
         android:enabled="true"
         android:fontFamily="@font/lato"
@@ -24,7 +23,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/account_country"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/account_name"
-        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintWidth_percent="0.37"
         app:rippleColor="#707070" />
 
     <ImageView
@@ -41,18 +40,18 @@
 
     <TextView
         android:id="@+id/account_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/liberation_sans"
         android:text="Your Name"
         android:textColor="#000000"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintWidth_percent="0.5" />
 
     <TextView
         android:id="@+id/account_country"
@@ -63,7 +62,6 @@
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="@+id/account_name"
         app:layout_constraintStart_toStartOf="@+id/account_name"
         app:layout_constraintTop_toBottomOf="@+id/account_name" />
 

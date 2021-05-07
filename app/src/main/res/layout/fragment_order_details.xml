@@ -168,7 +168,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/liberation_sans"
-            android:text="Shipping Address"
+            android:text="Invoice Address"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -185,16 +185,16 @@
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/contact"
-            app:layout_constraintTop_toBottomOf="@+id/shipping" />
+            app:layout_constraintTop_toBottomOf="@+id/invoice_address" />
 
         <TextView
-            android:id="@+id/shipping"
+            android:id="@+id/invoice_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/liberation_sans"
-            android:text="Shipping"
+            android:text="Shipping Address"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"

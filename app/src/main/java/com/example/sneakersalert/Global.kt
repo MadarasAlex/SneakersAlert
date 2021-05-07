@@ -16,12 +16,11 @@ import kotlin.properties.Delegates
 class Global : Application() {
     companion object {
         var positionSelected = 0
-        var tabsAdded = false
-
+        var sizeSelected = 0
+        var username: String = "Your Name"
         var p = ArrayList<ProductCart>()
         var size = p.size
         var w = ArrayList<NewShoe>()
-        var wish = ArrayList<String>()
         val fragmentList = arrayListOf<Fragment>(
             Airmax1Fragment(), Airmax90Fragment(),
             JordanFragment()

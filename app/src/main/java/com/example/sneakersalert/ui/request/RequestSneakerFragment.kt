@@ -1,38 +1,38 @@
-package com.example.sneakersalert.ui.account
+package com.example.sneakersalert.ui.request
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.annotation.RequiresApi
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.sneakersalert.R
 import com.hbb20.CountryPickerView
 import com.hbb20.countrypicker.models.CPCountry
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_request_sneaker.*
 
-class FillAddress : Fragment(R.layout.fragment_fill_address) {
 
+class RequestSneakerFragment : Fragment(R.layout.fragment_request_sneaker) {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fill_address, container, false)
+        return inflater.inflate(R.layout.fragment_request_sneaker, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
-            requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
-            requireActivity().navigationView.menu.setGroupCheckable(R.id.nav_orders, true, false)
-            requireActivity().navigationView.menu.getItem(2).isCheckable = true
-            requireActivity().navigationView.menu.getItem(2).isChecked = true
+        val sizes = arrayListOf(36, 37, 38, 39, 40, 41, 42, 43, 44, 45)
+        val adapter = ArrayAdapter(
+            this.requireActivity(),
+            android.R.layout.simple_list_item_1, sizes
+        )
+        eu_size.threshold = 0
+        eu_size.setAdapter(adapter)
+        drop_sizes.setOnClickListener {
+            eu_size.showDropDown()
         }
         val ccp = view.findViewById<CountryPickerView>(R.id.country_selector3)
         val countries = mutableListOf<CPCountry>()
@@ -43,8 +43,8 @@ class FillAddress : Fragment(R.layout.fragment_fill_address) {
                         || el.currencyName == "Czech Koruna"
                         || el.currencyName == "Swedish Krona"
                         || el.currencyName == "Croatian Kuna"
-                        || el.currencyName == "Polish Zloty"
-                        || el.currencyName == "Bulgarian Lev")
+                        || el.currencyName == "Polish Zloty" || el.currencyName == "Bulgarian Lev"
+                        )
                 && (el.name != "Montenegro"
                         && el.name != "Saint Martin (French Part)"
                         && el.name != "Saint Pierre and Miquelon"
@@ -60,16 +60,14 @@ class FillAddress : Fragment(R.layout.fragment_fill_address) {
                         && el.name != "Réunion"
                         && el.name != "Åland Islands"
                         )
-
             ) {
                 countries.add(el)
             }
         ccp.cpViewHelper.cpDataStore.countryList.removeAll { true }
         ccp.cpViewHelper.cpDataStore.countryList = countries
         ccp.cpViewHelper.cpListConfig.preferredCountryCodes = "NL,RO"
-        val save = view.findViewById<Button>(R.id.save_address)
-        save.setOnClickListener {
-            findNavController().navigate(R.id.nav_details)
-        }
+
     }
+
+
 }

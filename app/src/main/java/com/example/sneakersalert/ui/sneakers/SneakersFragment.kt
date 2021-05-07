@@ -5,18 +5,14 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sneakersalert.Adapters.ViewPagerAdapter
-import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.Global.Companion.fragmentList
 import com.example.sneakersalert.Global.Companion.positionSelected
 import com.example.sneakersalert.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import drawable.NewShoe
 import kotlinx.android.synthetic.main.fragment_sneakers.*
 
 class SneakersFragment : Fragment(R.layout.fragment_sneakers) {
-    val s = ArrayList<NewShoe>()
-    val sp = ArrayList<Spec>()
     private lateinit var tabLayout: TabLayout
 
 
@@ -35,14 +31,27 @@ class SneakersFragment : Fragment(R.layout.fragment_sneakers) {
         pager.currentItem = positionSelected
         println(positionSelected)
         pager.currentItem = tabLayout.selectedTabPosition
-
+        if (pager.currentItem == 0)
+            sneakers_title.text = getString(R.string.airmax)
+        if (pager.currentItem == 1)
+            sneakers_title.text = getString(R.string.airmax90)
+        if (pager.currentItem == 2)
+            sneakers_title.text = getString(R.string.jordan)
         TabLayoutMediator(
             tabLayout, pager, true, false
         ) { tab, position ->
             when (position) {
-                0 -> tab.text = "AIR MAX 1"
-                1 -> tab.text = "AIR MAX 90"
-                2 -> tab.text = "JORDAN 1"
+                0 -> {
+                    tab.text = "AIR MAX 1"
+                }
+                1 -> {
+                    tab.text = "AIR MAX 90"
+
+                }
+                2 -> {
+                    tab.text = "JORDAN 1"
+
+                }
 
                 else -> tab.text = "undefined"
             }
@@ -51,6 +60,7 @@ class SneakersFragment : Fragment(R.layout.fragment_sneakers) {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 pager.currentItem = tab!!.position
+                sneakers_title.text = tab.text
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
