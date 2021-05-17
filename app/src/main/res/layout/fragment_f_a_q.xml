@@ -5,7 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
         android:background="#D1D4D8"
         tools:context=".ui.faq.FAQFragment"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +46,7 @@
                     app:layout_constraintHeight_percent="0.2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintWidth_percent="0.11"
-                    app:srcCompat="@drawable/path_1395" />
+                    app:srcCompat="@drawable/ic_baseline_email_24" />
 
                 <TextView
                     android:id="@+id/textView"

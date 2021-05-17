@@ -7,9 +7,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.Adapters.AdapterJordan
+import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
-import drawable.NewShoe
 import kotlinx.android.synthetic.main.fragment_wishlist.*
 
 class WishlistFragment : Fragment(R.layout.fragment_wishlist) {

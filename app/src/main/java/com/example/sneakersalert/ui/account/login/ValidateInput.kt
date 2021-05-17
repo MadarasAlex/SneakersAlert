@@ -39,7 +39,7 @@ data class ValidateInput(
     fun validatePassword(): Boolean {
         passwordInput = password.text.toString().trim()
         if (passwordInput.isEmpty()) {
-            Toast.makeText(context, "Please enter your e-mail address.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Please enter your password.", Toast.LENGTH_SHORT).show()
             return false
         } else if (passwordInput.length < 6) {
             Toast.makeText(context, "Password too short", Toast.LENGTH_SHORT).show()

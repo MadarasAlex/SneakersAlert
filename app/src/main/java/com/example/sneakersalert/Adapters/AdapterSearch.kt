@@ -9,8 +9,8 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.R
-import drawable.NewShoe
 import java.util.*
 import kotlin.collections.ArrayList
 

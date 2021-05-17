@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.R
-import drawable.NewShoe
 
 class AdapterJordan(private var li: ArrayList<NewShoe>, val onClickListener: OnClickListener) :
     RecyclerView.Adapter<AdapterJordan.ViewHolder>() {

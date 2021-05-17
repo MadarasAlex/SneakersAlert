@@ -17,8 +17,7 @@ class AdapterProductCart(
     price_total: TextView?,
     price_final: TextView?,
     your_cart: TextView?
-) :
-    RecyclerView.Adapter<AdapterProductCart.ViewHolder>() {
+) : RecyclerView.Adapter<AdapterProductCart.ViewHolder>() {
     var price: TextView? = null
     var final: TextView? = null
     var your: TextView? = null

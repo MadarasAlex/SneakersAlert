@@ -1,6 +1,7 @@
 package com.example.sneakersalert.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -11,11 +12,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.Adapters.AdapterJordan
+import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
-import drawable.NewShoe
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_airmax90.*
+
 
 class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnItemSelectedListener {
     val a = ArrayList<NewShoe>()
@@ -65,6 +68,8 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
         if (!isAdded) {
             return
         }
+
+
         val spinner: Spinner = view.findViewById(R.id.spinner3)
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
@@ -77,6 +82,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
             // Apply the adapter to the spinner
             spinner.adapter = adapter
         }
+
         spinner.onItemSelectedListener = this
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewAirmax90)
         recyclerView.layoutManager = GridLayoutManager(context, 2)
@@ -200,4 +206,30 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }
+
+    private fun retreiveData() {
+        val db: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Products")
+        db.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (item in snapshot.children) {
+                    if (item.child("type").value == "Air Max 90") {
+                        val product = item.getValue(NewShoe::class.java)
+                        a.add(product!!)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("Error", "" + error.message)
+            }
+
+        })
+
+    }
+
+    private fun setData() {
+        val query: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Sneakers")
+
+    }
+
 }

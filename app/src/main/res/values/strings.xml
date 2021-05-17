@@ -140,6 +140,17 @@
     <string name="airmax90">AIR MAX 90</string>
     <string name="jordan">JORDAN 1</string>
     <string name="save">SAVE</string>
+    <string name="apple_pay">Apple Pay</string>
+    <string name="ideal">IDEAL</string>
+    <string name="paypal">PayPal</string>
+    <string name="credit_card">Credit card</string>
+    <string name="todo">TODO</string>
+    <string name="shipping_method">Shipping Method</string>
+    <string name="payment">Payment</string>
+    <string name="add_shipping_address">ADD Shipping Address</string>
+    <string name="log_in">LOG IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="email">Email</string>
 
 
     <string-array name="profiles">

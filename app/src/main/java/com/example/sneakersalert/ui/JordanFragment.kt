@@ -12,10 +12,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.Adapters.AdapterJordan
+import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
-import drawable.NewShoe
 import kotlinx.android.synthetic.main.fragment_jordan.*
 
 class JordanFragment : Fragment(R.layout.fragment_jordan), AdapterView.OnItemSelectedListener {

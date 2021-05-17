@@ -1,6 +1,6 @@
-package drawable
+package com.example.sneakersalert.DataClasses
 
-import com.example.sneakersalert.DataClasses.Spec
+import java.io.Serializable
 
 data class NewShoe(
     val image: Int?,
@@ -10,4 +10,4 @@ data class NewShoe(
     val text: String,
     val sizes: ArrayList<Int>,
     val spec: ArrayList<Spec>
-)
+) : Serializable

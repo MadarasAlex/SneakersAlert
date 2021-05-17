@@ -26,14 +26,15 @@
 
     <style name="NavigationViewStyle" parent="android:Widget.Material.Toolbar.Button.Navigation" tools:targetApi="lollipop">
         <item name="android:fontFamily">@font/liberation_sans</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="colorOnPrimary">@color/alert</item>
         <item name="background">@color/alert</item>
         <item name="backgroundTint">@null</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_marginBottom">5dp</item>
         <item name="android:buttonStyleToggle">@drawable/short_text_24px</item>
-        <item name="listPreferredItemHeightSmall">38dp</item>
+        <item name="listPreferredItemHeightSmall">35dp</item>
+
         <item name="collapseIcon">@drawable/back2</item>
         <item name="android:homeAsUpIndicator">@drawable/short_text_24px</item>
         <item name="android:listPreferredItemHeight">35dp</item>

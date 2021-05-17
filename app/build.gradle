@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation 'com.google.firebase:firebase-auth:20.0.3'
+    implementation 'com.android.support:cardview-v7:28.0.0'
 
     //noinspection GradleCompatible
     def fragment_version = "1.3.3"
@@ -86,8 +87,10 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     //noinspection GradleDependency
     implementation "com.android.billingclient:billing:$billing_version"
-    implementation platform('com.google.firebase:firebase-bom:26.8.0')
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.tfcporciuncula:phonemoji:1.0.0'

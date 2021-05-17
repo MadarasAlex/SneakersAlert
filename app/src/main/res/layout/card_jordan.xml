@@ -4,24 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginTop="5dp"
     android:alignmentMode="alignMargins"
     android:columnOrderPreserved="true"
     android:fitsSystemWindows="true"
+    android:paddingStart="20dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="10dp"
     android:rowOrderPreserved="true"
     android:useDefaultMargins="false"
-    app:barrierMargin="10dp"
-    app:layout_constraintCircleRadius="0dp">
+    app:barrierMargin="15dp"
+    app:layout_constraintCircleRadius="0dp"
+    app:layout_constraintHeight_percent="0.2">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_height="180dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_height="match_parent"
+
         android:layout_marginBottom="5dp"
         android:background="@drawable/bottom_card_jordan"
-        app:cardCornerRadius="10dp"
+        android:clipToPadding="false"
+        android:paddingTop="5dp"
         android:scaleX="1"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="false"
         tools:targetApi="lollipop">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,8 +38,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/card_shoe_round"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.65"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,11 +49,11 @@
 
                 <ImageView
                     android:id="@+id/jordan_image"
-                    android:layout_width="155dp"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toTopOf="@+id/euro2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.75"
+                    app:layout_constraintHeight_percent="0.8"
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/jordan_canyon" />
 
@@ -77,9 +85,13 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/bottom_card_jordan"
+                android:padding="0dp"
+                android:paddingStart="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.35"
@@ -89,26 +101,26 @@
 
                 <TextView
                     android:id="@+id/jordan_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:fontFamily="@font/rubik"
+                    android:paddingTop="5dp"
                     android:text="Jordan 1 mid"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/jordan_model"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
                     android:text="“Canyon Rust”"
                     android:textColor="#000000"
                     android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/jordan_name"
                     app:layout_constraintTop_toBottomOf="@+id/jordan_name" />
             </androidx.constraintlayout.widget.ConstraintLayout>

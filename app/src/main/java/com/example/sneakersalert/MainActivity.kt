@@ -20,6 +20,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header.view.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -79,6 +80,10 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         actionBar?.setDisplayShowCustomEnabled(true)
         toolbar.setupWithNavController(navController)
+
+        navigationView.getHeaderView(0).search.setOnClickListener {
+            navController.navigate(R.id.nav_search)
+        }
         navController.addOnDestinationChangedListener { _, _, _ ->
             toolbar.setNavigationIcon(R.drawable.short_text_24px)
             if (navController.currentDestination?.id == R.id.nav_search) {
@@ -88,6 +93,7 @@ class MainActivity : AppCompatActivity() {
             navigationView.setItemBackgroundResource(R.drawable.nav_view_select)
             navigationView.setItemTextAppearance(R.color.alert)
             open = false
+
             if (navController.currentDestination?.id == R.id.nav_orders)
                 logout.visibility = View.VISIBLE
             else logout.visibility = View.INVISIBLE
@@ -111,6 +117,24 @@ class MainActivity : AppCompatActivity() {
                 logo.visibility = View.INVISIBLE
                 shop.visibility = View.INVISIBLE
                 text_login.visibility = View.INVISIBLE
+
+            }
+            if (navController.currentDestination?.id == R.id.nav_payment) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                text_login.setTextColor(Color.BLACK)
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_black24px)
+                toolbar.setNavigationIcon(R.drawable.short_text_black24px)
+                toolbar.navigationIcon?.setTint(Color.BLACK)
+                toolbar.setBackgroundColor(Color.WHITE)
+                your_cart.visibility = View.VISIBLE
+                your_cart.setTextColor(Color.BLACK)
+                your_cart.text = "Checkout"
+                logo.visibility = View.INVISIBLE
+                shop.visibility = View.INVISIBLE
+                toolbar.background.setTint(Color.WHITE)
+                tback.background.setTint(Color.WHITE)
+                tback.setBackgroundColor(Color.WHITE)
+
 
             }
             if (navController.currentDestination?.id == R.id.nav_signup) {
@@ -142,6 +166,7 @@ class MainActivity : AppCompatActivity() {
                 text_login.visibility = View.VISIBLE
 
             }
+
             if (navController.currentDestination?.id != R.id.nav_signup
                 && navController.currentDestination?.id != R.id.nav_login
                 && navController.currentDestination?.id != R.id.nav_orders
@@ -162,6 +187,7 @@ class MainActivity : AppCompatActivity() {
                 && navController.currentDestination?.id != R.id.nav_orders
                 && navController.currentDestination?.id != R.id.nav_login
                 && navController.currentDestination?.id != R.id.nav_invoice
+                && navController.currentDestination?.id != R.id.nav_payment
             ) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_24px)

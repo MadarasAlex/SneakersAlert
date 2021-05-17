@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -32,6 +33,7 @@ class CartFragment : Fragment(R.layout.activity_cart), Parcelable {
             empty.visibility = View.VISIBLE
             recyclerViewCart.visibility = View.GONE
             details.visibility = View.GONE
+
             continue_shopping.setOnClickListener {
                 findNavController().navigate(R.id.nav_sneakers)
             }
@@ -53,13 +55,17 @@ class CartFragment : Fragment(R.layout.activity_cart), Parcelable {
             model.getAmount().observe(this.requireActivity(), { newAmount ->
                 requireActivity().your_cart.text = "Your Cart ($newAmount)"
             })
-            requireActivity().text_login.visibility = View.INVISIBLE
+
             adapter.notifyDataSetChanged()
             model.getFinal().observe(this.requireActivity(), { newPrice ->
                 price_final.text = newPrice.toString()
                 price_total.text = newPrice.toString()
             })
+
             checkout.setOnClickListener {
+                if (Global.p.size > 0)
+                    findNavController().navigate(R.id.nav_payment)
+                else Toast.makeText(activity, "Your cart is empty.", Toast.LENGTH_SHORT).show()
             }
             super.onViewCreated(view, savedInstanceState)
         }

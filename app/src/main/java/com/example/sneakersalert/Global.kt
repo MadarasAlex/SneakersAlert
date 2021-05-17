@@ -2,14 +2,10 @@ package com.example.sneakersalert
 
 import android.app.Application
 import androidx.fragment.app.Fragment
-import com.example.sneakersalert.DataClasses.Order
-import com.example.sneakersalert.DataClasses.ProductCart
-import com.example.sneakersalert.DataClasses.ShoeIn
-import com.example.sneakersalert.DataClasses.Spec
+import com.example.sneakersalert.DataClasses.*
 import com.example.sneakersalert.ui.Airmax1Fragment
 import com.example.sneakersalert.ui.Airmax90Fragment
 import com.example.sneakersalert.ui.JordanFragment
-import drawable.NewShoe
 import java.time.LocalDateTime
 import kotlin.properties.Delegates
 
