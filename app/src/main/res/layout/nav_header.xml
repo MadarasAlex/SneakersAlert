@@ -5,22 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SearchView
+    <ImageButton
         android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:autofillHints="@string/Search"
         android:background="@drawable/seach_nav"
         android:backgroundTint="#5A5A5A"
-        android:clickable="true"
         android:fitsSystemWindows="true"
-        android:foregroundTint="@color/white"
-        android:iconifiedByDefault="true"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:queryHint="Search"
-        android:saveEnabled="false"
-        android:searchIcon="@drawable/ic_search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -28,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.85">
 
-    </SearchView>
+    </ImageButton>
 
     <TextView
         android:id="@+id/textView4"
@@ -48,4 +39,14 @@
         app:layout_constraintStart_toStartOf="@+id/search"
         app:layout_constraintTop_toTopOf="@+id/search"
         tools:text="Search" />
+
+    <ImageView
+        android:id="@+id/search_logo2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/search"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:srcCompat="@drawable/ic_search" />
 </androidx.constraintlayout.widget.ConstraintLayout>

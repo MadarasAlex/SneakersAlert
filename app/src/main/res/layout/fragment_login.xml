@@ -25,7 +25,7 @@
             android:layout_marginStart="12dp"
             android:fontFamily="@font/lato"
             android:text="@string/sign_up"
-            android:textColor="#000000"
+            android:textColor="#FF5C5C"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/already"
             app:layout_constraintStart_toEndOf="@+id/dont"
@@ -101,11 +101,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
+            android:padding="65dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.44"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_big2" />
+            app:srcCompat="@drawable/logo" />
 
         <ImageView
             android:id="@+id/email_logo"

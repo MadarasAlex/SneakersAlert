@@ -60,7 +60,7 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
         )
         a.add(
             NewShoe(
-                R.drawable.limeade2, "Nike Air Max 1", "Limeade", 289, "",
+                R.drawable.limeade2, "Nike Air Max 1", "London", 289, "",
                 arrayListOf(39, 40), arrayListOf(
                     Spec(R.drawable.shield, "Anti-pollution, anti-dust"),
                     Spec(R.drawable.crossing, "Reusable"),

@@ -104,18 +104,17 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/logo"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="0dp"
                     android:layout_gravity="center_horizontal|left"
                     android:layout_marginEnd="6dp"
-                    android:layout_marginRight="6dp"
                     android:foregroundGravity="left|center_vertical"
-                    android:src="@drawable/logo4"
+                    android:src="@drawable/logo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/shop"
-                    app:layout_constraintHeight_percent="0.6"
+                    app:layout_constraintHeight_percent="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.5"
+                    app:layout_constraintWidth_percent="0.2"
                     tools:ignore="RtlHardcoded" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.MaterialToolbar>

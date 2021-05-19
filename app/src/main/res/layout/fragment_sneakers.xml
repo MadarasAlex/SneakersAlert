@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sneakers_title"
             app:tabIndicator="@drawable/tab_selected"
-            app:tabIndicatorColor="#000000"
+            app:tabIndicatorColor="#FF5C5C"
             app:tabIndicatorGravity="center"
             app:tabRippleColor="#000000"
             app:tabSelectedTextColor="@color/white"

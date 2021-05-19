@@ -11,10 +11,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        android:fitsSystemWindows="true"
+        android:fitsSystemWindows="false"
         tools:context=".ui.BuyingProducts">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.33" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -132,10 +139,9 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
                 android:background="@drawable/ic_baseline_favorite_24"
                 android:visibility="invisible"
-                app:backgroundTint="#000000"
+                app:backgroundTint="#FF5C5C"
                 app:layout_constraintBottom_toBottomOf="@+id/london_text"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -166,13 +172,266 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/thankyou_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/thank"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline7">
+
+            <Button
+                android:id="@+id/checkout_now"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_gravity="start"
+                android:background="@drawable/checkout_shape"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:fontFamily="@font/lato"
+                android:text="CHECKOUT NOW"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="#000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/item_added"
+                app:layout_constraintStart_toStartOf="@+id/item_added"
+                app:layout_constraintTop_toBottomOf="@+id/item_picture" />
+
+            <TextView
+                android:id="@+id/quantity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Quantity:"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="@+id/price_item"
+                app:layout_constraintTop_toBottomOf="@+id/size_item_text" />
+
+            <TextView
+                android:id="@+id/size_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="40"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/size_item_text"
+                app:layout_constraintStart_toEndOf="@+id/size_item_text"
+                app:layout_constraintTop_toTopOf="@+id/size_item_text"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/quantity_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="1"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/size_item_text"
+                app:layout_constraintStart_toEndOf="@+id/quantity_text"
+                app:layout_constraintTop_toTopOf="@+id/quantity_text"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/size_item_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Size:"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="@+id/price_item"
+                app:layout_constraintTop_toBottomOf="@+id/price_item" />
+
+            <TextView
+                android:id="@+id/price_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="€ 289"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/name_item"
+                app:layout_constraintTop_toBottomOf="@+id/model_item" />
+
+            <TextView
+                android:id="@+id/model_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text='"London"'
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/item_picture"
+                app:layout_constraintTop_toBottomOf="@+id/name_item" />
+
+            <TextView
+                android:id="@+id/thank_you_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="76dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Thank You"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_added"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="Item has successfully added to your cart"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thank_you_text" />
+
+            <ImageView
+                android:id="@+id/item_picture"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="36dp"
+                android:background="#D1D4D8"
+                app:layout_constraintHeight_percent="0.24"
+                app:layout_constraintStart_toStartOf="@+id/item_added"
+                app:layout_constraintTop_toBottomOf="@+id/item_added"
+                app:layout_constraintWidth_percent="0.3"
+                app:srcCompat="@drawable/air_max_london" />
+
+            <TextView
+                android:id="@+id/name_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:fontFamily="@font/liberation_sans"
+                android:text="NIKE AIR MAX 1"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@+id/item_picture"
+                app:layout_constraintTop_toTopOf="@+id/item_picture" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/size1_checked"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sizebullet"
+            android:backgroundTint="@color/newcolor"
+            android:bufferType="normal"
+            android:contentDescription="39"
+            android:elevation="20dp"
+            android:enabled="true"
+            android:fitsSystemWindows="true"
+            android:fontFamily="@font/rubik"
+            android:hapticFeedbackEnabled="true"
+            android:text="@string/_39"
+            android:textColor="@color/white"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:backgroundTint="@color/newcolor"
+            app:borderWidth="12dp"
+            app:elevation="20dp"
+            app:ensureMinTouchTargetSize="false"
+            app:iconPadding="10dp"
+            app:iconTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/size1"
+            app:layout_constraintTop_toTopOf="@+id/size1"
+            app:rippleColor="@color/newcolor"
+            app:strokeWidth="10dp"
+            app:useCompatPadding="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/size2_checked"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sizebullet"
+            android:backgroundTint="@color/newcolor"
+            android:bufferType="normal"
+            android:contentDescription="39"
+            android:elevation="20dp"
+            android:enabled="true"
+            android:fitsSystemWindows="true"
+            android:fontFamily="@font/rubik"
+            android:hapticFeedbackEnabled="true"
+            android:text="40"
+            android:textColor="@color/white"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:backgroundTint="@color/newcolor"
+            app:borderWidth="12dp"
+            app:elevation="20dp"
+            app:ensureMinTouchTargetSize="false"
+            app:iconPadding="10dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/size1_checked"
+            app:layout_constraintStart_toEndOf="@+id/size1_checked"
+            app:layout_constraintTop_toTopOf="@+id/size1_checked"
+            app:strokeWidth="10dp"
+            app:useCompatPadding="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/size3_checked"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sizebullet"
+            android:backgroundTint="@color/newcolor"
+            android:bufferType="normal"
+            android:contentDescription="39"
+            android:elevation="20dp"
+            android:enabled="true"
+            android:fitsSystemWindows="true"
+            android:fontFamily="@font/rubik"
+            android:hapticFeedbackEnabled="true"
+            android:text="41"
+            android:textColor="@color/white"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:backgroundTint="@color/newcolor"
+            app:borderWidth="12dp"
+            app:elevation="20dp"
+            app:ensureMinTouchTargetSize="false"
+            app:iconPadding="10dp"
+            app:iconTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/size2_checked"
+            app:layout_constraintStart_toEndOf="@+id/size2_checked"
+            app:layout_constraintTop_toTopOf="@+id/size2_checked"
+            app:strokeWidth="10dp"
+            app:useCompatPadding="false" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/size1"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="16dp"
             android:background="@drawable/sizebullet"
             android:backgroundTint="@color/white"
             android:bufferType="normal"
@@ -183,27 +442,27 @@
             android:fontFamily="@font/rubik"
             android:hapticFeedbackEnabled="true"
             android:text="@string/_39"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:textColor="@color/item_color"
+            android:textIsSelectable="true"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:visibility="visible"
             app:backgroundTint="#F9F3F3"
             app:borderWidth="12dp"
             app:elevation="20dp"
             app:ensureMinTouchTargetSize="false"
             app:iconPadding="10dp"
-            android:textIsSelectable="true"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0"
-            app:strokeColor="#000000"
             app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@id/guideline8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:strokeColor="#000000"
             app:strokeWidth="10dp"
             app:useCompatPadding="false" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/size2"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@drawable/sizebullet"
@@ -211,31 +470,31 @@
             android:bufferType="normal"
             android:contentDescription="40"
             android:elevation="20dp"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:ellipsize="none"
             android:enabled="true"
             android:fitsSystemWindows="true"
             android:fontFamily="@font/rubik"
             android:hapticFeedbackEnabled="true"
             android:text="40"
-            android:ellipsize="none"
+            android:textColor="@color/item_color"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:visibility="visible"
             app:backgroundTint="#F9F3F3"
             app:borderWidth="12dp"
             app:elevation="20dp"
             app:ensureMinTouchTargetSize="false"
             app:iconPadding="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/size1"
             app:layout_constraintStart_toEndOf="@+id/size1"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="@+id/size1"
             app:strokeColor="#000000"
             app:strokeWidth="10dp"
-            android:textColor="@color/item_color"
             app:useCompatPadding="false" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/size3"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@drawable/sizebullet"
@@ -248,19 +507,18 @@
             android:fontFamily="@font/rubik"
             android:hapticFeedbackEnabled="true"
             android:text="41"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@color/item_color"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:visibility="visible"
             app:backgroundTint="#F9F3F3"
             app:borderWidth="12dp"
             app:elevation="20dp"
-            android:textColor="@color/item_color"
             app:ensureMinTouchTargetSize="false"
             app:iconPadding="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/size2"
             app:layout_constraintStart_toEndOf="@+id/size2"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="@+id/size2"
             app:rippleColor="@color/item_color"
             app:strokeColor="#000000"
             app:strokeWidth="10dp"
@@ -271,15 +529,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/rubik"
             android:text="100% Original Products  \nThis item is not returnable. Items like inner-wear, personal care, make-up, socks and certain accessories do not come under our return policy. "
             android:textColor="#000000"
             android:textSize="16sp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/size1"
-            app:layout_constraintTop_toBottomOf="@+id/size2" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <TextView
             android:id="@+id/read_more"
@@ -288,6 +547,7 @@
             android:text="Read More."
             android:textColor="#F72626"
             android:textSize="16sp"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/info_text"
             app:layout_constraintTop_toBottomOf="@+id/info_text" />
 
@@ -304,6 +564,7 @@
             android:textColor="#000000"
             android:textScaleX="1"
             android:textSize="16sp"
+            android:visibility="visible"
             app:layout_constraintHeight_percent="0.04"
             app:layout_constraintStart_toStartOf="@+id/read_more"
             app:layout_constraintTop_toBottomOf="@+id/read_more"
@@ -320,6 +581,7 @@
             android:text="Add To Cart"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
+            android:visibility="visible"
             app:backgroundTint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -335,6 +597,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spec_title"
@@ -342,6 +605,14 @@
             tools:listitem="@layout/card_spec">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="367dp"
+            app:layout_constraintGuide_percent="0.44" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

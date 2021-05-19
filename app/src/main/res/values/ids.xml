@@ -13,4 +13,8 @@
     <item name="fl_shadow_container" type="id" />
     <item name="tv_auto_image_slider" type="id" />
     <item name="autoCompleteYear" type="id" />
+    <item name="size3_checked" type="id" />
+    <item name="size2_checked" type="id" />
+    <item name="size1_checked" type="id" />
+
 </resources>

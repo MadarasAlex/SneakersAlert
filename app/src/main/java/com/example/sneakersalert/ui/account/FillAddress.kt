@@ -69,7 +69,7 @@ class FillAddress : Fragment(R.layout.fragment_fill_address) {
         ccp.cpViewHelper.cpListConfig.preferredCountryCodes = "NL,RO"
         val save = view.findViewById<Button>(R.id.save_address)
         save.setOnClickListener {
-            findNavController().navigate(R.id.nav_details)
+            findNavController().navigate(R.id.nav_payment)
         }
     }
 }

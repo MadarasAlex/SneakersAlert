@@ -53,8 +53,7 @@ class MainActivity : AppCompatActivity() {
         drawerToggle.syncState()
         navigationView.bringToFront()
         navigationView.isVerticalScrollBarEnabled = true
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -80,7 +79,6 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         actionBar?.setDisplayShowCustomEnabled(true)
         toolbar.setupWithNavController(navController)
-
         navigationView.getHeaderView(0).search.setOnClickListener {
             navController.navigate(R.id.nav_search)
         }
@@ -198,7 +196,7 @@ class MainActivity : AppCompatActivity() {
                 tback.setBackgroundColor(Color.BLACK)
                 tback.background.setTint(Color.BLACK)
                 toolbar.background.setTint(Color.BLACK)
-                logo.setImageDrawable(resources.getDrawable(R.drawable.logo4, theme))
+                logo.setImageDrawable(resources.getDrawable(R.drawable.logo, theme))
                 toolbar.elevation = 2F
                 tback.elevation = 2F
                 appBarLayout.elevation = 2F
@@ -218,7 +216,6 @@ class MainActivity : AppCompatActivity() {
                 tback.setBackgroundColor(Color.WHITE)
                 logo.setImageDrawable(resources.getDrawable(R.drawable.logo, theme))
             }
-
             if (navController.currentDestination?.id == R.id.nav_request || navController.currentDestination?.id == R.id.nav_sneakers) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 toolbar.elevation = 0F
@@ -241,20 +238,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (navController.currentDestination?.id != R.id.nav_search) {
+        if (navController.currentDestination?.id != R.id.nav_search
+            && navController.currentDestination?.id != R.id.nav_sneakers
+        ) {
             toolbar.setNavigationOnClickListener {
                 supportActionBar?.setHomeAsUpIndicator(R.drawable.back2)
                 toolbar.setNavigationIcon(R.drawable.back2)
+                toolbar.setCollapseIcon(R.drawable.back2)
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
                 onSupportNavigateUp()
             }
-
+        } else toolbar.setNavigationOnClickListener {
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.back)
+            actionBar?.setHomeAsUpIndicator(R.drawable.back)
+            toolbar.setNavigationIcon(R.drawable.back)
+            toolbar.setCollapseIcon(R.drawable.back)
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
+            onSupportNavigateUp()
         }
         if (navController.currentDestination?.id != R.id.nav_fill && navController.currentDestination?.id != R.id.nav_fillInvoice
             && navController.currentDestination?.id != R.id.nav_fillAddress && navController.currentDestination?.id != R.id.nav_details
         ) {
 
-            logo.setImageDrawable(resources.getDrawable(R.drawable.logo4, null))
+            logo.setImageDrawable(resources.getDrawable(R.drawable.logo, null))
         }
 
 

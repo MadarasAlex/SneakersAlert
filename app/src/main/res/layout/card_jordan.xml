@@ -5,29 +5,30 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:alignmentMode="alignMargins"
-    android:columnOrderPreserved="true"
+    android:alignmentMode="alignBounds"
+    android:columnOrderPreserved="false"
     android:fitsSystemWindows="true"
     android:paddingStart="20dp"
     android:paddingTop="5dp"
     android:paddingEnd="10dp"
-    android:rowOrderPreserved="true"
+    android:rowOrderPreserved="false"
     android:useDefaultMargins="false"
     app:barrierMargin="15dp"
     app:layout_constraintCircleRadius="0dp"
-    app:layout_constraintHeight_percent="0.2">
+    app:layout_constraintHeight_percent="0.2"
+    app:layout_constraintWidth_percent="0.5">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
 
         android:layout_marginBottom="5dp"
         android:background="@drawable/bottom_card_jordan"
-        android:clipToPadding="false"
+        android:clipToPadding="true"
         android:paddingTop="5dp"
         android:scaleX="1"
         app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="false"
+        app:cardUseCompatPadding="true"
         tools:targetApi="lollipop">
 
         <androidx.constraintlayout.widget.ConstraintLayout

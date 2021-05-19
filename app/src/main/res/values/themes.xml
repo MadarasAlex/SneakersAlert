@@ -27,7 +27,7 @@
     <style name="NavigationViewStyle" parent="android:Widget.Material.Toolbar.Button.Navigation" tools:targetApi="lollipop">
         <item name="android:fontFamily">@font/liberation_sans</item>
         <item name="android:textSize">18sp</item>
-        <item name="colorOnPrimary">@color/alert</item>
+        <item name="colorOnPrimary">#FF5C5C</item>
         <item name="background">@color/alert</item>
         <item name="backgroundTint">@null</item>
         <item name="android:layout_marginTop">5dp</item>

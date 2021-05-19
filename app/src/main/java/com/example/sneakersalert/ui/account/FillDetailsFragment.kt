@@ -1,9 +1,7 @@
 package com.example.sneakersalert.ui.account
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
@@ -15,14 +13,9 @@ import kotlin.properties.Delegates
 
 class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
     var selectedYear by Delegates.notNull<Int>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fill_details, container, false)
-    }
+    var selectedMonth by Delegates.notNull<Int>()
+    var selectedDay by Delegates.notNull<Int>()
+    var option: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +24,21 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
             this.requireActivity(),
             android.R.layout.simple_list_item_1, profile
         )
+        val constraint = frameLayout3
+        val cset = ConstraintSet()
+        business.visibility = View.GONE
+        checkbox2.visibility = View.GONE
+        checkbox.visibility = View.VISIBLE
+        save_address2.visibility = View.GONE
+        save_address.visibility = View.VISIBLE
+        cset.connect(
+            R.id.checkbox,
+            ConstraintSet.TOP,
+            R.id.password_fill,
+            ConstraintSet.BOTTOM
+        )
+        cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
+        cset.applyTo(constraint)
         autoCompleteTextView.threshold = 0
         autoCompleteTextView.setAdapter(adapter)
         drop.setOnClickListener {
@@ -42,8 +50,8 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
                 val constraint = frameLayout3
                 val cset = ConstraintSet()
                 business.visibility = View.VISIBLE
-                checkbox2.visibility = View.VISIBLE
-                checkbox.visibility = View.GONE
+                checkbox2.visibility = View.GONE
+                checkbox.visibility = View.VISIBLE
                 save_address2.visibility = View.VISIBLE
                 save_address.visibility = View.GONE
                 cset.connect(R.id.checkbox2, ConstraintSet.TOP, R.id.business, ConstraintSet.BOTTOM)
@@ -66,8 +74,6 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
                 )
                 cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
                 cset.applyTo(constraint)
-
-
             }
         }
         val years = ArrayList<Int>()
@@ -105,7 +111,7 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
                         months
                     )
                 autoCompleteMonth.setAdapter(adapter2)
-                var option: String? = null
+
                 drop_month.setOnClickListener {
                     autoCompleteMonth.showDropDown()
                     autoCompleteMonth.threshold = 0
@@ -113,22 +119,6 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
                         option = parent.getItemAtPosition(position).toString()
                         println(option)
                         val days = ArrayList<Int>()
-                        if (option == "January" || option == "March" || option == "May" || option == "July"
-                            || option == "August" || option == "October" || option == "December"
-                        ) {
-                            for (i in 1..31)
-                                days.add(i)
-                        } else if (option == "April" || option == "June" || option == "September" || option == "November") {
-                            for (i in 1..30)
-                                days.add(i)
-                        } else if (option == "February") {
-                            if (isLeap(selectedYear))
-                                for (i in 1..29)
-                                    days.add(i)
-                            else for (i in 1..28)
-                                days.add(i)
-                        }
-                        println(option)
                         val adapter3 =
                             ArrayAdapter(
                                 this.requireActivity(),
@@ -138,20 +128,71 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
                         autoCompleteDay.setAdapter(adapter3)
                         autoCompleteDay.threshold = 0
                         drop_day.setOnClickListener {
+                            days.clear()
+                            if (option == "January" || option == "March" || option == "May" || option == "July"
+                                || option == "August" || option == "October" || option == "December"
+                            ) {
+                                for (i in 1..31)
+                                    days.add(i)
+                            } else if (option == "April" || option == "June" || option == "September" || option == "November") {
+                                for (i in 1..30)
+                                    days.add(i)
+                            } else if (option == "February") {
+                                if (isLeap(selectedYear))
+                                    for (i in 1..29) {
+                                        days.add(i)
+                                    }
+                                else for (i in 1..28)
+                                    days.add(i)
+                            }
                             autoCompleteDay.showDropDown()
+                            autoCompleteDay.setOnItemClickListener { parent, view, position, id ->
+                                selectedDay = parent.getItemAtPosition(position).toString().toInt()
+                                if (option == "April" || option == "June" || option == "September" || option == "November")
+                                    if (selectedDay > 30)
+                                        invalid_birthday.visibility = View.VISIBLE
+                                    else invalid_birthday.visibility = View.INVISIBLE
+                                if (!isLeap(selectedYear) && option == "February")
+                                    if (selectedDay > 28)
+                                        invalid_birthday.visibility = View.VISIBLE
+                                    else invalid_birthday.visibility = View.INVISIBLE
+
+                            }
                         }
                     }
 
+
                 }
+
+
             }
 
         }
 
         save_address.setOnClickListener {
-            findNavController().navigate(R.id.nav_details)
+            if (option == "April" || option == "June" || option == "September" || option == "November")
+                if (selectedDay > 30)
+                    invalid_birthday.visibility = View.VISIBLE
+                else invalid_birthday.visibility = View.INVISIBLE
+            if (!isLeap(selectedYear) && option == "February")
+                if (selectedDay > 28)
+                    invalid_birthday.visibility = View.VISIBLE
+                else invalid_birthday.visibility = View.INVISIBLE
+            if (invalid_birthday.visibility == View.INVISIBLE)
+                findNavController().navigate(R.id.nav_details)
+
         }
         save_address2.setOnClickListener {
-            findNavController().navigate(R.id.nav_details)
+            if (option == "April" || option == "June" || option == "September" || option == "November")
+                if (selectedDay > 30)
+                    invalid_birthday.visibility = View.VISIBLE
+                else invalid_birthday.visibility = View.INVISIBLE
+            if (!isLeap(selectedYear) && option == "February")
+                if (selectedDay > 28)
+                    invalid_birthday.visibility = View.VISIBLE
+                else invalid_birthday.visibility = View.INVISIBLE
+            if (invalid_birthday.visibility == View.INVISIBLE)
+                findNavController().navigate(R.id.nav_details)
         }
 
     }
@@ -172,6 +213,21 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
 
     override fun onStart() {
         super.onStart()
+        val constraint = frameLayout3
+        val cset = ConstraintSet()
+        business.visibility = View.GONE
+        checkbox2.visibility = View.GONE
+        checkbox.visibility = View.VISIBLE
+        save_address2.visibility = View.GONE
+        save_address.visibility = View.VISIBLE
+        cset.connect(
+            R.id.checkbox,
+            ConstraintSet.TOP,
+            R.id.password_fill,
+            ConstraintSet.BOTTOM
+        )
+        cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
+        cset.applyTo(constraint)
         if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
             requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
             requireActivity().navigationView.menu.setGroupCheckable(

@@ -41,9 +41,28 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         activity?.actionBar?.setDisplayHomeAsUpEnabled(false)
         drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         rec = view.findViewById(R.id.recyclerViewSearch)
+        categories.visibility = View.VISIBLE
+        recyclerViewSearch.visibility = View.INVISIBLE
         rec.layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
-        rec.isNestedScrollingEnabled = false
+        rec.isNestedScrollingEnabled = true
         rec.setHasFixedSize(true)
+        jordan_1.setOnClickListener {
+            findNavController().navigate(R.id.nav_sneakers)
+            Global.positionSelected = 2
+        }
+        airmax_1.setOnClickListener {
+            findNavController().navigate(R.id.nav_sneakers)
+            Global.positionSelected = 0
+        }
+        airmax_90.setOnClickListener {
+            findNavController().navigate(R.id.nav_sneakers)
+            Global.positionSelected = 1
+        }
+        searchView.setOnCloseListener {
+            categories.visibility = View.VISIBLE
+            recyclerViewSearch.visibility = View.INVISIBLE
+            true
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             @SuppressLint("WrongConstant")
@@ -56,6 +75,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 adapter.filter.filter(newText)
+                categories.visibility = View.INVISIBLE
+                recyclerViewSearch.visibility = View.VISIBLE
                 println("here2")
                 println(adapter.filter.filter(newText))
 
@@ -66,7 +87,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         addList()
     }
 
-    fun addList() {
+    private fun addList() {
         sp.add(Spec(R.drawable.shield, "Anti-pollution, anti-dust"))
         sp.add(Spec(R.drawable.crossing, "Reusable"))
         sp.add(Spec(R.drawable.happy_face, "Pleated at sides for extra comfort"))

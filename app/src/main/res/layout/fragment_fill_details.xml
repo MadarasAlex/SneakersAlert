@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
-    android:fillViewport="true">
+    android:fillViewport="false"
+    android:fitsSystemWindows="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:background="#F7F7F7"
-        android:paddingBottom="5dp"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toStartOf="@+id/phone_text"
         app:layout_constraintStart_toStartOf="@+id/phone_text"
         tools:context=".ui.account.FillDetailsFragment">
@@ -176,7 +176,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/liberation_sans"
-            android:text="Last name"
+            android:text="@string/last_name"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -215,7 +215,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/autoCompleteTextView"
             app:layout_constraintEnd_toEndOf="@+id/autoCompleteTextView"
             app:layout_constraintTop_toTopOf="@+id/autoCompleteTextView"
-            app:layout_constraintWidth_percent="0.1" />
+            app:layout_constraintWidth_percent="0.08" />
 
         <com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout
             android:id="@+id/phone_field"
@@ -285,7 +285,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/autoCompleteMonth"
             app:layout_constraintEnd_toEndOf="@+id/autoCompleteMonth"
             app:layout_constraintTop_toTopOf="@+id/autoCompleteMonth"
-            app:layout_constraintWidth_percent="0.1" />
+            app:layout_constraintWidth_percent="0.08" />
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteDay"
@@ -319,7 +319,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/autoCompleteDay"
             app:layout_constraintEnd_toEndOf="@+id/autoCompleteDay"
             app:layout_constraintTop_toTopOf="@+id/autoCompleteDay"
-            app:layout_constraintWidth_percent="0.1" />
+            app:layout_constraintWidth_percent="0.08" />
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteYear"
@@ -354,14 +354,28 @@
             app:layout_constraintBottom_toBottomOf="@+id/autoCompleteYear"
             app:layout_constraintEnd_toEndOf="@+id/autoCompleteYear"
             app:layout_constraintTop_toTopOf="@+id/autoCompleteYear"
-            app:layout_constraintWidth_percent="0.1" />
+            app:layout_constraintWidth_percent="0.08" />
+
+        <TextView
+            android:id="@+id/invalid_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="5dp"
+            android:text="Invalid birthday"
+            android:textColor="#FF5C5C"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/autoCompleteMonth" />
 
         <TextView
             android:id="@+id/pass_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Password information"
             android:textColor="#000000"
@@ -405,37 +419,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="Change Password"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="@id/business"
             app:layout_constraintTop_toBottomOf="@id/business" />
 
-        <Button
-            android:id="@+id/save_address2"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_gravity="start"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="80dp"
-            android:enabled="true"
-            android:fontFamily="@font/lato"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="SAVE"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:visibility="gone"
-            app:backgroundTint="#292C2F"
-            app:cornerRadius="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/checkbox2"
-            app:rippleColor="#707070" />
 
         <Button
             android:id="@+id/save_address"
@@ -443,7 +432,7 @@
             android:layout_height="55dp"
             android:layout_gravity="start"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="80dp"
             android:enabled="true"
             android:fontFamily="@font/lato"
@@ -465,7 +454,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/business"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="450dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -575,6 +564,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tax_number"
                 app:layout_constraintTop_toBottomOf="@+id/tax_number" />
+
+            <Button
+                android:id="@+id/save_address2"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="80dp"
+                android:enabled="true"
+                android:fontFamily="@font/lato"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:backgroundTint="#292C2F"
+                app:cornerRadius="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tax_number_section"
+                app:rippleColor="#707070" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

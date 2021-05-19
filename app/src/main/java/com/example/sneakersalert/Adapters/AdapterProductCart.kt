@@ -1,12 +1,14 @@
 package com.example.sneakersalert.Adapters
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.DataClasses.ProductCart
+import com.example.sneakersalert.DataClasses.ShoeIn
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
 import kotlinx.android.synthetic.main.card_product_in_cart.view.*
@@ -55,6 +57,9 @@ class AdapterProductCart(
             itemView.size_number.text = l[position].size.toString()
             var c = l[position].amount
             var pr = itemView.price_product.text.toString().toInt()
+            if (c == 1)
+                itemView.minus.setTextColor(Color.GRAY)
+            else itemView.minus.setTextColor(Color.BLACK)
             itemView.plus.setOnClickListener {
                 c += 1
                 itemView.amount_products.text = c.toString()
@@ -67,6 +72,7 @@ class AdapterProductCart(
             }
             itemView.minus.setOnClickListener {
                 if (c > 1) {
+                    itemView.minus.setTextColor(Color.BLACK)
                     c -= 1
                     Global.total -= pr
                     pr -= pr
@@ -76,13 +82,26 @@ class AdapterProductCart(
                     price?.text = Global.total.toString()
                     final?.text = price?.text
 
-                }
+                } else if (c == 1)
+                    itemView.minus.setTextColor(Color.GRAY)
             }
             itemView.findViewById<TextView>(R.id.remove_product).setOnClickListener {
+
+                val shoe = ShoeIn(
+                    l[position].image,
+                    l[position].name,
+                    l[position].model,
+                    l[position].price,
+                    l[position].size
+                )
                 Global.total -= (l[position].amount * l[position].price)
+                l.removeAt(position)
+                Global.p = l
+
+                Global.list.remove(shoe)
+
                 price?.text = Global.total.toString()
                 final?.text = price?.text
-                l.removeAt(position)
                 your?.text = "Your Cart(" + l.size.toString() + ")"
                 notifyDataSetChanged()
             }

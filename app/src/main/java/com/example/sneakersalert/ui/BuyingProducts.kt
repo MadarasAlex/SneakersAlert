@@ -1,24 +1,25 @@
 package com.example.sneakersalert.ui
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.DataClasses.ProductCart
 import com.example.sneakersalert.DataClasses.ShoeIn
 import com.example.sneakersalert.Global
+import com.example.sneakersalert.Global.Companion.list
+import com.example.sneakersalert.Global.Companion.p
 import com.example.sneakersalert.Global.Companion.sizes
 import com.example.sneakersalert.Global.Companion.sp
 import com.example.sneakersalert.R
-import com.example.sneakersalert.R.color.*
-import com.example.sneakersalert.R.drawable
+import com.example.sneakersalert.R.color.but
+import com.example.sneakersalert.R.color.white
 import com.example.sneakersalert.R.layout
 import kotlinx.android.synthetic.main.activity_buying_products.*
 import layout.AdapterSpec
@@ -30,8 +31,6 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
     lateinit var model: String
     var price by Delegates.notNull<Int>()
     var selectedSize = 0
-
-
     @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,61 +77,50 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
         price_shoe.text = Global.price.toString()
         text_home.text = Global.name
         london_text.text = Global.model
+
         size1.setOnClickListener {
-            size1.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet_selected, null))
-            size2.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet, null))
-            size3.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet, null))
             selectedSize = size1.text.toString().toInt()
-            size2.setTextColor(item_color)
-            size1.setTextColor(Color.BLACK)
-            size3.setTextColor(item_color)
-            size2.background.setTint(Color.WHITE)
-            size3.background.setTint(Color.WHITE)
+            size1.visibility = View.INVISIBLE
+            size2.visibility = View.VISIBLE
+            size3.visibility = View.VISIBLE
+            size1_checked.visibility = View.VISIBLE
+            size2_checked.visibility = View.INVISIBLE
+            size3_checked.visibility = View.INVISIBLE
+
         }
         size2.setOnClickListener {
-            size2.background = resources.getDrawable(drawable.sizebullet_selected, null)
-            size3.background = resources.getDrawable(drawable.sizebullet, null)
-            size1.background = resources.getDrawable(drawable.sizebullet, null)
-            size2.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet_selected, null))
-            size1.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet, null))
-            size3.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet, null))
-            size1.background.setTint(Color.WHITE)
-            size3.background.setTint(Color.WHITE)
-            size1.setTextColor(item_color)
-            size2.setTextColor(Color.BLACK)
-            size3.run { size3.setTextColor(item_color) }
-            size2.background.setTint(Color.BLACK)
             selectedSize = size2.text.toString().toInt()
+            size2.visibility = View.INVISIBLE
+            size1.visibility = View.VISIBLE
+            size3.visibility = View.VISIBLE
+            size2_checked.visibility = View.VISIBLE
+            size1_checked.visibility = View.INVISIBLE
+            size3_checked.visibility = View.INVISIBLE
         }
         size3.setOnClickListener {
-            size3.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet_selected, null))
-            size2.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet, null))
-            size1.setBackgroundDrawable(resources.getDrawable(drawable.sizebullet, null))
-            size1.background.setTint(Color.WHITE)
-            size2.background.setTint(Color.WHITE)
-            size3.background.setTint(Color.BLACK)
-            size1.setTextColor(item_color)
-            size3.setTextColor(Color.BLACK)
-            size2.setTextColor(item_color)
             selectedSize = size3.text.toString().toInt()
+            size3.visibility = View.INVISIBLE
+            size1.visibility = View.VISIBLE
+            size2.visibility = View.VISIBLE
+            size3_checked.visibility = View.VISIBLE
+            size1_checked.visibility = View.INVISIBLE
+            size2_checked.visibility = View.INVISIBLE
         }
         pic1.setOnClickListener {
             pic1.backgroundTintList = resources.getColorStateList(white)
             pic2.backgroundTintList = resources.getColorStateList(but)
             pic3.backgroundTintList = resources.getColorStateList(but)
-            selectedSize = sizes[0]
         }
         pic2.setOnClickListener {
             pic2.backgroundTintList = resources.getColorStateList(white)
             pic1.backgroundTintList = resources.getColorStateList(but)
             pic3.backgroundTintList = resources.getColorStateList(but)
-            selectedSize = sizes[1]
+
         }
         pic3.setOnClickListener {
             pic3.backgroundTintList = resources.getColorStateList(white)
             pic2.backgroundTintList = resources.getColorStateList(but)
             pic1.backgroundTintList = resources.getColorStateList(but)
-            selectedSize = sizes[2]
         }
         wish.setOnClickListener {
             wish.isInvisible = true
@@ -144,7 +132,9 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
             wish.isInvisible = false
             Global.w.remove(pr)
         }
-        add_cart.setOnClickListener { v ->
+        recyclerViewSpec.adapter = AdapterSpec(sp)
+        recyclerViewSpec.layoutManager = LinearLayoutManager(this.activity)
+        add_cart.setOnClickListener {
             if (selectedSize != 0) {
                 val prod = ProductCart(
                     Global.pic,
@@ -155,17 +145,39 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
                 )
                 val shoe =
                     ShoeIn(Global.pic, Global.name, Global.model, Global.price, selectedSize)
-                if (prod in Global.p || shoe in Global.list)
+                if (prod in p || shoe in list)
                     Toast.makeText(
                         context,
                         "You already added this item",
                         Toast.LENGTH_SHORT
                     ).show()
                 else {
-                    Global.p.add(prod)
-                    Global.list.add(shoe)
-                    v?.findNavController()?.navigate(R.id.action_buyingProducts_to_nav_cart)
-                    Global.total += Global.price
+                    p.add(prod)
+                    list.add(shoe)
+                    thankyou_layout.visibility = View.VISIBLE
+                    size1.visibility = View.INVISIBLE
+                    size2.visibility = View.INVISIBLE
+                    size3.visibility = View.INVISIBLE
+                    size1_checked.visibility = View.INVISIBLE
+                    size2_checked.visibility = View.INVISIBLE
+                    size3_checked.visibility = View.INVISIBLE
+                    info_text.visibility = View.INVISIBLE
+                    read_more.visibility = View.INVISIBLE
+                    spec_title.visibility = View.INVISIBLE
+                    add_cart.visibility = View.INVISIBLE
+                    recyclerViewSpec.visibility = View.INVISIBLE
+                    pic1.visibility = View.INVISIBLE
+                    pic2.visibility = View.INVISIBLE
+                    pic3.visibility = View.INVISIBLE
+                    item_picture.setImageResource(Global.pic)
+                    name_item.text = Global.name
+                    model_item.text = Global.model
+                    "€ ${Global.price}".also { price_item.text = it }
+                    size_item.text = selectedSize.toString()
+                    checkout_now.setOnClickListener {
+                        findNavController().navigate(R.id.action_buyingProducts_to_nav_cart)
+                        Global.total += Global.price
+                    }
                 }
             } else Toast.makeText(
                 context,
@@ -173,8 +185,28 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        recyclerViewSpec.adapter = AdapterSpec(sp)
-        recyclerViewSpec.layoutManager = LinearLayoutManager(this.activity)
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        thankyou_layout.visibility = View.GONE
+        size1.visibility = View.VISIBLE
+        size2.visibility = View.VISIBLE
+        size3.visibility = View.VISIBLE
+        size1_checked.visibility = View.INVISIBLE
+        size2_checked.visibility = View.INVISIBLE
+        size3_checked.visibility = View.INVISIBLE
+        info_text.visibility = View.VISIBLE
+        read_more.visibility = View.VISIBLE
+        spec_title.visibility = View.VISIBLE
+        add_cart.visibility = View.VISIBLE
+        recyclerViewSpec.visibility = View.VISIBLE
+        pic1.visibility = View.VISIBLE
+        pic2.visibility = View.VISIBLE
+        pic3.visibility = View.VISIBLE
+
     }
 
 
