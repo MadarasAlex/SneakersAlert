@@ -1,6 +1,7 @@
 
 package com.example.sneakersalert
 
+import Repositories.OnSwipeTouchListener
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
@@ -79,6 +80,19 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         actionBar?.setDisplayShowCustomEnabled(true)
         toolbar.setupWithNavController(navController)
+        drawerLayout.setOnTouchListener(@SuppressLint("ClickableViewAccessibility")
+        object : OnSwipeTouchListener(this) {
+            @SuppressLint("ClickableViewAccessibility")
+            override fun onSwipeLeft() {
+                super.onSwipeLeft()
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
+            }
+        })
         navigationView.getHeaderView(0).search.setOnClickListener {
             navController.navigate(R.id.nav_search)
         }
@@ -86,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             toolbar.setNavigationIcon(R.drawable.short_text_24px)
             if (navController.currentDestination?.id == R.id.nav_search) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                println("yes")
+
             }
             navigationView.setItemBackgroundResource(R.drawable.nav_view_select)
             navigationView.setItemTextAppearance(R.color.alert)
@@ -164,7 +178,11 @@ class MainActivity : AppCompatActivity() {
                 text_login.visibility = View.VISIBLE
 
             }
-
+            if (navController.currentDestination?.id == R.id.nav_menuLogin
+                || navController.currentDestination?.id == R.id.nav_login
+                || navController.currentDestination?.id == R.id.nav_signup
+            )
+                logo.visibility = View.INVISIBLE
             if (navController.currentDestination?.id != R.id.nav_signup
                 && navController.currentDestination?.id != R.id.nav_login
                 && navController.currentDestination?.id != R.id.nav_orders
@@ -201,7 +219,6 @@ class MainActivity : AppCompatActivity() {
                 tback.elevation = 2F
                 appBarLayout.elevation = 2F
             } else {
-
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 text_login.setTextColor(Color.BLACK)
                 tback.elevation = 0F
@@ -243,16 +260,20 @@ class MainActivity : AppCompatActivity() {
         ) {
             toolbar.setNavigationOnClickListener {
                 supportActionBar?.setHomeAsUpIndicator(R.drawable.back2)
-                toolbar.setNavigationIcon(R.drawable.back2)
-                toolbar.setCollapseIcon(R.drawable.back2)
+                /*  toolbar.setNavigationIcon(R.drawable.back)
+                  toolbar.setCollapseIcon(R.drawable.back2)
+
+                 */
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
                 onSupportNavigateUp()
             }
         } else toolbar.setNavigationOnClickListener {
             supportActionBar?.setHomeAsUpIndicator(R.drawable.back)
-            actionBar?.setHomeAsUpIndicator(R.drawable.back)
-            toolbar.setNavigationIcon(R.drawable.back)
-            toolbar.setCollapseIcon(R.drawable.back)
+            /*  actionBar?.setHomeAsUpIndicator(R.drawable.back)
+             toolbar.setNavigationIcon(R.drawable.back)
+             toolbar.setCollapseIcon(R.drawable.back)
+
+             */
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
             onSupportNavigateUp()
         }
@@ -267,6 +288,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.shop).setOnClickListener {
             navController.navigate(R.id.nav_cart)
         }
+
     }
 
     @SuppressLint("ResourceAsColor")

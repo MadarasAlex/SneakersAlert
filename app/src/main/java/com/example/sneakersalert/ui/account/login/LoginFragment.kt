@@ -11,23 +11,28 @@ import androidx.navigation.fragment.findNavController
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.Interfaces.OnBack
 import com.example.sneakersalert.R
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class LoginFragment : Fragment(R.layout.fragment_login), OnBack {
-    private lateinit var mAuth: FirebaseAuth
+
     lateinit var email: String
     lateinit var passwordText: String
-
+    var rootReference: DatabaseReference = FirebaseDatabase.getInstance().reference
+    var conditionReference = rootReference.child("Users").child("User1")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAuth = FirebaseAuth.getInstance()
+
         val loginButton = view.findViewById<Button>(R.id.loginB)
         val validateInput: ValidateInput
         val usernameEditText = view.findViewById<EditText>(R.id.mail)
         val passwordEditText = view.findViewById<EditText>(R.id.password)
+        val value = conditionReference.child("email").setValue("kenneth@gmail.com")
 
+        println(conditionReference)
         validateInput = ValidateInput(this.requireActivity(), usernameEditText, passwordEditText)
         requireActivity().navigationView.setCheckedItem(R.id.nav_orders)
         if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
@@ -65,23 +70,17 @@ class LoginFragment : Fragment(R.layout.fragment_login), OnBack {
             email = usernameEditText.text.toString().trim()
             Global.username = usernameEditText.text.toString().trim()
             passwordText = passwordEditText.text.toString().trim()
-            mAuth.signInWithEmailAndPassword(email, passwordText)
-                .addOnCompleteListener(
-                    this.requireActivity()
-                ) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Global.logged = true
-                        findNavController().navigate(R.id.nav_orders)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(
-                            activity, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+            Global.logged = true
+            findNavController().navigate(R.id.nav_orders)
+        } else {
+            // If sign in fails, display a message to the user.
+            Toast.makeText(
+                activity, "Authentication failed.",
+                Toast.LENGTH_SHORT
+            ).show()
 
-                    }
-                }
         }
     }
 }
+
+

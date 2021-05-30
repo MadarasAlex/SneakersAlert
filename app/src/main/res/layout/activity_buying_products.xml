@@ -34,51 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/pic1"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/change_button"
-                android:shadowColor="#FFFFFF"
-                android:text="Button"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/text_home"
-                app:layout_constraintStart_toStartOf="@+id/shoe_pic"
-                app:rippleColor="#FFFFFF" />
 
-            <Button
-                android:id="@+id/pic2"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/change_button"
-                android:shadowColor="#FFFFFF"
-                android:text="Button"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#F5DEDE"
-                app:layout_constraintBottom_toBottomOf="@+id/pic1"
-                app:layout_constraintStart_toEndOf="@+id/pic1"
-                app:layout_constraintTop_toTopOf="@+id/pic1"
-                app:rippleColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/pic3"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/change_button"
-                android:shadowColor="#FFFFFF"
-                android:text="Button"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#F5DEDE"
-                app:layout_constraintBottom_toBottomOf="@+id/pic2"
-                app:layout_constraintStart_toEndOf="@+id/pic2"
-                app:layout_constraintTop_toTopOf="@+id/pic1"
-                app:rippleColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/text_home"
@@ -109,18 +65,27 @@
                 app:layout_constraintBottom_toBottomOf="@+id/euro_item"
                 app:layout_constraintStart_toStartOf="@+id/text_home"
                 app:layout_constraintTop_toBottomOf="@+id/text_home" />
-
-            <ImageView
+            <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/shoe_pic"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-
+                android:padding="40dp"
                 android:foregroundGravity="top|right"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.75"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.8"
+                app:layout_constraintWidth_percent="1"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="#FFF"
+                app:sliderScrollTimeInSec="1"
+                app:sliderStartAutoCycle="false"
                 app:srcCompat="@drawable/air_max_1_have_a_nikeday" />
 
             <Button
@@ -544,11 +509,12 @@
             android:id="@+id/read_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="Read More."
             android:textColor="#F72626"
             android:textSize="16sp"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/info_text"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/info_text" />
 
         <TextView

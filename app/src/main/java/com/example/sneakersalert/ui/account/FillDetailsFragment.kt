@@ -1,21 +1,23 @@
 package com.example.sneakersalert.ui.account
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.ArrayAdapter
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.sneakersalert.R
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_fill_details.*
 import kotlin.properties.Delegates
 
 class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
-    var selectedYear by Delegates.notNull<Int>()
-    var selectedMonth by Delegates.notNull<Int>()
-    var selectedDay by Delegates.notNull<Int>()
+    var selectedYear = 0
+    var selectedMonth = 0
+    var selectedDay = 0
     var option: String? = null
+    lateinit var type: String
+    var selectedType by Delegates.notNull<Int>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,56 +26,103 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
             this.requireActivity(),
             android.R.layout.simple_list_item_1, profile
         )
-        val constraint = frameLayout3
-        val cset = ConstraintSet()
-        business.visibility = View.GONE
-        checkbox2.visibility = View.GONE
-        checkbox.visibility = View.VISIBLE
-        save_address2.visibility = View.GONE
-        save_address.visibility = View.VISIBLE
-        cset.connect(
-            R.id.checkbox,
-            ConstraintSet.TOP,
-            R.id.password_fill,
-            ConstraintSet.BOTTOM
-        )
-        cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
-        cset.applyTo(constraint)
         autoCompleteTextView.threshold = 0
         autoCompleteTextView.setAdapter(adapter)
         drop.setOnClickListener {
             autoCompleteTextView.showDropDown()
         }
+        selectedType = 1
         autoCompleteTextView.setOnItemClickListener { parent, _, position, id ->
-            val type = parent.getItemAtPosition(position).toString()
-            if (type == "Business") {
-                val constraint = frameLayout3
-                val cset = ConstraintSet()
-                business.visibility = View.VISIBLE
-                checkbox2.visibility = View.GONE
-                checkbox.visibility = View.VISIBLE
-                save_address2.visibility = View.VISIBLE
-                save_address.visibility = View.GONE
-                cset.connect(R.id.checkbox2, ConstraintSet.TOP, R.id.business, ConstraintSet.BOTTOM)
-                cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
-                cset.applyTo(constraint)
 
+            type = parent.getItemAtPosition(position).toString()
+            if (type == "Business") {
+                selectedType = 2
+                val companyWatcher = object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                        if (s!!.isEmpty() || s == "") {
+                            req_field5.visibility = View.VISIBLE
+                            company_name_section.error = getString(R.string.error)
+                        } else {
+                            req_field5.visibility = View.INVISIBLE
+                            company_name_section.error = null
+                        }
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+                    }
+                }
+                val vatWatcher = object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                        if (s!!.isEmpty() || s == "") {
+                            req_field6.visibility = View.VISIBLE
+                            vat_section.error = getString(R.string.error)
+                        } else {
+                            req_field6.visibility = View.INVISIBLE
+                            vat_section.error = null
+                        }
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+                    }
+                }
+                val taxWatcher = object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                        if (s!!.isEmpty() || s == "") {
+                            req_field7.visibility = View.VISIBLE
+                            tax_number_section.error = getString(R.string.error)
+                        } else {
+                            req_field7.visibility = View.INVISIBLE
+                            tax_number_section.error = null
+                        }
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+                    }
+                }
+                company_name_section.addTextChangedListener(companyWatcher)
+                tax_number_section.addTextChangedListener(taxWatcher)
+                vat_section.addTextChangedListener(vatWatcher)
             } else {
-                val constraint = frameLayout3
-                val cset = ConstraintSet()
-                business.visibility = View.GONE
-                checkbox2.visibility = View.GONE
-                checkbox.visibility = View.VISIBLE
-                save_address2.visibility = View.GONE
-                save_address.visibility = View.VISIBLE
-                cset.connect(
-                    R.id.checkbox,
-                    ConstraintSet.TOP,
-                    R.id.password_fill,
-                    ConstraintSet.BOTTOM
-                )
-                cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
-                cset.applyTo(constraint)
+                selectedType = 1
             }
         }
         val years = ArrayList<Int>()
@@ -168,31 +217,147 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
             }
 
         }
+        val nameWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
 
-        save_address.setOnClickListener {
-            if (option == "April" || option == "June" || option == "September" || option == "November")
-                if (selectedDay > 30)
-                    invalid_birthday.visibility = View.VISIBLE
-                else invalid_birthday.visibility = View.INVISIBLE
-            if (!isLeap(selectedYear) && option == "February")
-                if (selectedDay > 28)
-                    invalid_birthday.visibility = View.VISIBLE
-                else invalid_birthday.visibility = View.INVISIBLE
-            if (invalid_birthday.visibility == View.INVISIBLE)
-                findNavController().navigate(R.id.nav_details)
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty() || s == "") {
+                    req_field.visibility = View.VISIBLE
+                    name_section.error = getString(R.string.error)
+                } else {
+                    req_field.visibility = View.INVISIBLE
+                    name_section.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        }
+        val lastNameWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty() || s == "") {
+                    req_field2.visibility = View.VISIBLE
+                    email.error = getString(R.string.error)
+                } else {
+                    req_field2.visibility = View.INVISIBLE
+                    email.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
 
         }
+        val emailWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty() || s == "") {
+                    req_field3.visibility = View.VISIBLE
+                    last_name.error = getString(R.string.error)
+                } else {
+                    req_field3.visibility = View.INVISIBLE
+                    last_name.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        }
+        val typeWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty() || s == "")
+                    req_field8.visibility = View.VISIBLE
+                else req_field8.visibility = View.INVISIBLE
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        }
+        name_section.addTextChangedListener(nameWatcher)
+        email.addTextChangedListener(lastNameWatcher)
+        last_name.addTextChangedListener(emailWatcher)
+        autoCompleteTextView.addTextChangedListener(typeWatcher)
         save_address2.setOnClickListener {
-            if (option == "April" || option == "June" || option == "September" || option == "November")
-                if (selectedDay > 30)
+
+            if (name_section.text?.isEmpty() == true) {
+                req_field.visibility = View.VISIBLE
+                name_section.error = getString(R.string.error)
+            } else {
+                req_field.visibility = View.INVISIBLE
+                name_section.error = null
+            }
+            if (email.text?.isEmpty() == true) {
+                req_field2.visibility = View.VISIBLE
+                email.error = getString(R.string.error)
+            } else {
+                req_field2.visibility = View.INVISIBLE
+                email.error = null
+            }
+            if (last_name.text?.isEmpty() == true) {
+                req_field3.visibility = View.VISIBLE
+                last_name.error = getString(R.string.error)
+            } else {
+                req_field3.visibility = View.INVISIBLE
+                last_name.error = null
+            }
+            if (autoCompleteTextView.text.isEmpty()) req_field8.visibility = View.VISIBLE
+            else req_field8.visibility = View.INVISIBLE
+            if (autoCompleteDay.text.isEmpty() || autoCompleteMonth.text.isEmpty() || autoCompleteYear.text.isEmpty())
+                invalid_birthday.visibility = View.VISIBLE
+            else {
+                if (option == "April" || option == "June" || option == "September" || option == "November")
+                    if (selectedDay > 30)
+                        invalid_birthday.visibility = View.VISIBLE
+                    else invalid_birthday.visibility = View.INVISIBLE
+                else if (option == "February" && selectedDay > 29)
                     invalid_birthday.visibility = View.VISIBLE
-                else invalid_birthday.visibility = View.INVISIBLE
-            if (!isLeap(selectedYear) && option == "February")
-                if (selectedDay > 28)
-                    invalid_birthday.visibility = View.VISIBLE
-                else invalid_birthday.visibility = View.INVISIBLE
-            if (invalid_birthday.visibility == View.INVISIBLE)
-                findNavController().navigate(R.id.nav_details)
+                else {
+                    if (!isLeap(selectedYear) && option == "February")
+                        if (selectedDay > 28)
+                            invalid_birthday.visibility = View.VISIBLE
+                        else invalid_birthday.visibility = View.INVISIBLE
+                }
+            }
+            println(selectedType)
+            if (selectedType == 2) {
+                if (company_name_section.text?.isEmpty() == true) {
+                    company_name_section.error = getString(R.string.error)
+                    req_field5.visibility = View.VISIBLE
+                } else {
+                    req_field5.visibility = View.INVISIBLE
+                    company_name_section.error = null
+                }
+                if (vat_section.text?.isEmpty() == true) {
+                    vat_section.error = getString(R.string.error)
+                    req_field6.visibility = View.VISIBLE
+                } else {
+                    req_field6.visibility = View.INVISIBLE
+                    vat_section.error = null
+                }
+                if (tax_number_section.text?.isEmpty() == true) {
+                    tax_number_section.error = getString(R.string.error)
+                    req_field7.visibility = View.VISIBLE
+                } else {
+                    req_field7.visibility = View.INVISIBLE
+                    tax_number_section.error = null
+                }
+            }
+            if (invalid_birthday.visibility == View.INVISIBLE && req_field.visibility == View.INVISIBLE && req_field2.visibility == View.INVISIBLE && req_field3.visibility == View.INVISIBLE && req_field4.visibility == View.INVISIBLE && req_field8.visibility == View.INVISIBLE) {
+                if (selectedType == 2 && req_field5.visibility == View.INVISIBLE && req_field6.visibility == View.INVISIBLE && req_field7.visibility == View.INVISIBLE)
+                    findNavController().navigate(R.id.nav_details)
+                if (selectedType == 1) findNavController().navigate(R.id.nav_details)
+            }
+
         }
 
     }
@@ -209,36 +374,6 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
         return false
 
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val constraint = frameLayout3
-        val cset = ConstraintSet()
-        business.visibility = View.GONE
-        checkbox2.visibility = View.GONE
-        checkbox.visibility = View.VISIBLE
-        save_address2.visibility = View.GONE
-        save_address.visibility = View.VISIBLE
-        cset.connect(
-            R.id.checkbox,
-            ConstraintSet.TOP,
-            R.id.password_fill,
-            ConstraintSet.BOTTOM
-        )
-        cset.constrainDefaultHeight(R.id.frameLayout3, ConstraintSet.WRAP_CONTENT)
-        cset.applyTo(constraint)
-        if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
-            requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
-            requireActivity().navigationView.menu.setGroupCheckable(
-                R.id.nav_orders,
-                true,
-                false
-            )
-            requireActivity().navigationView.menu.getItem(2).isCheckable = true
-            requireActivity().navigationView.menu.getItem(2).isChecked = true
-
-        }
     }
 
 }

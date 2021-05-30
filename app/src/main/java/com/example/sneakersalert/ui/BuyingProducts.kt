@@ -9,6 +9,7 @@ import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sneakersalert.Adapters.AdapterImageSlider
 import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.DataClasses.ProductCart
 import com.example.sneakersalert.DataClasses.ShoeIn
@@ -18,9 +19,8 @@ import com.example.sneakersalert.Global.Companion.p
 import com.example.sneakersalert.Global.Companion.sizes
 import com.example.sneakersalert.Global.Companion.sp
 import com.example.sneakersalert.R
-import com.example.sneakersalert.R.color.but
-import com.example.sneakersalert.R.color.white
 import com.example.sneakersalert.R.layout
+import com.smarteist.autoimageslider.SliderView
 import kotlinx.android.synthetic.main.activity_buying_products.*
 import layout.AdapterSpec
 import kotlin.properties.Delegates
@@ -73,7 +73,13 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
                 size3.text = sizes[2].toString()
             }
         }
-        shoe_pic.setImageResource(Global.pic)
+
+        val imageList: ArrayList<Int> = ArrayList()
+        imageList.add(Global.pic)
+        imageList.add(Global.pic)
+        imageList.add(Global.pic)
+        LinearLayoutManager.HORIZONTAL
+        setImageInSlider(imageList, shoe_pic)
         price_shoe.text = Global.price.toString()
         text_home.text = Global.name
         london_text.text = Global.model
@@ -106,22 +112,7 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
             size1_checked.visibility = View.INVISIBLE
             size2_checked.visibility = View.INVISIBLE
         }
-        pic1.setOnClickListener {
-            pic1.backgroundTintList = resources.getColorStateList(white)
-            pic2.backgroundTintList = resources.getColorStateList(but)
-            pic3.backgroundTintList = resources.getColorStateList(but)
-        }
-        pic2.setOnClickListener {
-            pic2.backgroundTintList = resources.getColorStateList(white)
-            pic1.backgroundTintList = resources.getColorStateList(but)
-            pic3.backgroundTintList = resources.getColorStateList(but)
 
-        }
-        pic3.setOnClickListener {
-            pic3.backgroundTintList = resources.getColorStateList(white)
-            pic2.backgroundTintList = resources.getColorStateList(but)
-            pic1.backgroundTintList = resources.getColorStateList(but)
-        }
         wish.setOnClickListener {
             wish.isInvisible = true
             wish2.isInvisible = false
@@ -166,9 +157,6 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
                     spec_title.visibility = View.INVISIBLE
                     add_cart.visibility = View.INVISIBLE
                     recyclerViewSpec.visibility = View.INVISIBLE
-                    pic1.visibility = View.INVISIBLE
-                    pic2.visibility = View.INVISIBLE
-                    pic3.visibility = View.INVISIBLE
                     item_picture.setImageResource(Global.pic)
                     name_item.text = Global.name
                     model_item.text = Global.model
@@ -203,10 +191,16 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
         spec_title.visibility = View.VISIBLE
         add_cart.visibility = View.VISIBLE
         recyclerViewSpec.visibility = View.VISIBLE
-        pic1.visibility = View.VISIBLE
-        pic2.visibility = View.VISIBLE
-        pic3.visibility = View.VISIBLE
 
+
+    }
+
+    private fun setImageInSlider(images: ArrayList<Int>, imageSlider: SliderView) {
+        val adapter = AdapterImageSlider()
+        adapter.renewItems(images)
+        imageSlider.setSliderAdapter(adapter)
+        imageSlider.isAutoCycle = false
+        //   imageSlider.startAutoCycle()
     }
 
 

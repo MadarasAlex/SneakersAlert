@@ -14,11 +14,41 @@
 
 
         <TextView
+            android:id="@+id/req_field14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/country_selector3" />
+
+        <TextView
+            android:id="@+id/req_field10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/postal_section" />
+
+        <TextView
+            android:id="@+id/req_field11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/house_number_section" />
+
+        <TextView
             android:id="@+id/place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Place"
             android:textColor="#000000"
@@ -27,12 +57,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/streetname_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/streetname_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="28dp"
+            app:errorEnabled="true"
             android:background="@drawable/fill_text_back"
             android:ems="10"
             android:fontFamily="@font/liberation_sans"
@@ -45,7 +76,27 @@
             app:layout_constraintStart_toStartOf="@+id/full_name"
             app:layout_constraintTop_toBottomOf="@+id/streetname" />
 
-        <EditText
+        <TextView
+            android:id="@+id/req_field12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/streetname_section" />
+
+        <TextView
+            android:id="@+id/req_field13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/place_section" />
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/place_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,6 +107,7 @@
             android:fontFamily="@font/liberation_sans"
             android:gravity="start|top"
             android:inputType="text"
+            app:errorEnabled="true"
             android:padding="10dp"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Streetname"
             android:textColor="#000000"
@@ -132,12 +184,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/account_info" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fullname_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="28dp"
+            app:errorEnabled="true"
             android:background="@drawable/fill_text_back"
             android:ems="1"
             android:fontFamily="@font/liberation_sans"
@@ -151,11 +204,21 @@
             app:layout_constraintTop_toBottomOf="@+id/full_name" />
 
         <TextView
+            android:id="@+id/req_field9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/fullname_section" />
+
+        <TextView
             android:id="@+id/postal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Postal"
             android:textColor="#000000"
@@ -164,9 +227,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fullname_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/postal_section"
             android:layout_width="0dp"
+            app:errorEnabled="true"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="28dp"
@@ -187,7 +251,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/liberation_sans"
             android:text="House number"
             android:textColor="#000000"
@@ -196,12 +260,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/postal_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/house_number_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="28dp"
+            app:errorEnabled="true"
             android:autofillHints=""
             android:background="@drawable/fill_text_back"
             android:ems="10"
@@ -221,21 +286,21 @@
             android:id="@+id/extra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Extra"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/extra_section"
-            app:layout_constraintTop_toBottomOf="@+id/postal_section" />
+            app:layout_constraintTop_toTopOf="@+id/house_number" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/extra_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="8dp"
+            app:errorEnabled="true"
             android:autofillHints=""
             android:background="@drawable/fill_text_back"
             android:ems="10"
@@ -255,7 +320,7 @@
             android:id="@+id/country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Country"
             android:textColor="#000000"

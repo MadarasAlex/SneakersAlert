@@ -9,14 +9,13 @@ import com.example.sneakersalert.Global
 import com.example.sneakersalert.Interfaces.OnBack
 import com.example.sneakersalert.R
 import com.example.sneakersalert.ui.account.login.ValidateInput
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
 
-    private lateinit var mAuth: FirebaseAuth
+
     lateinit var email: String
     lateinit var passwordText: String
     lateinit var user: String
@@ -26,7 +25,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAuth = FirebaseAuth.getInstance()
+
         val validateInput: ValidateInput = ValidateInput(
             this.requireActivity(),
             mail,
@@ -66,27 +65,19 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
             email = mail.text.toString().trim()
             Global.username = username.text.toString().trim()
             passwordText = password.text.toString().trim()
-            mAuth.createUserWithEmailAndPassword(email, passwordText)
-                .addOnCompleteListener(
-                    this.requireActivity()
-                ) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Global.logged = true
-                        findNavController().navigate(R.id.nav_orders)
-                        val user = mAuth.currentUser
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(
-                            activity, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+            Global.logged = true
+            findNavController().navigate(R.id.nav_orders)
 
-                    }
-                }
+        } else {
+            // If sign in fails, display a message to the user.
+            Toast.makeText(
+                activity, "Authentication failed.",
+                Toast.LENGTH_SHORT
+            ).show()
+
         }
+                }
 
-    }
 
     /* fun loadingAnimation()
      {
@@ -102,16 +93,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
     override fun onBackPressed() {
         onBackPressed()
         findNavController().navigate(R.id.nav_menuLogin)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val mUser = mAuth.currentUser
-        if (mUser != null) {
-            findNavController().navigate(R.id.nav_orders)
-        } else Toast.makeText(this.activity, "Please log in to continue.", Toast.LENGTH_SHORT)
-            .show()
-
     }
 
 

@@ -15,6 +15,16 @@
 
 
         <TextView
+            android:id="@+id/req_field15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/country_selector3" />
+
+        <TextView
             android:id="@+id/place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/streetname_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/streetname_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -46,7 +56,7 @@
             app:layout_constraintStart_toStartOf="@+id/full_name"
             app:layout_constraintTop_toBottomOf="@+id/streetname" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/place_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -133,7 +143,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/account_info" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fullname_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -165,7 +175,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fullname_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/postal_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -197,7 +207,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/postal_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/house_number_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -231,7 +241,7 @@
             app:layout_constraintStart_toStartOf="@+id/extra_section"
             app:layout_constraintTop_toBottomOf="@+id/postal_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/extra_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -15,6 +15,46 @@
         android:paddingBottom="40dp">
 
         <TextView
+            android:id="@+id/req_field16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/eu_size"
+            app:layout_constraintTop_toBottomOf="@+id/eu_size" />
+
+        <TextView
+            android:id="@+id/req_field17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/last_name_section2"
+            app:layout_constraintTop_toBottomOf="@+id/last_name_section2" />
+
+        <TextView
+            android:id="@+id/req_field18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/name_section2"
+            app:layout_constraintTop_toBottomOf="@+id/name_section2" />
+
+        <TextView
+            android:id="@+id/req_field19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/country_selector3"
+            app:layout_constraintTop_toBottomOf="@+id/country_selector3" />
+
+        <TextView
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,14 +114,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/liberation_sans"
-            android:text="EU size"
+            android:text="@string/eu_size"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/account_info3"
             app:layout_constraintTop_toBottomOf="@+id/brand_name_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/model_name_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -101,7 +141,7 @@
             app:layout_constraintTop_toTopOf="@+id/brand_name_section"
             tools:ignore="LabelFor" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/brand_name_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -144,7 +184,7 @@
             app:layout_constraintStart_toStartOf="@+id/account_info3"
             app:layout_constraintTop_toBottomOf="@+id/email_section2" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email_section2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -188,7 +228,7 @@
             app:layout_constraintStart_toStartOf="@+id/account_info3"
             app:layout_constraintTop_toBottomOf="@+id/account_info3" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name_section2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -218,7 +258,7 @@
             app:layout_constraintStart_toStartOf="@+id/last_name_section2"
             app:layout_constraintTop_toTopOf="@+id/name_text" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/last_name_section2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -288,10 +328,10 @@
             app:layout_constraintEnd_toEndOf="@+id/country_selector3"
             app:layout_constraintStart_toStartOf="@id/phone"
             app:layout_constraintTop_toBottomOf="@id/phone"
-            app:phonemoji_flagFor="@id/phonemojiTextInputEditText">
+            app:phonemoji_flagFor="@id/phonemojiTextInputcom.google.android.material.textfield.TextInputEditText">
 
             <com.tfcporciuncula.phonemoji.PhonemojiTextInputEditText
-                android:id="@+id/phonemojiTextInputEditText"
+                android:id="@+id/phonemojiTextInputcom.google.android.material.textfield.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/fill_text_back"
@@ -312,7 +352,7 @@
             app:layout_constraintStart_toStartOf="@+id/email_section2"
             app:layout_constraintTop_toBottomOf="@+id/phone_field" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/want_to_pay_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -343,7 +383,7 @@
             app:layout_constraintStart_toStartOf="@+id/email_section2"
             app:layout_constraintTop_toBottomOf="@+id/want_to_pay_section" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/when_to_receive_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

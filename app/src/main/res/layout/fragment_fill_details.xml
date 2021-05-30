@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fillViewport="false"
+    android:fillViewport="true"
     android:fitsSystemWindows="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:background="#F7F7F7"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toStartOf="@+id/phone_text"
@@ -18,11 +18,51 @@
         tools:context=".ui.account.FillDetailsFragment">
 
         <TextView
+            android:id="@+id/req_field8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/autoCompleteTextView"
+            app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
+
+        <TextView
+            android:id="@+id/req_field4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/name_section"
+            app:layout_constraintTop_toBottomOf="@+id/phone_field" />
+
+        <TextView
+            android:id="@+id/req_field3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/name_section"
+            app:layout_constraintTop_toBottomOf="@+id/last_name" />
+
+        <TextView
+            android:id="@+id/req_field2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/name_section"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
+
+        <TextView
             android:id="@+id/phone_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Phone number"
             android:textColor="#000000"
@@ -36,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Type customer"
             android:textColor="#000000"
@@ -50,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/liberation_sans"
             android:text="E-mail"
             android:textColor="#000000"
@@ -59,7 +99,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -132,7 +172,7 @@
             app:layout_constraintStart_toStartOf="@+id/your_name"
             app:layout_constraintTop_toBottomOf="@+id/your_name" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name_section"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -144,13 +184,14 @@
             android:gravity="start|top"
             android:inputType="none"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/name_fill"
             app:layout_constraintTop_toBottomOf="@+id/name_fill" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/last_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -174,7 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/liberation_sans"
             android:text="@string/last_name"
             android:textColor="#000000"
@@ -227,11 +268,10 @@
             app:layout_constraintEnd_toEndOf="@+id/last_name"
             app:layout_constraintStart_toStartOf="@id/autoCompleteTextView"
             app:layout_constraintTop_toBottomOf="@id/phone_text"
-
-            app:phonemoji_flagFor="@id/phonemojiTextInputEditText">
+            app:phonemoji_flagFor="@id/phonemojiTextInputcom.google.android.material.textfield.TextInputEditText">
 
             <com.tfcporciuncula.phonemoji.PhonemojiTextInputEditText
-                android:id="@+id/phonemojiTextInputEditText"
+                android:id="@+id/phonemojiTextInputcom.google.android.material.textfield.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/fill_text_back"
@@ -244,7 +284,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Birthday"
             android:textColor="#000000"
@@ -362,6 +402,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/liberation_sans"
             android:text="Invalid birthday"
             android:textColor="#FF5C5C"
             android:textSize="16sp"
@@ -375,7 +416,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Password information"
             android:textColor="#000000"
@@ -384,7 +425,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/autoCompleteMonth" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_fill"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -405,60 +446,33 @@
             tools:ignore="LabelFor" />
 
         <CheckedTextView
-            android:visibility="visible"
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Change Password"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@id/password_fill"
             app:layout_constraintTop_toBottomOf="@id/password_fill" />
 
         <CheckedTextView
             android:id="@+id/checkbox2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="5dp"
-            android:text="Change Password"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/business"
-            app:layout_constraintTop_toBottomOf="@id/business" />
-
-
-        <Button
-            android:id="@+id/save_address"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_gravity="start"
-            android:layout_marginStart="80dp"
+            android:layout_height="2dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="80dp"
-            android:enabled="true"
-            android:fontFamily="@font/lato"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="@string/save"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            app:backgroundTint="#292C2F"
-            app:cornerRadius="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/checkbox"
-            app:rippleColor="#707070" />
+            android:text="Change Password"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/password_fill"
+            app:layout_constraintTop_toBottomOf="@+id/password_fill" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/business"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password_fill">
+            app:layout_constraintTop_toBottomOf="@+id/checkbox">
 
             <TextView
                 android:id="@+id/business_info"
@@ -488,7 +502,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/business_info" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/company_name_section"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -506,10 +520,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/company_name" />
 
             <TextView
+                android:id="@+id/req_field5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Required field"
+                android:textColor="#FF5C5C"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/company_name_section"
+                app:layout_constraintTop_toBottomOf="@+id/company_name_section" />
+
+            <TextView
                 android:id="@+id/vat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/liberation_sans"
                 android:text="VAT"
                 android:textColor="#000000"
@@ -518,7 +542,7 @@
                 app:layout_constraintStart_toStartOf="@id/company_name_section"
                 app:layout_constraintTop_toBottomOf="@+id/company_name_section" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/vat_section"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -536,10 +560,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/vat" />
 
             <TextView
+                android:id="@+id/req_field6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Required field"
+                android:textColor="#FF5C5C"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/company_name_section"
+                app:layout_constraintTop_toBottomOf="@+id/vat_section" />
+
+            <TextView
+                android:id="@+id/req_field7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Required field"
+                android:textColor="#FF5C5C"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/company_name_section"
+                app:layout_constraintTop_toBottomOf="@+id/tax_number_section" />
+
+            <TextView
                 android:id="@+id/tax_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/liberation_sans"
                 android:text="Tax number"
                 android:textColor="#000000"
@@ -548,7 +592,7 @@
                 app:layout_constraintStart_toStartOf="@id/vat_section"
                 app:layout_constraintTop_toBottomOf="@+id/vat_section" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tax_number_section"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -570,7 +614,7 @@
                 android:layout_width="0dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="80dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="80dp"
                 android:enabled="true"
                 android:fontFamily="@font/lato"
@@ -582,7 +626,7 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:backgroundTint="#292C2F"
                 app:cornerRadius="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -590,6 +634,16 @@
                 app:layout_constraintTop_toBottomOf="@id/tax_number_section"
                 app:rippleColor="#707070" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/req_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/name_section"
+            app:layout_constraintTop_toBottomOf="@+id/name_section" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

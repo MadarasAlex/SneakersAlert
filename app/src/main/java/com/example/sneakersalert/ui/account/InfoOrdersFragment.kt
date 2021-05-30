@@ -9,25 +9,23 @@ import androidx.navigation.fragment.findNavController
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.Global.Companion.logged
 import com.example.sneakersalert.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_info_orders.*
 
 class InfoOrdersFragment : Fragment(R.layout.fragment_info_orders), LifecycleOwner {
-    private lateinit var mAuth: FirebaseAuth
-    private lateinit var mUser: FirebaseUser
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAuth = FirebaseAuth.getInstance()
+
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        if (mAuth.currentUser == null) {
+        if (logged) {
             findNavController().navigate(R.id.nav_menuLogin)
         } else {
-            mUser = mAuth.currentUser
-            Toast.makeText(this.context, "Welcome, ${mUser.email}", Toast.LENGTH_SHORT).show()
-            account_name.text = mUser.email
+
+            Toast.makeText(this.context, "Welcome", Toast.LENGTH_SHORT).show()
+
 
             if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
                 requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
@@ -42,7 +40,6 @@ class InfoOrdersFragment : Fragment(R.layout.fragment_info_orders), LifecycleOwn
             }
             val logoutButton = requireActivity().logout
             logoutButton.setOnClickListener {
-                mAuth.signOut()
                 logged = false
                 Toast.makeText(this.activity, "Please log in to continue.", Toast.LENGTH_SHORT)
                     .show()

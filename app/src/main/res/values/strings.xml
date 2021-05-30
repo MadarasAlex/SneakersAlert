@@ -154,6 +154,8 @@
     <string name="_1080_items">1080 items</string>
     <string name="save">SAVE</string>
     <string name="last_name">Last name</string>
+    <string name="error">Error</string>
+    <string name="eu_size">EU size</string>
 
 
     <string-array name="profiles">
