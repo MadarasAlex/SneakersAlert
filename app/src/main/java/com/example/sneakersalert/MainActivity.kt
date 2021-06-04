@@ -111,7 +111,6 @@ class MainActivity : AppCompatActivity() {
             else logout.visibility = View.INVISIBLE
             if (navController.currentDestination?.id == R.id.nav_cart) {
                 supportActionBar?.setDisplayShowTitleEnabled(true)
-                toolbar.setTitleTextColor(Color.WHITE)
                 supportActionBar?.setDisplayShowTitleEnabled(true)
                 your_cart.visibility = View.VISIBLE
                 logo.visibility = View.INVISIBLE
@@ -133,19 +132,12 @@ class MainActivity : AppCompatActivity() {
             }
             if (navController.currentDestination?.id == R.id.nav_payment) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                text_login.setTextColor(Color.BLACK)
-                supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_black24px)
-                toolbar.setNavigationIcon(R.drawable.short_text_black24px)
-                toolbar.navigationIcon?.setTint(Color.BLACK)
-                toolbar.setBackgroundColor(Color.WHITE)
                 your_cart.visibility = View.VISIBLE
-                your_cart.setTextColor(Color.BLACK)
+
                 your_cart.text = "Checkout"
                 logo.visibility = View.INVISIBLE
                 shop.visibility = View.INVISIBLE
-                toolbar.background.setTint(Color.WHITE)
-                tback.background.setTint(Color.WHITE)
-                tback.setBackgroundColor(Color.WHITE)
+
 
 
             }
@@ -190,8 +182,6 @@ class MainActivity : AppCompatActivity() {
             ) {
                 text_login.visibility = View.INVISIBLE
             }
-            if (navController.currentDestination?.id == R.id.nav_signup)
-                text_login.setTextColor(Color.WHITE)
             if (navController.currentDestination?.id == R.id.nav_login)
                 toolbar.elevation = 0F
             else
@@ -207,48 +197,20 @@ class MainActivity : AppCompatActivity() {
             ) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_24px)
-                toolbar.setNavigationIcon(R.drawable.short_text_24px)
-                toolbar.navigationIcon?.setTint(Color.WHITE)
-                your_cart.setTextColor(Color.WHITE)
-                toolbar.setBackgroundColor(Color.BLACK)
-                tback.setBackgroundColor(Color.BLACK)
-                tback.background.setTint(Color.BLACK)
-                toolbar.background.setTint(Color.BLACK)
-                logo.setImageDrawable(resources.getDrawable(R.drawable.logo, theme))
                 toolbar.elevation = 2F
                 tback.elevation = 2F
                 appBarLayout.elevation = 2F
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                text_login.setTextColor(Color.BLACK)
                 tback.elevation = 0F
                 appBarLayout.elevation = 0F
-                supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_black24px)
-                toolbar.setNavigationIcon(R.drawable.short_text_black24px)
-                toolbar.navigationIcon?.setTint(Color.BLACK)
-                toolbar.setBackgroundColor(Color.WHITE)
-                your_cart.setTextColor(Color.BLACK)
-                toolbar.background.setTint(Color.WHITE)
-                tback.background.setTint(Color.WHITE)
-                tback.setBackgroundColor(Color.WHITE)
-                logo.setImageDrawable(resources.getDrawable(R.drawable.logo, theme))
             }
             if (navController.currentDestination?.id == R.id.nav_request || navController.currentDestination?.id == R.id.nav_sneakers) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 toolbar.elevation = 0F
                 tback.elevation = 0F
                 appBarLayout.elevation = 0F
-                supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_black24px)
-                toolbar.setNavigationIcon(R.drawable.short_text_black24px)
-                toolbar.navigationIcon?.setTint(Color.BLACK)
-                shop.drawable.setTint(Color.BLACK)
-                toolbar.setBackgroundColor(Color.WHITE)
-                toolbar.background.setTint(Color.WHITE)
-                tback.background.setTint(Color.WHITE)
-                tback.setBackgroundColor(Color.WHITE)
-                logo.setImageDrawable(resources.getDrawable(R.drawable.logo, theme))
             } else {
-                shop.drawable.setTint(Color.WHITE)
                 toolbar.elevation = 2F
                 tback.elevation = 2F
                 appBarLayout.elevation = 2F
@@ -259,7 +221,7 @@ class MainActivity : AppCompatActivity() {
             && navController.currentDestination?.id != R.id.nav_sneakers
         ) {
             toolbar.setNavigationOnClickListener {
-                supportActionBar?.setHomeAsUpIndicator(R.drawable.back2)
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.back)
                 /*  toolbar.setNavigationIcon(R.drawable.back)
                   toolbar.setCollapseIcon(R.drawable.back2)
 
@@ -283,11 +245,13 @@ class MainActivity : AppCompatActivity() {
 
             logo.setImageDrawable(resources.getDrawable(R.drawable.logo, null))
         }
-
+        if(navController.currentDestination?.id==R.id.nav_cart)
+            logo.visibility=View.VISIBLE
 
         findViewById<ImageView>(R.id.shop).setOnClickListener {
             navController.navigate(R.id.nav_cart)
         }
+
 
     }
 

@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:addStatesFromChildren="false"
-        android:background="@color/alert"
-        android:backgroundTint="@color/alert"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         android:fitsSystemWindows="true"
-        android:foregroundTint="@color/alert"
+        android:foregroundTint="@color/white"
         app:statusBarForeground="@drawable/back">
         '<!--' This one changes color(BACKGROUND TINT) '-->'
 
@@ -25,8 +25,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="85dp"
-            android:background="@color/alert"
-            android:backgroundTint="@color/alert"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
             android:clickable="false"
             android:elevation="2dp"
             android:fitsSystemWindows="true"
@@ -36,16 +36,16 @@
             android:minHeight="100dp"
             android:visibility="visible"
             app:buttonGravity="center_vertical"
-            app:navigationIcon="@drawable/short_text_24px"
-            app:navigationIconTint="@color/white"
+            app:navigationIcon="@drawable/short_text_black24px"
+            app:navigationIconTint="@color/black"
             app:titleTextColor="#000000">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tback"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#292C2F"
-                android:backgroundTint="@color/alert">
+                android:background="#FFFFFF"
+                android:backgroundTint="@color/white">
 
                 <ImageView
                     android:id="@+id/logout"
@@ -84,7 +84,7 @@
                     app:layout_constraintHeight_percent="0.3"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.15"
-                    app:srcCompat="@drawable/shopping_cart" />
+                    app:srcCompat="@drawable/shopping_black" />
 
                 <TextView
                     android:id="@+id/your_cart"

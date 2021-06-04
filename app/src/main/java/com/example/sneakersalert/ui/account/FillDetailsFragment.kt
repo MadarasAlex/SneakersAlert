@@ -279,7 +279,6 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
                     req_field8.visibility = View.VISIBLE
                 else req_field8.visibility = View.INVISIBLE
             }
-
             override fun afterTextChanged(s: Editable?) {
             }
         }

@@ -387,7 +387,8 @@
             app:iconTint="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/size2_checked"
             app:layout_constraintStart_toEndOf="@+id/size2_checked"
-            app:layout_constraintTop_toTopOf="@+id/size2_checked"
+            app:layout_constraintTop_toTopOf="@+id/size3"
+            app:layout_constraintVertical_bias="0.571"
             app:strokeWidth="10dp"
             app:useCompatPadding="false" />
 
