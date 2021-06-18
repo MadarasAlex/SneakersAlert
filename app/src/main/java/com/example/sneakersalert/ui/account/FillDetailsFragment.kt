@@ -241,98 +241,101 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
 
         }
         if (!Global.saved) {
-            val nameWatcher = object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (s!!.isEmpty() || s == "") {
-                        req_field.visibility = View.VISIBLE
-                        name_section.error = getString(R.string.error)
-                    } else {
-                        req_field.visibility = View.INVISIBLE
-                        name_section.error = null
-                    }
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                }
+           watchers()
             }
-            val lastNameWatcher = object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (s!!.isEmpty() || s == "") {
-                        req_field2.visibility = View.VISIBLE
-                        email.error = getString(R.string.error)
-                    } else {
-                        req_field2.visibility = View.INVISIBLE
-                        email.error = null
-                    }
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                }
-
-            }
-            val emailWatcher = object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (s!!.isEmpty() || s == "") {
-                        req_field3.visibility = View.VISIBLE
-                        last_name.error = getString(R.string.error)
-                    } else {
-                        req_field3.visibility = View.INVISIBLE
-                        last_name.error = null
-                    }
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-
-                }
-            }
-            val typeWatcher = object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (s!!.isEmpty() || s == "")
-                        req_field8.visibility = View.VISIBLE
-                    else req_field8.visibility = View.INVISIBLE
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                }
-            }
-            name_section.addTextChangedListener(nameWatcher)
-            email.addTextChangedListener(lastNameWatcher)
-            last_name.addTextChangedListener(emailWatcher)
-            autoCompleteTextView.addTextChangedListener(typeWatcher)
+     else {
+            saveData()
         }
-        save_address2.setOnClickListener {
+        }
+
+    private fun watchers() {
+        val nameWatcher = object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty() || s == "") {
+                    req_field.visibility = View.VISIBLE
+                    name_section.error = getString(R.string.error)
+                } else {
+                    req_field.visibility = View.INVISIBLE
+                    name_section.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        }
+        val lastNameWatcher = object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty() || s == "") {
+                    req_field2.visibility = View.VISIBLE
+                    email.error = getString(R.string.error)
+                } else {
+                    req_field2.visibility = View.INVISIBLE
+                    email.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        }
+        val emailWatcher = object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty() || s == "") {
+                    req_field3.visibility = View.VISIBLE
+                    last_name.error = getString(R.string.error)
+                } else {
+                    req_field3.visibility = View.INVISIBLE
+                    last_name.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        }
+        val typeWatcher = object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty() || s == "")
+                    req_field8.visibility = View.VISIBLE
+                else req_field8.visibility = View.INVISIBLE
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+    }
+    save_address2.setOnClickListener {
             if (!Global.saved) {
 
                 if (name_section.text?.isEmpty() == true) {
@@ -407,10 +410,13 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
                         saveData()
                         findNavController().navigate(R.id.nav_details)
                     }
+                    name_section.addTextChangedListener(nameWatcher)
+                    email.addTextChangedListener(lastNameWatcher)
+                    last_name.addTextChangedListener(emailWatcher)
+                    autoCompleteTextView.addTextChangedListener(typeWatcher)
                 }
 
-            } else {
-                saveData()
+
 
             }
         }
@@ -521,7 +527,7 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
 
         type.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Global.type = snapshot.value
+                Global.type = snapshot.value as Int
             }
 
             override fun onCancelled(error: DatabaseError) {
