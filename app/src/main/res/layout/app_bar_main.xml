@@ -60,6 +60,19 @@
                     app:layout_constraintWidth_percent="0.15"
                     app:srcCompat="@drawable/logout_black_24dp" />
 
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTintMode="add"
+                    app:layout_constraintBottom_toBottomOf="@+id/logout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.16"
+                    app:layout_constraintWidth_percent="0.05" />
+
                 <TextView
                     android:id="@+id/text_login"
                     android:layout_width="wrap_content"
@@ -84,7 +97,7 @@
                     app:layout_constraintHeight_percent="0.3"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.15"
-                    app:srcCompat="@drawable/shopping_black" />
+                    app:srcCompat="@drawable/ic_shop" />
 
                 <TextView
                     android:id="@+id/your_cart"
@@ -92,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/liberation_sans"
                     android:text="Your Cart"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:textSize="25sp"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/logo"
@@ -116,6 +129,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.2"
                     tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/count_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/liberation_sans"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+                    app:layout_constraintEnd_toEndOf="@+id/imageButton"
+                    app:layout_constraintStart_toStartOf="@+id/imageButton"
+                    app:layout_constraintTop_toTopOf="@+id/imageButton" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>

@@ -45,15 +45,29 @@ class CartFragment : Fragment(R.layout.activity_cart), Parcelable {
             recyclerView.layoutManager = LinearLayoutManager(this.activity)
             recyclerView.isNestedScrollingEnabled = true
             recyclerView.adapter =
-                AdapterProductCart(Global.p, price_total, price_final, requireActivity().your_cart)
+                AdapterProductCart(
+                    Global.p,
+                    price_total,
+                    price_final,
+                    requireActivity().your_cart,
+                    requireActivity().count_items
+                )
             val adapter =
-                AdapterProductCart(Global.p, price_total, price_final, requireActivity().your_cart)
+                AdapterProductCart(
+                    Global.p,
+                    price_total,
+                    price_final,
+                    requireActivity().your_cart,
+                    requireActivity().count_items
+                )
             adapter.notifyDataSetChanged()
             recyclerView.setRecycledViewPool(object : RecyclerView.RecycledViewPool() {})
             recyclerView.recycledViewPool.setMaxRecycledViews(0, 0)
+            recyclerView.isNestedScrollingEnabled = false
             val model: CartViewModel by viewModels()
             model.getAmount().observe(this.requireActivity(), { newAmount ->
                 requireActivity().your_cart.text = "Your Cart ($newAmount)"
+                requireActivity().count_items.text = newAmount.toString()
             })
 
             adapter.notifyDataSetChanged()

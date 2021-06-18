@@ -43,7 +43,7 @@
             app:layout_constraintStart_toStartOf="@+id/user_text"
             app:layout_constraintTop_toBottomOf="@+id/username" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/user_text"
             app:layout_constraintWidth_percent="0.75" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password2"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -71,7 +71,7 @@
             app:layout_constraintTop_toBottomOf="@+id/pass_text2"
             app:layout_constraintWidth_percent="0.75" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/mail"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -106,7 +106,7 @@
             app:layout_constraintWidth_percent="0.7"
             app:rippleColor="#707070" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:layout_width="0dp"
             android:layout_height="50dp"

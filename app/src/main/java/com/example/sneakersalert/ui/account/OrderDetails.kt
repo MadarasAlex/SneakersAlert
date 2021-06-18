@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,11 @@ import com.example.sneakersalert.Adapters.AdapterOrders
 import com.example.sneakersalert.DataClasses.Order
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_order_details.*
@@ -22,9 +28,16 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class OrderDetails : Fragment() {
+class OrderDetails : Fragment(R.layout.fragment_order_details) {
 
     val o = ArrayList<Order>()
+    val mAuth = FirebaseAuth.getInstance()
+    var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+    val databaseUsers = database.getReference("Users")
+    val id = mAuth.currentUser?.uid
+    val rootReference = database.reference
+    val user = mAuth.currentUser
+    val savedReference = rootReference.child("Users").child(user?.uid.toString()).child("saved")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,19 +51,89 @@ class OrderDetails : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_details, container, false)
-    }
+        val databaseUsers = database.getReference("Users")
+        val companyName = databaseUsers.child(id.toString()).child("company_name")
+        val id = mAuth.currentUser?.uid
+        companyName.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.companyName = snapshot.value.toString()
+            }
 
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+        val lastName = databaseUsers.child(id.toString()).child("lastname")
+        lastName.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.lastName = snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+        val type = databaseUsers.child(id.toString()).child("type")
+
+        type.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.type = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
     @SuppressLint("ResourceType", "UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val colorDrawable = ColorDrawable(Color.WHITE)
+        if (business_name.text.isNullOrBlank()) {
+            business_name.text = ""
+        }
         activity?.actionBar?.setBackgroundDrawable(colorDrawable)
+        requireActivity().toolbar.navigationIcon = resources.getDrawable(R.drawable.back, null)
+        requireActivity().drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        requireActivity().actionBar?.setHomeAsUpIndicator(R.drawable.back)
+        requireActivity().toolbar.setNavigationOnClickListener {
+            requireActivity().drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            findNavController().navigate(R.id.nav_orders)
+        }
 
+        mail_contact.text = mAuth.currentUser?.email
+        mail_shipping.text = mAuth.currentUser?.email
+
+        getLastName()
+
+        val type = databaseUsers.child(id.toString()).child("type")
+        type.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.type = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+        if (Global.type != 1) {
+
+            val companyName = databaseUsers.child(id.toString()).child("company_name")
+            companyName.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Global.companyName = snapshot.value.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+        }
 
         if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
             requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
@@ -64,7 +147,6 @@ class OrderDetails : Fragment() {
         }
         recyclerViewOrders.layoutManager = LinearLayoutManager(activity)
         recyclerViewOrders.adapter = AdapterOrders(o)
-
         save_address.setOnClickListener {
             findNavController().navigate(R.id.nav_orders)
         }
@@ -78,22 +160,178 @@ class OrderDetails : Fragment() {
             findNavController().navigate(R.id.nav_fillInvoice)
         }
 
-    }
-
-    companion object {
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OrderDetails().apply {
-                arguments = Bundle().apply {
-
-                }
+        savedReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.saved = snapshot.value as Boolean
             }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
     }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val colorDrawable = ColorDrawable(Color.WHITE)
         activity?.actionBar?.setBackgroundDrawable(colorDrawable)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        if (business_name.text.isNullOrBlank()) {
+            business_name.text = ""
+        }
+        val lastName = databaseUsers.child(id.toString()).child("lastname")
+        lastName.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.lastName = snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
+        val type = databaseUsers.child(id.toString()).child("type")
+        type.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.type = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        if (Global.type != 1) {
+            val companyName = databaseUsers.child(id.toString()).child("company_name")
+
+            companyName.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    Global.companyName = snapshot.value.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+        }
+
+        mail_contact.text = mAuth.currentUser?.email
+        mail_shipping.text = mAuth.currentUser?.email
+        business_name_shipping.text = Global.companyName
+        business_name.text = Global.companyName
+        person_name.text = Global.username + " " + Global.lastName
+        person_name_shipping.text = Global.username + " " + Global.lastName
+        println(Global.lastName)
+        account_name2.text = Global.username
+        account_country2.text = Global.country
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val lastName = databaseUsers.child(id.toString()).child("lastname")
+        lastName.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.lastName = snapshot.value.toString()
+                println("Name:${Global.lastName}")
+                person_name_shipping.text = Global.username + " " + snapshot.value.toString()
+                person_name.text = Global.username + " " + snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+        if (business_name.text == null) {
+            business_name.text = ""
+        }
+
+        val type = databaseUsers.child(id.toString()).child("type")
+
+        type.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.type = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        if (Global.type != 1) {
+            val companyName = databaseUsers.child(id.toString()).child("company_name")
+
+            companyName.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Global.companyName = snapshot.value.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+
+        }
+
+        mail_contact.text = mAuth.currentUser?.email
+        mail_shipping.text = mAuth.currentUser?.email
+        business_name_shipping.text = Global.companyName
+        business_name.text = Global.companyName
+        person_name.text = Global.username + " " + Global.lastName
+        person_name_shipping.text = Global.username + " " + Global.lastName
+        println(Global.lastName)
+        account_name2.text = Global.username
+        account_country2.text = Global.country
+
+    }
+
+    fun getType() {
+        val type = databaseUsers.child(id.toString()).child("type")
+
+        type.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.type = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+    fun getCompanyName() {
+        val companyName = databaseUsers.child(id.toString()).child("company_name")
+
+        companyName.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.companyName = snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+    fun getLastName() {
+        val lastName = databaseUsers.child(id.toString()).child("lastname")
+        lastName.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.lastName = snapshot.value.toString()
+                println("Name:${Global.lastName}")
+                person_name_shipping.text = Global.username + " " + snapshot.value.toString()
+                person_name.text = Global.username + " " + snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 }

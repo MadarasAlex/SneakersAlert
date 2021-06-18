@@ -14,11 +14,11 @@ import com.example.sneakersalert.R
 import java.util.*
 import kotlin.collections.ArrayList
 
-var search = ArrayList<NewShoe>()
+
 
 class AdapterSearch(private var li: ArrayList<NewShoe>, val onClickListener: OnClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
-
+    var search = ArrayList<NewShoe>()
     lateinit var mcontext: Context
 
     interface OnClickListener {
@@ -38,12 +38,10 @@ class AdapterSearch(private var li: ArrayList<NewShoe>, val onClickListener: OnC
         mcontext = parent.context
         return sch
     }
-
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.apply {
-            search[position].image?.let {
-                itemView.findViewById<ImageView>(R.id.jordan_image).setImageResource(it)
+            search[position].image.let {
+                itemView.findViewById<ImageView>(R.id.jordan_image).setImageResource(it.toInt())
             }
             itemView.findViewById<TextView>(R.id.jordan_name).text = search[position].name
             itemView.findViewById<TextView>(R.id.jordan_model).text = search[position].model
@@ -54,6 +52,7 @@ class AdapterSearch(private var li: ArrayList<NewShoe>, val onClickListener: OnC
             onClickListener.onItemClick(position)
         }
         holder.adapterPosition
+        holder.setIsRecyclable(false)
     }
     override fun getItemCount(): Int {
         return search.size

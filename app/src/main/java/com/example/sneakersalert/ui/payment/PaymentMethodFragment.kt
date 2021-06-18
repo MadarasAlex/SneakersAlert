@@ -1,30 +1,20 @@
 package com.example.sneakersalert.ui.payment
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.sneakersalert.Global
+import com.example.sneakersalert.Global.Companion.choice
+import com.example.sneakersalert.Global.Companion.shipping
 import com.example.sneakersalert.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_payment_method.*
 
+
 class PaymentMethodFragment : Fragment(R.layout.fragment_payment_method) {
-    enum class options {
-        PAYPAL, IDEAL, MASTERCARD, APPLEPAY
-    }
-
-    lateinit var choice: options
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_payment_method, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,12 +38,14 @@ class PaymentMethodFragment : Fragment(R.layout.fragment_payment_method) {
         checkBox.setOnClickListener {
 
             if (checkBox.isChecked) {
+                shipping = true
                 checkBox.buttonDrawable =
                     resources.getDrawable(R.drawable.ic_baseline_radio_button_checked_24, null)
                 price_shipping.text = method_price.text
                 ("€" + (Global.total + 6.95).toString()).also { price_final2.text = it }
             }
             if (!checkBox.isChecked) {
+                shipping = false
                 checkBox.buttonDrawable =
                     resources.getDrawable(R.drawable.ic_baseline_radio_button_unchecked_24, null)
                 ("€" + 0.toString()).also { price_shipping.text = it }
@@ -80,7 +72,7 @@ class PaymentMethodFragment : Fragment(R.layout.fragment_payment_method) {
             check_option2.isChecked = !check_option1.isChecked
             check_option3.isChecked = !check_option1.isChecked
             check_option4.isChecked = !check_option1.isChecked
-            choice = options.PAYPAL
+            choice = Global.Companion.options.PAYPAL
         }
         check_option2.setOnClickListener {
             check_option2.buttonDrawable =
@@ -94,7 +86,7 @@ class PaymentMethodFragment : Fragment(R.layout.fragment_payment_method) {
             check_option1.isChecked = !check_option2.isChecked
             check_option3.isChecked = !check_option2.isChecked
             check_option4.isChecked = !check_option2.isChecked
-            choice = options.IDEAL
+            choice = Global.Companion.options.IDEAL
         }
         check_option3.setOnClickListener {
             check_option3.buttonDrawable =
@@ -108,7 +100,7 @@ class PaymentMethodFragment : Fragment(R.layout.fragment_payment_method) {
             check_option2.isChecked = !check_option3.isChecked
             check_option1.isChecked = !check_option3.isChecked
             check_option4.isChecked = !check_option3.isChecked
-            choice = options.MASTERCARD
+            choice = Global.Companion.options.MASTERCARD
         }
         check_option4.setOnClickListener {
             check_option4.buttonDrawable =
@@ -122,9 +114,24 @@ class PaymentMethodFragment : Fragment(R.layout.fragment_payment_method) {
             check_option2.isChecked = !check_option4.isChecked
             check_option3.isChecked = !check_option4.isChecked
             check_option1.isChecked = !check_option4.isChecked
-            choice = options.APPLEPAY
+            choice = Global.Companion.options.APPLEPAY
+        }
+        continue_to_payment.setOnClickListener {
+            if (choice != null) {
+                if (choice == Global.Companion.options.PAYPAL || choice == Global.Companion.options.MASTERCARD) {
+                    val intent = Intent(this.activity, PayActivity::class.java)
+                    intent.putExtra("total", Global.total)
+                    startActivity(intent)
+                }
+            } else Toast.makeText(
+                this.context,
+                "Please select a payment method",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
 
     }
+
 }
+

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.payment.PayActivity">
+
+
+    <include
+        android:id="@+id/googlePayButton"
+        layout="@layout/buy_with_googlepay_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/buy_button_height"
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/total_price"
+        app:layout_constraintStart_toStartOf="@+id/total_amount3"
+        app:layout_constraintTop_toBottomOf="@+id/total_amount3" />
+
+    <TextView
+        android:id="@+id/total_amount5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/liberation_sans"
+        android:text="Total Amount"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/delivery_charges"
+        app:layout_constraintTop_toBottomOf="@+id/order_details" />
+
+    <TextView
+        android:id="@+id/total_price4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/liberation_sans"
+        android:text="€0"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/total_amount5"
+        app:layout_constraintEnd_toEndOf="@+id/line6" />
+
+    <TextView
+        android:id="@+id/total_amount3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/liberation_sans"
+        android:text="Total Amount"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/delivery_charges"
+        app:layout_constraintTop_toBottomOf="@+id/line6" />
+
+    <TextView
+        android:id="@+id/delivery_charges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/liberation_sans"
+        android:text="Delivery Charges:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/line6"
+        app:layout_constraintTop_toBottomOf="@+id/total_amount5" />
+
+    <ImageView
+        android:id="@+id/line6"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delivery_charges"
+        app:srcCompat="@drawable/separator" />
+
+    <TextView
+        android:id="@+id/total_price3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/liberation_sans"
+        android:text="FREE"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/delivery_charges"
+        app:layout_constraintEnd_toEndOf="@+id/line6"
+        app:layout_constraintTop_toTopOf="@+id/delivery_charges"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/liberation_sans"
+        android:text="€0"
+        android:textColor="#FF5C5C"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/total_amount3"
+        app:layout_constraintEnd_toEndOf="@+id/line6"
+        app:layout_constraintTop_toTopOf="@+id/total_amount3" />
+
+    <com.paypal.checkout.paymentbutton.PayPalButton
+        android:id="@+id/payPalButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="36dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_amount3" />
+
+    <TextView
+        android:id="@+id/order_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="204dp"
+        android:fontFamily="@font/liberation_sans_bold_italic"
+        android:text="Order Details"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

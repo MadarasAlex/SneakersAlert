@@ -29,7 +29,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
             Global.name = a[position].name
             Global.model = a[position].model
             Global.sizes = a[position].sizes
-            Global.pic = a[position].image!!
+            Global.pic = a[position].image.toString()
             Global.sp = a[position].spec
             Global.infoText = a[position].text
             findNavController().navigate(R.id.buyingProducts)
@@ -43,19 +43,24 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
         sp.add(Spec(R.drawable.sun, "Wider face coverage for maximum \n" + "protection"))
         a.add(
             NewShoe(
-                R.drawable.airmax_90_crock, "Nike airmax 90", "Croc", 190, "",
+                R.drawable.airmax_90_crock.toString(), "Nike airmax 90", "Croc", 190, "",
                 arrayListOf(39, 40, 41), sp
             )
         )
         a.add(
             NewShoe(
-                R.drawable.dance_floor_green, "Nike airmax 90", "90S Dancefloor Green", 190, "",
-                arrayListOf(39, 40, 41), sp
+                R.drawable.dance_floor_green.toString(),
+                "Nike airmax 90",
+                "90S Dancefloor Green",
+                190,
+                "",
+                arrayListOf(39, 40, 41),
+                sp
             )
         )
         a.add(
             NewShoe(
-                R.drawable.duck_camo, "Nike airmax 90", "Duck Camo Orange", 140, "",
+                R.drawable.duck_camo.toString(), "Nike airmax 90", "Duck Camo Orange", 140, "",
                 arrayListOf(39, 40, 41), sp
             )
         )
@@ -93,7 +98,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view.findNavController().navigate(R.id.buyingProducts)
@@ -124,7 +129,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -148,7 +153,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -172,7 +177,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -193,7 +198,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)

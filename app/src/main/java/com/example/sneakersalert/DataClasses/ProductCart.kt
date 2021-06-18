@@ -1,7 +1,7 @@
 package com.example.sneakersalert.DataClasses
 
 data class ProductCart(
-    val image: Int,
+    val image: String,
     val name: String,
     val model: String,
     var price: Int,
@@ -9,7 +9,7 @@ data class ProductCart(
     var amount: Int
 ) :
     Comparable<ProductCart> {
-    constructor(image: Int, name: String, model: String, price: Int, size: Int) : this(
+    constructor(image: String, name: String, model: String, price: Int, size: Int) : this(
         image,
         name,
         model,

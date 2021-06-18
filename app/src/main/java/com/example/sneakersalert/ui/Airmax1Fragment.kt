@@ -26,7 +26,7 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
             Global.name = a[position].name
             Global.model = a[position].model
             Global.sizes = a[position].sizes
-            Global.pic = a[position].image!!
+            Global.pic = a[position].image.toString()
             Global.sp = a[position].spec
             view?.findNavController()?.navigate(R.id.action_nav_airmax1_to_buyingProducts)
         }
@@ -40,13 +40,18 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
         sp.add(Spec(R.drawable.sun, "Wider face coverage for maximum \n" + "protection"))
         a.add(
             NewShoe(
-                R.drawable.air_max_1_have_a_nikeday, "Nike Air Max 1", "Have A Nike Day", 149, "",
-                arrayListOf(39, 40, 41), sp
+                R.drawable.air_max_1_have_a_nikeday.toString(),
+                "Nike Air Max 1",
+                "Have A Nike Day",
+                149,
+                "",
+                arrayListOf(39, 40, 41),
+                sp
             )
         )
         a.add(
             NewShoe(
-                R.drawable.limeade, "Nike Air Max 1", "Limeade", 209, "",
+                R.drawable.limeade.toString(), "Nike Air Max 1", "Limeade", 209, "",
                 arrayListOf(39, 40, 41), arrayListOf(
                     Spec(R.drawable.shield, "Anti-pollution, anti-dust"),
                     Spec(R.drawable.crossing, "Reusable"),
@@ -60,7 +65,7 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
         )
         a.add(
             NewShoe(
-                R.drawable.limeade2, "Nike Air Max 1", "London", 289, "",
+                R.drawable.limeade2.toString(), "Nike Air Max 1", "London", 289, "",
                 arrayListOf(39, 40), arrayListOf(
                     Spec(R.drawable.shield, "Anti-pollution, anti-dust"),
                     Spec(R.drawable.crossing, "Reusable"),
@@ -102,7 +107,7 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view.findNavController().navigate(R.id.buyingProducts)
@@ -136,7 +141,7 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -160,7 +165,7 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -184,7 +189,7 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -205,7 +210,7 @@ class Airmax1Fragment : Fragment(R.layout.fragment_airmax1), AdapterView.OnItemS
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image!!
+                Global.pic = a[position].image.toString()
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)

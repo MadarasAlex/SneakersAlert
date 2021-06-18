@@ -1,6 +1,8 @@
 package com.example.sneakersalert.ui.account
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -9,6 +11,8 @@ import com.example.sneakersalert.Global
 import com.example.sneakersalert.Interfaces.OnBack
 import com.example.sneakersalert.R
 import com.example.sneakersalert.ui.account.login.ValidateInput
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
@@ -18,10 +22,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
 
     lateinit var email: String
     lateinit var passwordText: String
-    lateinit var user: String
 
-// ...
-// Initialize Firebase Auth
+    val mAuth = FirebaseAuth.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,17 +68,42 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
             Global.username = username.text.toString().trim()
             passwordText = password.text.toString().trim()
             Global.logged = true
-            findNavController().navigate(R.id.nav_orders)
+            mAuth.createUserWithEmailAndPassword(email, passwordText).addOnCompleteListener(
+                this.requireActivity()
+            ) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(ContentValues.TAG, "signInWithCredential:success")
+                    saveData()
+                    val user = mAuth.currentUser
+                    findNavController().navigate(R.id.nav_orders)
+                } else {
+                    Log.w(ContentValues.TAG, "signInWithCredential:failure", task.exception)
+                    Toast.makeText(
+                        layoutInflater.context,
+                        "Authentication Failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-        } else {
-            // If sign in fails, display a message to the user.
-            Toast.makeText(
-                activity, "Authentication failed.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        }
                 }
+            }
+        }
+    }
+
+    fun saveData() {
+
+        val database = FirebaseDatabase.getInstance()
+        val rootReference = database.reference
+        val user = mAuth.currentUser
+        val nameReference = rootReference.child("Users").child(user?.uid.toString()).child("name")
+        val emailReference = rootReference.child("Users").child(user?.uid.toString()).child("mail")
+        val passReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("password")
+        passReference.setValue(password.text.toString().trim())
+        emailReference.setValue(mail.text.toString().trim())
+        nameReference.setValue(username.text.toString().trim())
+        Global.username = username.text.toString().trim()
+    }
 
 
     /* fun loadingAnimation()

@@ -3,7 +3,6 @@ package com.example.sneakersalert
 
 import Repositories.OnSwipeTouchListener
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -19,7 +18,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import com.example.sneakersalert.Global.Companion.p
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 
@@ -93,6 +94,7 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
             }
         })
+        count_items.text = p.size.toString()
         navigationView.getHeaderView(0).search.setOnClickListener {
             navController.navigate(R.id.nav_search)
         }
@@ -100,24 +102,27 @@ class MainActivity : AppCompatActivity() {
             toolbar.setNavigationIcon(R.drawable.short_text_24px)
             if (navController.currentDestination?.id == R.id.nav_search) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-
             }
             navigationView.setItemBackgroundResource(R.drawable.nav_view_select)
             navigationView.setItemTextAppearance(R.color.alert)
             open = false
-
-            if (navController.currentDestination?.id == R.id.nav_orders)
+            if (navController.currentDestination?.id == R.id.nav_orders) {
                 logout.visibility = View.VISIBLE
-            else logout.visibility = View.INVISIBLE
+                count_items.visibility = View.INVISIBLE
+                imageButton.visibility = View.INVISIBLE
+            } else logout.visibility = View.INVISIBLE
             if (navController.currentDestination?.id == R.id.nav_cart) {
                 supportActionBar?.setDisplayShowTitleEnabled(true)
-                supportActionBar?.setDisplayShowTitleEnabled(true)
+                count_items.visibility = View.INVISIBLE
+                imageButton.visibility = View.INVISIBLE
                 your_cart.visibility = View.VISIBLE
                 logo.visibility = View.INVISIBLE
                 shop.visibility = View.INVISIBLE
             } else {
+                count_items.visibility = View.VISIBLE
                 your_cart.visibility = View.INVISIBLE
                 logo.visibility = View.VISIBLE
+                imageButton.visibility = View.VISIBLE
                 shop.visibility = View.VISIBLE
             }
             if (navController.currentDestination?.id == R.id.nav_login) {
@@ -125,6 +130,8 @@ class MainActivity : AppCompatActivity() {
                 navigationView.menu.getItem(2).isChecked = true
                 navigationView.setCheckedItem(R.id.nav_menuLogin)
                 your_cart.visibility = View.INVISIBLE
+                count_items.visibility = View.INVISIBLE
+                imageButton.visibility = View.INVISIBLE
                 logo.visibility = View.INVISIBLE
                 shop.visibility = View.INVISIBLE
                 text_login.visibility = View.INVISIBLE
@@ -133,18 +140,16 @@ class MainActivity : AppCompatActivity() {
             if (navController.currentDestination?.id == R.id.nav_payment) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 your_cart.visibility = View.VISIBLE
-
                 your_cart.text = "Checkout"
                 logo.visibility = View.INVISIBLE
                 shop.visibility = View.INVISIBLE
-
-
-
             }
             if (navController.currentDestination?.id == R.id.nav_signup) {
                 your_cart.visibility = View.INVISIBLE
                 logo.visibility = View.INVISIBLE
                 shop.visibility = View.INVISIBLE
+                count_items.visibility = View.INVISIBLE
+                imageButton.visibility = View.INVISIBLE
                 text_login.text = "Sign Up"
                 text_login.visibility = View.VISIBLE
             }
@@ -155,6 +160,8 @@ class MainActivity : AppCompatActivity() {
                 your_cart.visibility = View.INVISIBLE
                 logo.visibility = View.INVISIBLE
                 shop.visibility = View.INVISIBLE
+                count_items.visibility = View.INVISIBLE
+                imageButton.visibility = View.INVISIBLE
                 text_login.text = "My Account"
                 text_login.visibility = View.VISIBLE
 
@@ -173,8 +180,13 @@ class MainActivity : AppCompatActivity() {
             if (navController.currentDestination?.id == R.id.nav_menuLogin
                 || navController.currentDestination?.id == R.id.nav_login
                 || navController.currentDestination?.id == R.id.nav_signup
-            )
+            ) {
                 logo.visibility = View.INVISIBLE
+                count_items.visibility = View.INVISIBLE
+                imageButton.visibility = View.INVISIBLE
+            } else if (navController.currentDestination?.id == R.id.nav_cart)
+                logo.visibility = View.INVISIBLE
+            else logo.visibility = View.VISIBLE
             if (navController.currentDestination?.id != R.id.nav_signup
                 && navController.currentDestination?.id != R.id.nav_login
                 && navController.currentDestination?.id != R.id.nav_orders
@@ -203,6 +215,9 @@ class MainActivity : AppCompatActivity() {
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 tback.elevation = 0F
+                count_items.visibility = View.INVISIBLE
+                imageButton.visibility = View.INVISIBLE
+                shop.visibility = View.INVISIBLE
                 appBarLayout.elevation = 0F
             }
             if (navController.currentDestination?.id == R.id.nav_request || navController.currentDestination?.id == R.id.nav_sneakers) {
@@ -215,8 +230,27 @@ class MainActivity : AppCompatActivity() {
                 tback.elevation = 2F
                 appBarLayout.elevation = 2F
             }
+            if (navController.currentDestination?.id == R.id.nav_invoice
+                || navController.currentDestination?.id == R.id.buyingProducts
+                || navController.currentDestination?.id == R.id.nav_details
+                || navController.currentDestination?.id == R.id.nav_fill
+                || navController.currentDestination?.id == R.id.nav_fillAddress
+                || navController.currentDestination?.id == R.id.nav_fillInvoice
+            ) {
+                toolbar.navigationIcon = resources.getDrawable(R.drawable.back, null)
+                toolbar.setNavigationOnClickListener {
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.back)
+            } else {
+                toolbar.navigationIcon =
+                    resources.getDrawable(R.drawable.short_text_black24px, null)
+                toolbar.setNavigationOnClickListener {
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
+                    supportActionBar?.setHomeAsUpIndicator(R.drawable.short_text_black24px)
+                }
+            }
         }
-
         if (navController.currentDestination?.id != R.id.nav_search
             && navController.currentDestination?.id != R.id.nav_sneakers
         ) {
@@ -245,8 +279,6 @@ class MainActivity : AppCompatActivity() {
 
             logo.setImageDrawable(resources.getDrawable(R.drawable.logo, null))
         }
-        if(navController.currentDestination?.id==R.id.nav_cart)
-            logo.visibility=View.VISIBLE
 
         findViewById<ImageView>(R.id.shop).setOnClickListener {
             navController.navigate(R.id.nav_cart)
@@ -293,6 +325,13 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
+    fun setDrawerLocked(enabled: Boolean) {
+        if (enabled) {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        } else {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        }
+    }
 
 
 }

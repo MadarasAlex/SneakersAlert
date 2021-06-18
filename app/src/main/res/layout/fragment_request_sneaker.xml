@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:text="Required field"
             android:textColor="#FF5C5C"
+            android:textSize="14sp"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/country_selector3"
             app:layout_constraintTop_toBottomOf="@+id/country_selector3" />
@@ -62,7 +63,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="Phone number"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/account_info3"
             app:layout_constraintTop_toBottomOf="@+id/eu_size" />
@@ -79,7 +80,7 @@
             android:gravity="start|top"
             android:inputType="number"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/brand_name2"
             app:layout_constraintTop_toBottomOf="@+id/brand_name2"
             app:layout_constraintWidth_percent="0.4"
@@ -88,7 +89,7 @@
         <com.hbb20.CountryPickerView
             android:id="@+id/country_selector3"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@drawable/fill_text_back"
             app:cpDialog_showTitle="true"
             app:layout_constraintBottom_toBottomOf="@+id/eu_size"
@@ -103,7 +104,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="Country"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/model_name_section"
             app:layout_constraintTop_toTopOf="@+id/brand_name2" />
@@ -116,7 +117,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="@string/eu_size"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/account_info3"
             app:layout_constraintTop_toBottomOf="@+id/brand_name_section" />
@@ -134,7 +135,7 @@
 
             android:inputType="text"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/brand_name_section"
             app:layout_constraintEnd_toEndOf="@+id/email_section2"
             app:layout_constraintStart_toEndOf="@+id/brand_name_section"
@@ -153,7 +154,7 @@
             android:gravity="start|top"
             android:inputType="text"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/name_text"
             app:layout_constraintTop_toBottomOf="@+id/brand_name"
             app:layout_constraintWidth_percent="0.4"
@@ -166,7 +167,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="Model name"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/model_name_section"
             app:layout_constraintTop_toTopOf="@+id/brand_name" />
@@ -179,7 +180,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="Brand name"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/account_info3"
             app:layout_constraintTop_toBottomOf="@+id/email_section2" />
@@ -196,7 +197,7 @@
             android:gravity="start|top"
             android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/last_name_section2"
             app:layout_constraintStart_toStartOf="@+id/name_text"
             app:layout_constraintTop_toBottomOf="@+id/email2"
@@ -210,7 +211,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="E-mail"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/account_info3"
             app:layout_constraintTop_toBottomOf="@+id/name_section2" />
@@ -223,7 +224,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="Name"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/account_info3"
             app:layout_constraintTop_toBottomOf="@+id/account_info3" />
@@ -240,7 +241,7 @@
             android:gravity="start|top"
             android:inputType="text"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/name_text"
             app:layout_constraintTop_toBottomOf="@+id/name_text"
             app:layout_constraintWidth_percent="0.4"
@@ -253,7 +254,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="Last name"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/last_name_section2"
             app:layout_constraintTop_toTopOf="@+id/name_text" />
@@ -272,7 +273,7 @@
             android:inputType="text"
 
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/name_section2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/name_section2"
@@ -288,7 +289,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="Account Information"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/request_sneaker_text"
             app:layout_constraintTop_toBottomOf="@+id/request_sneaker_text" />
@@ -303,7 +304,7 @@
             android:fontFamily="@font/lato_bold"
             android:text="@string/request_a_sneaker2"
             android:textColor="#000000"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -328,10 +329,10 @@
             app:layout_constraintEnd_toEndOf="@+id/country_selector3"
             app:layout_constraintStart_toStartOf="@id/phone"
             app:layout_constraintTop_toBottomOf="@id/phone"
-            app:phonemoji_flagFor="@id/phonemojiTextInputcom.google.android.material.textfield.TextInputEditText">
+            app:phonemoji_flagFor="@id/phonemojiText">
 
             <com.tfcporciuncula.phonemoji.PhonemojiTextInputEditText
-                android:id="@+id/phonemojiTextInputcom.google.android.material.textfield.TextInputEditText"
+                android:id="@+id/phonemojiText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/fill_text_back"
@@ -347,7 +348,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="@string/how_much_do_you_want_to_pay_for_the_sneaker"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/email_section2"
             app:layout_constraintTop_toBottomOf="@+id/phone_field" />
@@ -364,7 +365,7 @@
             android:gravity="start|top"
             android:inputType="number"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/last_name_section2"
             app:layout_constraintStart_toStartOf="@+id/brand_name_section"
             app:layout_constraintTop_toBottomOf="@+id/want_to_pay_text"
@@ -378,7 +379,7 @@
             android:fontFamily="@font/liberation_sans"
             android:text="@string/how_much_do_you_want_to_pay_for_the_sneaker"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/email_section2"
             app:layout_constraintTop_toBottomOf="@+id/want_to_pay_section" />
@@ -395,7 +396,7 @@
             android:gravity="start|top"
             android:inputType="date"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/last_name_section2"
             app:layout_constraintStart_toStartOf="@+id/name_text"
             app:layout_constraintTop_toBottomOf="@+id/when_to_receive_text"

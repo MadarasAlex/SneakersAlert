@@ -40,7 +40,14 @@ object PaymentsUtil {
     private fun gatewayTokenizationSpecification(): JSONObject {
         return JSONObject().apply {
             put("type", "PAYMENT_GATEWAY")
-            put("parameters", JSONObject(Constants.PAYMENT_GATEWAY_TOKENIZATION_PARAMETERS))
+            put(
+                "parameters", JSONObject(
+                    mapOf(
+                        "gateway" to "example",
+                        "gatewayMerchantId" to "exampleGatewayMerchantId"
+                    )
+                )
+            )
         }
     }
 
@@ -82,7 +89,16 @@ object PaymentsUtil {
      * @return Allowed card networks
      * @see [CardParameters](https://developers.google.com/pay/api/android/reference/object.CardParameters)
      */
-    private val allowedCardNetworks = JSONArray(Constants.SUPPORTED_NETWORKS)
+    private val allowedCardNetworks = JSONArray(
+        listOf(
+            "AMEX",
+            "DISCOVER",
+            "INTERAC",
+            "JCB",
+            "MASTERCARD",
+            "VISA"
+        )
+    )
 
     /**
      * Card authentication methods supported by your app and your gateway.
@@ -94,7 +110,12 @@ object PaymentsUtil {
      * @return Allowed card authentication methods.
      * @see [CardParameters](https://developers.google.com/pay/api/android/reference/object.CardParameters)
      */
-    private val allowedCardAuthMethods = JSONArray(Constants.SUPPORTED_METHODS)
+    private val allowedCardAuthMethods = JSONArray(
+        listOf(
+            "PAN_ONLY",
+            "CRYPTOGRAM_3DS"
+        )
+    )
 
     /**
      * Describe your app's support for the CARD payment method.
@@ -146,16 +167,7 @@ object PaymentsUtil {
      * @return API version and payment methods supported by the app.
      * @see [IsReadyToPayRequest](https://developers.google.com/pay/api/android/reference/object.IsReadyToPayRequest)
      */
-    fun isReadyToPayRequest(): JSONObject? {
-        return try {
-            baseRequest.apply {
-                put("allowedPaymentMethods", JSONArray().put(baseCardPaymentMethod()))
-            }
 
-        } catch (e: JSONException) {
-            null
-        }
-    }
 
     /**
      * Information about the merchant requesting payment information
@@ -164,9 +176,6 @@ object PaymentsUtil {
      * @throws JSONException
      * @see [MerchantInfo](https://developers.google.com/pay/api/android/reference/object.MerchantInfo)
      */
-    private val merchantInfo: JSONObject =
-        JSONObject().put("merchantName", "Example Merchant")
-
     /**
      * Creates an instance of [PaymentsClient] for use in an [Activity] using the
      * environment and theme set in [Constants].
@@ -181,6 +190,17 @@ object PaymentsUtil {
         return Wallet.getPaymentsClient(activity, walletOptions)
     }
 
+    fun isReadyToPayRequest(): JSONObject? {
+        return try {
+            baseRequest.apply {
+                put("allowedPaymentMethods", JSONArray().put(baseCardPaymentMethod()))
+            }
+
+        } catch (e: JSONException) {
+            null
+        }
+    }
+
     /**
      * Provide Google Pay API with a payment amount, currency, and amount status.
      *
@@ -189,7 +209,7 @@ object PaymentsUtil {
      * @see [TransactionInfo](https://developers.google.com/pay/api/android/reference/object.TransactionInfo)
      */
     @Throws(JSONException::class)
-    private fun getTransactionInfo(price: String): JSONObject {
+    private fun getTransactionInfo(price: Long): JSONObject {
         return JSONObject().apply {
             put("totalPrice", price)
             put("totalPriceStatus", "FINAL")
@@ -198,17 +218,21 @@ object PaymentsUtil {
         }
     }
 
+    private val merchantInfo: JSONObject =
+        JSONObject().put("merchantName", "Example Merchant")
+
     /**
      * An object describing information requested in a Google Pay payment sheet
      *
      * @return Payment data expected by your app.
      * @see [PaymentDataRequest](https://developers.google.com/pay/api/android/reference/object.PaymentDataRequest)
      */
-    fun getPaymentDataRequest(priceCemts: Long): JSONObject? {
-        return try {
-            baseRequest.apply {
+
+    fun getPaymentDataRequest(price: Long): JSONObject? {
+        try {
+            return baseRequest.apply {
                 put("allowedPaymentMethods", JSONArray().put(cardPaymentMethod()))
-                put("transactionInfo", getTransactionInfo(priceCemts.centsToString()))
+                put("transactionInfo", getTransactionInfo(price))
                 put("merchantInfo", merchantInfo)
 
                 // An optional shipping address requirement is a top-level property of the
@@ -221,17 +245,20 @@ object PaymentsUtil {
                 put("shippingAddressRequired", true)
             }
         } catch (e: JSONException) {
-            null
+            return null
         }
     }
-}
 
-/**
- * Converts cents to a string format accepted by [PaymentsUtil.getPaymentDataRequest].
- *
- * @param cents value of the price.
- */
-fun Long.centsToString() = BigDecimal(this)
-    .divide(PaymentsUtil.CENTS)
-    .setScale(2, RoundingMode.HALF_EVEN)
-    .toString()
+    /**
+     * Converts cents to a string format accepted by [PaymentsUtil.getPaymentDataRequest].
+     *
+     * @param cents value of the price.
+     */
+    fun Long.centsToString(): String {
+        val toString = BigDecimal(this)
+            .divide(PaymentsUtil.CENTS)
+            .setScale(2, RoundingMode.HALF_EVEN)
+            .toString()
+        return toString
+    }
+}

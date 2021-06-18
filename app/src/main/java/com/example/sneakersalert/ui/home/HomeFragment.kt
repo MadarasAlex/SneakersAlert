@@ -87,6 +87,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         adapter.renewItems(images)
         imageSlider.setSliderAdapter(adapter)
         imageSlider.isAutoCycle = true
+        imageSlider.scrollTimeInSec = 3
         imageSlider.startAutoCycle()
     }
 

@@ -268,10 +268,10 @@
             app:layout_constraintEnd_toEndOf="@+id/last_name"
             app:layout_constraintStart_toStartOf="@id/autoCompleteTextView"
             app:layout_constraintTop_toBottomOf="@id/phone_text"
-            app:phonemoji_flagFor="@id/phonemojiTextInputcom.google.android.material.textfield.TextInputEditText">
+            app:phonemoji_flagFor="@id/phonemojiText">
 
             <com.tfcporciuncula.phonemoji.PhonemojiTextInputEditText
-                android:id="@+id/phonemojiTextInputcom.google.android.material.textfield.TextInputEditText"
+                android:id="@+id/phonemojiText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/fill_text_back"

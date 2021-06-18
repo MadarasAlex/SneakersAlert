@@ -4,15 +4,16 @@ import android.content.Context
 import android.util.Patterns
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputEditText
 
 data class ValidateInput(
     val context: Context,
-    val email: EditText,
-    val password: EditText,
+    val email: TextInputEditText,
+    val password: TextInputEditText,
     val user: EditText?,
     val repeatPassword: EditText?
 ) {
-    constructor(context: Context, email: EditText, password: EditText) : this(
+    constructor(context: Context, email: TextInputEditText, password: TextInputEditText) : this(
         context,
         email,
         password,

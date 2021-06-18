@@ -42,14 +42,14 @@ object Constants {
      *
      * @value #COUNTRY_CODE Your local country
      */
-    const val COUNTRY_CODE = "US"
+    const val COUNTRY_CODE = "RO"
 
     /**
      * Required by the API, but not visible to the user.
      *
      * @value #CURRENCY_CODE Your local currency
      */
-    const val CURRENCY_CODE = "USD"
+    const val CURRENCY_CODE = "EUR"
 
     /**
      * Supported countries for shipping (use ISO 3166-1 alpha-2 country codes). Relevant only when
@@ -57,7 +57,7 @@ object Constants {
      *
      * @value #SHIPPING_SUPPORTED_COUNTRIES
      */
-    val SHIPPING_SUPPORTED_COUNTRIES = listOf("US", "GB")
+    val SHIPPING_SUPPORTED_COUNTRIES = listOf("US", "GB", "RO", "NL")
 
     /**
      * The name of your payment processor/gateway. Please refer to their documentation for more

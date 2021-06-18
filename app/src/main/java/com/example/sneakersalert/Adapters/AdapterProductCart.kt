@@ -11,6 +11,7 @@ import com.example.sneakersalert.DataClasses.ProductCart
 import com.example.sneakersalert.DataClasses.ShoeIn
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.card_product_in_cart.view.*
 
 
@@ -18,18 +19,19 @@ class AdapterProductCart(
     private var l: ArrayList<ProductCart>,
     price_total: TextView?,
     price_final: TextView?,
-    your_cart: TextView?
+    your_cart: TextView?,
+    count_items: TextView?
 ) : RecyclerView.Adapter<AdapterProductCart.ViewHolder>() {
     var price: TextView? = null
     var final: TextView? = null
     var your: TextView? = null
-
+    var count: TextView? = null
 
     init {
         this.price = price_total
         this.final = price_final
         this.your = your_cart
-
+        this.count = count_items
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -49,7 +51,7 @@ class AdapterProductCart(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AdapterProductCart.ViewHolder, position: Int) {
         holder.apply {
-            itemView.product_image.setImageResource(l[position].image)
+            Picasso.get().load(l[position].image).into(holder.itemView.product_image)
             itemView.title_product.text = l[position].name
             itemView.model_product.text = l[position].model
             itemView.price_product.text = l[position].price.toString()
@@ -82,6 +84,7 @@ class AdapterProductCart(
                     price?.text = Global.total.toString()
                     final?.text = price?.text
 
+
                 } else if (c == 1)
                     itemView.minus.setTextColor(Color.GRAY)
             }
@@ -97,12 +100,11 @@ class AdapterProductCart(
                 Global.total -= (l[position].amount * l[position].price)
                 l.removeAt(position)
                 Global.p = l
-
                 Global.list.remove(shoe)
-
                 price?.text = Global.total.toString()
                 final?.text = price?.text
                 your?.text = "Your Cart(" + l.size.toString() + ")"
+                count?.text = l.size.toString()
                 notifyDataSetChanged()
             }
 

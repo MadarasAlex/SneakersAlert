@@ -22,7 +22,7 @@
             app:tabIndicator="@drawable/tab_selected"
             app:tabIndicatorColor="#FF5C5C"
             app:tabIndicatorGravity="center"
-            app:tabRippleColor="#000000"
+            app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/item_color">
 

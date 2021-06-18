@@ -11,12 +11,21 @@ class CartViewModel : ViewModel() {
     private val finalPrice = MutableLiveData<Int>()
     private val list = MutableLiveData<ArrayList<ProductCart>>()
     private val amount = MutableLiveData<Int>()
+    private val country = MutableLiveData<String>()
+    private val name = MutableLiveData<String>()
 
     init {
         totalPrice.value = Global.total
         list.value = Global.p
         finalPrice.value = Global.total
         amount.value = Global.p.size
+        country.value = Global.country
+        name.value = Global.username
+    }
+
+    fun refreshData() {
+        country.value = Global.country
+        name.value = Global.name
     }
 
     fun calculatePrice() {
@@ -29,6 +38,14 @@ class CartViewModel : ViewModel() {
         }
 
 
+    }
+
+    fun getName(): LiveData<String> {
+        return name
+    }
+
+    fun getCountry(): LiveData<String> {
+        return country
     }
 
     fun getTotal(): LiveData<Int> {

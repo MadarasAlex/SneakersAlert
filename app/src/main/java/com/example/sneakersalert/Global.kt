@@ -11,6 +11,20 @@ import kotlin.properties.Delegates
 
 class Global : Application() {
     companion object {
+        enum class options {
+            PAYPAL, IDEAL, MASTERCARD, APPLEPAY
+        }
+
+        var type: Int = 1
+        var phone: String = ""
+        var lastName: String = ""
+        var companyName: String = ""
+        var vat: String = ""
+        var tax: String = ""
+        var saved: Boolean = false
+        lateinit var choice: options
+        var country: String? = ""
+        var shipping: Boolean = false
         var positionSelected = 0
         var sizeSelected = 0
         var username: String = "Your Name"
@@ -23,7 +37,7 @@ class Global : Application() {
         )
 
         //NewShoe
-        var pic by Delegates.notNull<Int>()
+        lateinit var pic: String
         var sp = ArrayList<Spec>()
         var s = ArrayList<NewShoe>()
         var sizes = ArrayList<Int>()

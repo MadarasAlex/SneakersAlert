@@ -8,13 +8,16 @@ import android.view.View
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.core.view.isEmpty
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
 import com.google.android.material.textfield.TextInputEditText
 import com.hbb20.CountryPickerView
 import com.hbb20.countrypicker.models.CPCountry
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_fill_address.*
 import kotlinx.android.synthetic.main.fragment_fill_invoice_address.fullname_section
 import kotlinx.android.synthetic.main.fragment_fill_invoice_address.house_number_section
@@ -33,6 +36,13 @@ class FillAddress : Fragment(R.layout.fragment_fill_address) {
             requireActivity().navigationView.menu.setGroupCheckable(R.id.nav_orders, true, false)
             requireActivity().navigationView.menu.getItem(2).isCheckable = true
             requireActivity().navigationView.menu.getItem(2).isChecked = true
+        }
+        requireActivity().toolbar.navigationIcon = resources.getDrawable(R.drawable.back, null)
+        requireActivity().drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        requireActivity().actionBar?.setHomeAsUpIndicator(R.drawable.back)
+        requireActivity().toolbar.setNavigationOnClickListener {
+            requireActivity().drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            findNavController().navigate(R.id.nav_details)
         }
         val ccp = view.findViewById<CountryPickerView>(R.id.country_selector3)
         val countries = mutableListOf<CPCountry>()
@@ -207,7 +217,20 @@ class FillAddress : Fragment(R.layout.fragment_fill_address) {
                 && house_number_section.error == null
                 && view.findViewById<TextInputEditText>(R.id.streetname_section).error == null
                 && view.findViewById<TextInputEditText>(R.id.place_section).error == null
-            ) findNavController().navigate(R.id.nav_payment)
+            ) findNavController().navigate(R.id.nav_details)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        your_name.text = Global.username
+        account_fill_country.text = Global.country
+    }
+
+    override fun onResume() {
+        super.onResume()
+        your_name.text = Global.username
+        account_fill_country.text = Global.country
+
     }
 }

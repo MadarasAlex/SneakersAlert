@@ -26,7 +26,7 @@ class JordanFragment : Fragment(R.layout.fragment_jordan), AdapterView.OnItemSel
             Global.name = j[position].name
             Global.model = j[position].model
             Global.sizes = j[position].sizes
-            Global.pic = j[position].image!!
+            Global.pic = j[position].image.toString()
             Global.sp = j[position].spec
             Global.infoText = j[position].text
             view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -44,19 +44,19 @@ class JordanFragment : Fragment(R.layout.fragment_jordan), AdapterView.OnItemSel
         sp.add(Spec(R.drawable.sun, "Wider face coverage for maximum \n" + "protection"))
         j.add(
             NewShoe(
-                R.drawable.jordan_canyon, "Jordan 1 mid", "\" Canyon Rust\"", 230, "",
+                R.drawable.jordan_canyon.toString(), "Jordan 1 mid", "\" Canyon Rust\"", 230, "",
                 arrayListOf(39, 40, 41), sp
             )
         )
         j.add(
             NewShoe(
-                R.drawable.jordan_particle, "Jordan 1 mid", "SE Particle Beige", 210, "",
+                R.drawable.jordan_particle.toString(), "Jordan 1 mid", "SE Particle Beige", 210, "",
                 arrayListOf(39, 40, 41), sp
             )
         )
         j.add(
             NewShoe(
-                R.drawable.jordan_yellow, "Jordan 1 mid", "SE Voltage Yellow", 170, "",
+                R.drawable.jordan_yellow.toString(), "Jordan 1 mid", "SE Voltage Yellow", 170, "",
                 arrayListOf(39, 40, 41), sp
             )
         )
@@ -91,7 +91,7 @@ class JordanFragment : Fragment(R.layout.fragment_jordan), AdapterView.OnItemSel
                 Global.name = j[position].name
                 Global.model = j[position].model
                 Global.sizes = j[position].sizes
-                Global.pic = j[position].image!!
+                Global.pic = j[position].image.toString()
                 Global.sp = j[position].spec
                 Global.infoText = j[position].text
                 view.findNavController().navigate(R.id.buyingProducts)
@@ -154,7 +154,7 @@ class JordanFragment : Fragment(R.layout.fragment_jordan), AdapterView.OnItemSel
                 Global.name = j[position].name
                 Global.model = j[position].model
                 Global.sizes = j[position].sizes
-                Global.pic = j[position].image!!
+                Global.pic = j[position].image.toString()
                 Global.sp = j[position].spec
                 Global.infoText = j[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -178,7 +178,7 @@ class JordanFragment : Fragment(R.layout.fragment_jordan), AdapterView.OnItemSel
                 Global.name = j[position].name
                 Global.model = j[position].model
                 Global.sizes = j[position].sizes
-                Global.pic = j[position].image!!
+                Global.pic = j[position].image.toString()
                 Global.sp = j[position].spec
                 Global.infoText = j[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -199,7 +199,7 @@ class JordanFragment : Fragment(R.layout.fragment_jordan), AdapterView.OnItemSel
                 Global.name = j[position].name
                 Global.model = j[position].model
                 Global.sizes = j[position].sizes
-                Global.pic = j[position].image!!
+                Global.pic = j[position].image.toString()
                 Global.sp = j[position].spec
                 Global.infoText = j[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
