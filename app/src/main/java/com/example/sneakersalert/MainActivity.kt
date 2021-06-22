@@ -180,6 +180,7 @@ class MainActivity : AppCompatActivity() {
             if (navController.currentDestination?.id == R.id.nav_menuLogin
                 || navController.currentDestination?.id == R.id.nav_login
                 || navController.currentDestination?.id == R.id.nav_signup
+                || navController.currentDestination?.id == R.id.nav_orders
             ) {
                 logo.visibility = View.INVISIBLE
                 count_items.visibility = View.INVISIBLE

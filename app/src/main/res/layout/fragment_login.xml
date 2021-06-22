@@ -76,6 +76,8 @@
             android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
+            android:password="true"
+            android:phoneNumber="false"
             android:selectAllOnFocus="true"
             app:layout_constraintEnd_toEndOf="@+id/mail"
             app:layout_constraintStart_toEndOf="@+id/logo_password"

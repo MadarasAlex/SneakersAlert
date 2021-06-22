@@ -15,8 +15,16 @@ class Global : Application() {
             PAYPAL, IDEAL, MASTERCARD, APPLEPAY
         }
 
-        var type: Int = 1
+        var extra: String = ""
+        var houseNumber: Int = 0
+        var zip: String = ""
+        var city: String = ""
+        var street: String = ""
+        var saved2: Boolean = false
+        var birthday: String = ""
+        var type = "1"
         var phone: String = ""
+        var firstName: String = ""
         var lastName: String = ""
         var companyName: String = ""
         var vat: String = ""

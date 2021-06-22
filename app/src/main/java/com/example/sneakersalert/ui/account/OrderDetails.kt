@@ -1,13 +1,13 @@
 package com.example.sneakersalert.ui.account
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -31,73 +31,35 @@ import kotlin.collections.ArrayList
 class OrderDetails : Fragment(R.layout.fragment_order_details) {
 
     val o = ArrayList<Order>()
-    val mAuth = FirebaseAuth.getInstance()
-    var database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    val databaseUsers = database.getReference("Users")
+    private val mAuth = FirebaseAuth.getInstance()
+    private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+    private val databaseUsers = database.getReference("Users")
     val id = mAuth.currentUser?.uid
-    val rootReference = database.reference
+    private val rootReference = database.reference
     val user = mAuth.currentUser
-    val savedReference = rootReference.child("Users").child(user?.uid.toString()).child("saved")
+    private val savedReference =
+        rootReference.child("Users").child(user?.uid.toString()).child("saved")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        addOrders()
+        arguments?.let {
+        }
+    }
 
+    private fun addOrders() {
         o.add(Order(Global.orderNumber, Date(2021 / 1 / 20), "A.M.", 150.00, "VIEW"))
         o.add(Order(Global.orderNumber, Date(2021 / 2 / 2), "A.M.", 250.00, "VIEW"))
         o.add(Order(Global.orderNumber, Date(2021 / 3 / 20), "A.M.", 150.00, "VIEW"))
         o.add(Order(Global.orderNumber, Date(2021 / 4 / 4), "A.M.", 50.00, "VIEW"))
         o.add(Order(Global.orderNumber, Date(2021 / 4 / 20), "A.M.", 550.00, "VIEW"))
-        arguments?.let {
-        }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val databaseUsers = database.getReference("Users")
-        val companyName = databaseUsers.child(id.toString()).child("company_name")
-        val id = mAuth.currentUser?.uid
-        companyName.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Global.companyName = snapshot.value.toString()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
-        val lastName = databaseUsers.child(id.toString()).child("lastname")
-        lastName.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Global.lastName = snapshot.value.toString()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
-        val type = databaseUsers.child(id.toString()).child("type")
-
-        type.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Global.type = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
     @SuppressLint("ResourceType", "UseCompatLoadingForDrawables")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val colorDrawable = ColorDrawable(Color.WHITE)
-        if (business_name.text.isNullOrBlank()) {
-            business_name.text = ""
-        }
         activity?.actionBar?.setBackgroundDrawable(colorDrawable)
         requireActivity().toolbar.navigationIcon = resources.getDrawable(R.drawable.back, null)
         requireActivity().drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
@@ -106,35 +68,18 @@ class OrderDetails : Fragment(R.layout.fragment_order_details) {
             requireActivity().drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             findNavController().navigate(R.id.nav_orders)
         }
-
         mail_contact.text = mAuth.currentUser?.email
         mail_shipping.text = mAuth.currentUser?.email
-
+        getFirstName()
         getLastName()
-
-        val type = databaseUsers.child(id.toString()).child("type")
-        type.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Global.type = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-        if (Global.type != 1) {
-
-            val companyName = databaseUsers.child(id.toString()).child("company_name")
-            companyName.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    Global.companyName = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-            })
-        }
-
+        getType()
+        getCompanyName()
+        getCity()
+        getCountry()
+        getStreet()
+        getHouseNumber()
+        getExtra()
+        getZIP()
         if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
             requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
             requireActivity().navigationView.menu.setGroupCheckable(R.id.nav_orders, true, false)
@@ -154,25 +99,20 @@ class OrderDetails : Fragment(R.layout.fragment_order_details) {
             findNavController().navigate(R.id.nav_fill)
         }
         change_2.setOnClickListener {
-            findNavController().navigate(R.id.nav_fillAddress)
+            findNavController().navigate(R.id.nav_fillInvoice)
         }
         change_3.setOnClickListener {
             findNavController().navigate(R.id.nav_fillInvoice)
         }
-
-        savedReference.addValueEventListener(object : ValueEventListener {
+        savedReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Global.saved = snapshot.value as Boolean
             }
 
             override fun onCancelled(error: DatabaseError) {
-
             }
         })
-
     }
-
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val colorDrawable = ColorDrawable(Color.WHITE)
@@ -181,123 +121,22 @@ class OrderDetails : Fragment(R.layout.fragment_order_details) {
 
     override fun onStart() {
         super.onStart()
-        val databaseUsers = database.getReference("Users")
-        val id = mAuth.currentUser?.uid
-        if (business_name.text.isNullOrBlank()) {
-            business_name.text = ""
-        }
-        val lastName = databaseUsers.child(id.toString()).child("lastname")
-        lastName.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Global.lastName = snapshot.value.toString()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
-
-        val type = databaseUsers.child(id.toString()).child("type")
-        type.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Global.type = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        if (Global.type != 1) {
-            val companyName = databaseUsers.child(id.toString()).child("company_name")
-
-            companyName.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-
-                    Global.companyName = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-            })
-        }
-
         mail_contact.text = mAuth.currentUser?.email
         mail_shipping.text = mAuth.currentUser?.email
-        business_name_shipping.text = Global.companyName
-        business_name.text = Global.companyName
-        person_name.text = Global.username + " " + Global.lastName
-        person_name_shipping.text = Global.username + " " + Global.lastName
-        println(Global.lastName)
-        account_name2.text = Global.username
-        account_country2.text = Global.country
     }
 
     override fun onResume() {
         super.onResume()
-        val databaseUsers = database.getReference("Users")
-        val id = mAuth.currentUser?.uid
-        val lastName = databaseUsers.child(id.toString()).child("lastname")
-        lastName.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Global.lastName = snapshot.value.toString()
-                println("Name:${Global.lastName}")
-                person_name_shipping.text = Global.username + " " + snapshot.value.toString()
-                person_name.text = Global.username + " " + snapshot.value.toString()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
-        if (business_name.text == null) {
-            business_name.text = ""
-        }
-
-        val type = databaseUsers.child(id.toString()).child("type")
-
-        type.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Global.type = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        if (Global.type != 1) {
-            val companyName = databaseUsers.child(id.toString()).child("company_name")
-
-            companyName.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    Global.companyName = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
-
-        }
-
         mail_contact.text = mAuth.currentUser?.email
         mail_shipping.text = mAuth.currentUser?.email
-        business_name_shipping.text = Global.companyName
-        business_name.text = Global.companyName
-        person_name.text = Global.username + " " + Global.lastName
-        person_name_shipping.text = Global.username + " " + Global.lastName
-        println(Global.lastName)
-        account_name2.text = Global.username
-        account_country2.text = Global.country
-
     }
 
-    fun getType() {
+    private fun getType() {
         val type = databaseUsers.child(id.toString()).child("type")
-
-        type.addValueEventListener(object : ValueEventListener {
+        type.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Global.type = snapshot.value.toString().toInt()
+                if (snapshot.exists())
+                    Global.type = snapshot.value.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -305,32 +144,199 @@ class OrderDetails : Fragment(R.layout.fragment_order_details) {
         })
     }
 
-    fun getCompanyName() {
+    private fun getCompanyName() {
+        getType()
         val companyName = databaseUsers.child(id.toString()).child("company_name")
-
-        companyName.addValueEventListener(object : ValueEventListener {
+        companyName.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Global.companyName = snapshot.value.toString()
+                if (snapshot.exists()) {
+                    if (Global.type != "1") {
+                        Global.companyName = snapshot.value.toString()
+                        business_name_shipping.text = Global.companyName
+                        business_name.text = Global.companyName
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
         })
+
+
     }
 
-    fun getLastName() {
+    private fun getLastName() {
         val lastName = databaseUsers.child(id.toString()).child("lastname")
-        lastName.addValueEventListener(object : ValueEventListener {
+        lastName.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Global.lastName = snapshot.value.toString()
                 println("Name:${Global.lastName}")
-                person_name_shipping.text = Global.username + " " + snapshot.value.toString()
-                person_name.text = Global.username + " " + snapshot.value.toString()
+                (person_name.text.toString() + " " + snapshot.value.toString()).also {
+                    person_name.text = it
+                }
+                (person_name_shipping.text.toString() + " " + snapshot.value.toString()).also {
+                    person_name_shipping.text = it
+                }
+                (account_name2.text.toString() + " " + snapshot.value.toString()).also {
+                    account_name2.text = it
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
 
+            }
+        })
+    }
+
+    private fun getCountry() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val country = databaseUsers.child(id.toString()).child("country")
+        country.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.country = snapshot.value.toString()
+                account_country2.text = snapshot.value.toString()
+                (person_address.text.toString() + ", " + snapshot.value.toString()).also {
+                    person_address.text = it
+                }
+                (shipping_address_text.text.toString() + ", " + snapshot.value.toString()).also {
+                    shipping_address_text.text = it
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
+
+    private fun getUsername() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val username = databaseUsers.child(id.toString()).child("name")
+        username.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.username = snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+    private fun getFirstName() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val username = databaseUsers.child(id.toString()).child("firstname")
+        username.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.firstName = snapshot.value.toString()
+                person_name.text = snapshot.value.toString()
+                person_name_shipping.text = snapshot.value.toString()
+                account_name2.text = snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(ContentValues.TAG, error.toString())
+            }
+        })
+    }
+
+    private fun getStreet() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val street = databaseUsers.child(id.toString()).child("street")
+        street.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.street = snapshot.value.toString()
+                (person_address.text.toString() + "\n" + snapshot.value.toString()).also {
+                    person_address.text = it
+                }
+                (shipping_address_text.text.toString() + "\n" + snapshot.value.toString()).also {
+                    shipping_address_text.text = it
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(ContentValues.TAG, error.toString())
+            }
+        })
+    }
+
+    private fun getCity() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val city = databaseUsers.child(id.toString()).child("city")
+        city.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.city = snapshot.value.toString()
+                person_address.text = snapshot.value.toString()
+                shipping_address_text.text = snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(ContentValues.TAG, error.toString())
+            }
+        })
+    }
+
+    private fun getZIP() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val zip = databaseUsers.child(id.toString()).child("postal")
+        zip.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.zip = snapshot.value.toString()
+                person_name3.text = snapshot.value as String
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(ContentValues.TAG, error.toString())
+            }
+        })
+    }
+
+    private fun getHouseNumber() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val houseNumber = databaseUsers.child(id.toString()).child("house_number")
+        houseNumber.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.houseNumber = snapshot.value.toString().toInt()
+                (person_address.text.toString() + " " + snapshot.value.toString()).also {
+                    person_address.text = it
+                }
+                (shipping_address_text.text.toString() + " " + snapshot.value.toString()).also {
+                    shipping_address_text.text = it
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(ContentValues.TAG, error.toString())
+            }
+        })
+    }
+
+    private fun getExtra() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val extra = databaseUsers.child(id.toString()).child("extra_address")
+        extra.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Global.extra = snapshot.value.toString()
+                if (snapshot.value != null) {
+                    (person_address.text.toString() + " " + snapshot.value.toString()).also {
+                        person_address.text = it
+                    }
+                    (shipping_address_text.text.toString() + " " + snapshot.value.toString()).also {
+                        shipping_address_text.text = it
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(ContentValues.TAG, error.toString())
             }
         })
     }

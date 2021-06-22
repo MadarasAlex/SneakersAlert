@@ -182,10 +182,9 @@
             android:ems="10"
             android:fontFamily="@font/liberation_sans"
             android:gravity="start|top"
-            android:inputType="none"
+            android:inputType="text"
             android:padding="10dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/name_fill"
@@ -258,40 +257,33 @@
             app:layout_constraintTop_toTopOf="@+id/autoCompleteTextView"
             app:layout_constraintWidth_percent="0.08" />
 
-        <com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout
-            android:id="@+id/phone_field"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:autoLink="phone"
+            android:background="@drawable/fill_text_back"
+            android:ems="14"
+            android:inputType="phone"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="@+id/last_name"
-            app:layout_constraintStart_toStartOf="@id/autoCompleteTextView"
-            app:layout_constraintTop_toBottomOf="@id/phone_text"
-            app:phonemoji_flagFor="@id/phonemojiText">
-
-            <com.tfcporciuncula.phonemoji.PhonemojiTextInputEditText
-                android:id="@+id/phonemojiText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/fill_text_back"
-                app:phonemoji_initialRegionCode="NL" />
-
-        </com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout>
+            app:layout_constraintStart_toStartOf="@+id/autoCompleteTextView"
+            app:layout_constraintTop_toBottomOf="@+id/phone_text" />
 
         <TextView
             android:id="@+id/birthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/liberation_sans"
             android:text="Birthday"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/phone_field" />
+            app:layout_constraintTop_toBottomOf="@+id/phoneText" />
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteMonth"

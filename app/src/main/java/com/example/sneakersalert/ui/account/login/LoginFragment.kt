@@ -143,14 +143,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         val type = databaseUsers.child(id.toString()).child("type")
                         type.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
-                                Global.type = snapshot.value.toString().toInt()
+                                Global.type = snapshot.getValue(String::class.java).toString()
                             }
 
                             override fun onCancelled(error: DatabaseError) {
                             }
                         })
 
-                        if (Global.type != 1) {
+                        if (Global.type != "1") {
                             val companyName =
                                 databaseUsers.child(id.toString()).child("company_name")
 
@@ -179,6 +179,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
                 }
             }
+        }
+        signup_action.setOnClickListener {
+            findNavController().navigate(R.id.nav_signup)
         }
     }
 

@@ -28,33 +28,8 @@ class InfoOrdersFragment : Fragment(R.layout.fragment_info_orders), LifecycleOwn
         if (mUser == null) {
             findNavController().navigate(R.id.nav_menuLogin)
         } else {
-            val databaseUsers = database.getReference("Users")
-            val id = mAuth.currentUser?.uid
-            val username = databaseUsers.child(id.toString()).child("name")
-            val country = databaseUsers.child(id.toString()).child("country")
-            username.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    account_name.text = snapshot.value.toString()
-                    Global.username = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-            country.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    account_country.text = snapshot.value.toString()
-                    Global.country = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-
+            getUsername()
+            getCountry()
             if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
                 requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
                 requireActivity().navigationView.menu.setGroupCheckable(
@@ -81,38 +56,12 @@ class InfoOrdersFragment : Fragment(R.layout.fragment_info_orders), LifecycleOwn
 
     override fun onStart() {
         super.onStart()
-
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         if (mUser == null) {
             findNavController().navigate(R.id.nav_menuLogin)
         } else {
-            val databaseUsers = database.getReference("Users")
-            val id = mAuth.currentUser?.uid
-            val username = databaseUsers.child(id.toString()).child("name")
-            val country = databaseUsers.child(id.toString()).child("country")
-            username.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    account_name.text = snapshot.value.toString()
-                    Global.username = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-            country.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    account_country.text = snapshot.value.toString()
-                    Global.country = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-
+            getUsername()
+            getCountry()
             if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
                 requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
                 requireActivity().navigationView.menu.setGroupCheckable(
@@ -143,34 +92,8 @@ class InfoOrdersFragment : Fragment(R.layout.fragment_info_orders), LifecycleOwn
         if (mUser == null) {
             findNavController().navigate(R.id.nav_menuLogin)
         } else {
-            val databaseUsers = database.getReference("Users")
-            val id = mAuth.currentUser?.uid
-            val username = databaseUsers.child(id.toString()).child("name")
-            val country = databaseUsers.child(id.toString()).child("country")
-            username.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    account_name.text = snapshot.value.toString()
-                    Global.username = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-            country.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    account_country.text = snapshot.value.toString()
-                    Global.country = snapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-
-
+            getUsername()
+            getCountry()
             if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
                 requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
                 requireActivity().navigationView.menu.setGroupCheckable(
@@ -197,6 +120,40 @@ class InfoOrdersFragment : Fragment(R.layout.fragment_info_orders), LifecycleOwn
                 findNavController().navigate(R.id.nav_cart)
             }
         }
+    }
+
+    private fun getCountry() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+
+        val country = databaseUsers.child(id.toString()).child("country")
+        country.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                account_country.text = snapshot.value.toString()
+                Global.country = snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+    }
+
+    private fun getUsername() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val username = databaseUsers.child(id.toString()).child("name")
+        username.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                account_name.text = snapshot.value.toString()
+                Global.username = snapshot.value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }
 

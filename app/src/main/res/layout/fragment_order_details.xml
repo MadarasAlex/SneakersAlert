@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/liberation_sans"
-            android:text="Sneakers Alert"
+            android:text=""
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/contact"
@@ -174,7 +174,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/person_name3" />
+            app:layout_constraintTop_toBottomOf="@+id/person_address2" />
 
         <TextView
             android:id="@+id/person_name3"
@@ -187,6 +187,41 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/contact"
             app:layout_constraintTop_toBottomOf="@+id/invoice_address" />
+
+        <TextView
+            android:id="@+id/mail_contact2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:inputType="textEmailAddress"
+            android:text="alexmad56.am@gmail.com"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/business_name"
+            app:layout_constraintTop_toBottomOf="@+id/person_name3" />
+
+        <TextView
+            android:id="@+id/person_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Alex Madaras"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/mail_contact2" />
+
+        <TextView
+            android:id="@+id/person_address2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/liberation_sans"
+            android:text="Lisbon, Portugal \nRua do Quelhas 85"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/contact"
+            app:layout_constraintTop_toBottomOf="@+id/mail_contact2" />
 
         <TextView
             android:id="@+id/invoice_address"
@@ -228,7 +263,6 @@
             android:id="@+id/mail_contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:fontFamily="@font/liberation_sans"
             android:inputType="textEmailAddress"
             android:text="alexmad56.am@gmail.com"
@@ -284,7 +318,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/liberation_sans"
-            android:text="Sneakers Alert"
+            android:text=""
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/contact"

@@ -23,7 +23,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
     lateinit var email: String
     lateinit var passwordText: String
 
-    val mAuth = FirebaseAuth.getInstance()
+    private val mAuth = FirebaseAuth.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,7 +51,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
 
     }
 
-    fun signUp() {
+    private fun signUp() {
         val validateInput: ValidateInput = ValidateInput(
             this.requireActivity(),
             mail,
@@ -90,8 +90,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
         }
     }
 
-    fun saveData() {
-
+    private fun saveData() {
         val database = FirebaseDatabase.getInstance()
         val rootReference = database.reference
         val user = mAuth.currentUser
@@ -99,6 +98,32 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
         val emailReference = rootReference.child("Users").child(user?.uid.toString()).child("mail")
         val passReference =
             rootReference.child("Users").child(user?.uid.toString()).child("password")
+        val savedReference = rootReference.child("Users").child(user?.uid.toString()).child("saved")
+        val birthdayReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("birthday")
+        val typeCustomerReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("type")
+        val phoneReference = rootReference.child("Users").child(user?.uid.toString()).child("phone")
+        val companyNameReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("company_name")
+        val vatReference = rootReference.child("Users").child(user?.uid.toString()).child("VAT")
+        val taxNumberReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("tax_number")
+        val lastNameReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("lastname")
+        val mailReference = rootReference.child("Users").child(user?.uid.toString()).child("mail")
+        val firstNameReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("firstname")
+        firstNameReference.setValue("")
+        mailReference.setValue("")
+        taxNumberReference.setValue("")
+        companyNameReference.setValue("")
+        typeCustomerReference.setValue("1")
+        birthdayReference.setValue("")
+        phoneReference.setValue("")
+        lastNameReference.setValue("")
+        vatReference.setValue("")
+        savedReference.setValue(false)
         passReference.setValue(password.text.toString().trim())
         emailReference.setValue(mail.text.toString().trim())
         nameReference.setValue(username.text.toString().trim())
