@@ -27,13 +27,15 @@ class AdapterJordan(private var li: ArrayList<NewShoe>, val onClickListener: OnC
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            Picasso.get().load(li[position].image).into(holder.itemView.jordan_image)
+            Picasso.get().load(li[position].image).resize(600,400).into(holder.itemView.jordan_image)
             itemView.findViewById<TextView>(R.id.jordan_name).text = li[position].name
-                itemView.findViewById<TextView>(R.id.jordan_model).text=li[position].model
-                itemView.findViewById<TextView>(R.id.price_jordan).text=li[position].price.toString()
-
-
-        }
+            itemView.findViewById<TextView>(R.id.jordan_model).text=li[position].model
+            itemView.findViewById<TextView>(R.id.price_jordan).text=li[position].price.toString()
+            if(li[position].stock<=0)
+            {
+                li.removeAt(position)
+            }
+            }
             holder.itemView.setOnClickListener {
                 onClickListener.onItemClick(position)
             }
@@ -46,10 +48,5 @@ class AdapterJordan(private var li: ArrayList<NewShoe>, val onClickListener: OnC
         override fun getItemId(position: Int): Long {
             return position.toLong()
         }
-
-
-
-
-
     }
 

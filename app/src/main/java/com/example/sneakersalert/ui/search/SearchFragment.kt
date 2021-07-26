@@ -11,12 +11,18 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sneakersalert.Adapters.AdapterJordan
 import com.example.sneakersalert.Adapters.AdapterSearch
 import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_jordan.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -28,6 +34,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     val drawer: DrawerLayout? = activity?.drawer_layout
     val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
     val displays = ArrayList<NewShoe>()
+    private val database = FirebaseDatabase.getInstance()
+    private val databaseProducts = database.getReference("Products")
     var sp = ArrayList<Spec>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,84 +76,14 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         sp.add(Spec(R.drawable.crossing, "Reusable"))
         sp.add(Spec(R.drawable.happy_face, "Pleated at sides for extra comfort"))
         sp.add(Spec(R.drawable.sun, "Wider face coverage for maximum \n" + "protection"))
-        s.add(
-            NewShoe(
-                R.drawable.air_max_london.toString(), "Nike air max 1", "LONDON", 289, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
-
-        s.add(
-            NewShoe(
-                R.drawable.air_max_1_have_a_nikeday.toString(),
-                "Nike air max 1",
-                "Have A Nike Day",
-                149,
-                "",
-                arrayListOf(39, 40, 41),
-                sp
-            )
-        )
-
-        s.add(
-            NewShoe(
-                R.drawable.limeade.toString(), "Nike air max 1", "Limeade", 209, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
-
-        s.add(
-            NewShoe(
-                R.drawable.jordan_canyon.toString(), "Jordan 1 mid", "\" Canyon Rust\"", 230, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
-
-        s.add(
-            NewShoe(
-                R.drawable.jordan_particle.toString(), "Jordan 1 mid", "SE Particle Beige", 210, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
-
-        s.add(
-            NewShoe(
-                R.drawable.jordan_yellow.toString(), "Jordan 1 mid", "SE Voltage Yellow", 170, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
-
-        s.add(
-            NewShoe(
-                R.drawable.airmax_90_crock.toString(), "Nike airmax 90", "Croc", 190, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
-        s.add(
-            NewShoe(
-                R.drawable.dance_floor_green.toString(),
-                "Nike airmax 90",
-                "90S Dancefloor Green",
-                190,
-                "",
-                arrayListOf(39, 40, 41),
-                sp
-            )
-        )
-        s.add(
-            NewShoe(
-                R.drawable.duck_camo.toString(), "Nike airmax 90", "Duck Camo Orange", 140, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
-
         rec.setHasFixedSize(false)
     }
 
     override fun onStart() {
         super.onStart()
         if (s.isEmpty())
-            addList()
+            getData()
+        addList()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             @SuppressLint("WrongConstant")
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -175,6 +113,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                             Global.model = searchList[position].model
                             Global.sizes = searchList[position].sizes
                             Global.pic = searchList[position].image
+                            Global.stock = searchList[position].stock
                             Global.sp = searchList[position].spec
                             Global.infoText = searchList[position].text
                             view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -201,6 +140,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                             Global.model = s[position].model
                             Global.sizes = s[position].sizes
                             Global.pic = s[position].image
+                            Global.stock = s[position].stock
                             Global.sp = s[position].spec
                             Global.infoText = s[position].text
                             view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -218,6 +158,72 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         })
         println(findNavController().currentDestination?.id)
 
+    }
+    private fun getData() {
+        addList()
+        val productReference = database.reference.child("Products")
+        productReference.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (el in snapshot.children) {
+                        val name = el.child("name").getValue(String::class.java)
+                        val model = el.child("model").getValue(String::class.java)
+                        val price = el.child("price").getValue(Int::class.java)
+                        val type = el.child("type").getValue(String::class.java)
+                        val image = el.child("image").getValue(String::class.java)
+                        val stock = el.child("stock").getValue(Int::class.java)
+                        val text = el.child("text").getValue(String::class.java)
+                        val sizesRef = el.child("sizes").getValue(String::class.java)
+                        val sizes = ArrayList<Int>()
+                        var size = ""
+                        println(sizesRef)
+                        for(i in 0 until sizesRef?.length!!)
+                        {
+
+                            if(sizesRef?.get(i).toString().equals(",") || sizesRef[i].toString().equals(null))
+                            {
+                                sizes.add(size.toInt())
+                                println(size)
+                                size=""
+                            }
+                            else if(i==sizesRef.length-1)
+                            {
+                                size+=sizesRef[sizesRef?.length-1]
+                                sizes.add(size.toInt())
+                                println(size)
+                            }
+                            else
+                            {
+                                size+=sizesRef[i]
+                            }
+
+                        }
+                        val item =
+                                NewShoe(image!!, name!!, model!!, price, text!!, sizes, sp, stock!!)
+                            println(item)
+                            s.add(item)
+                        
+                    }
+                    recyclerViewSearch.adapter= AdapterJordan(s,object : AdapterJordan.OnClickListener {
+                        override fun onItemClick(position: Int) {
+                            Global.price = s[position].price!!
+                            Global.name = s[position].name
+                            Global.model = s[position].model
+                            Global.stock = s[position].stock
+                            Global.sizes = s[position].sizes
+                            Global.pic = s[position].image
+                            Global.sp = s[position].spec
+                            Global.infoText = s[position].text
+                            view?.findNavController()?.navigate(R.id.buyingProducts)
+                        }
+                    })
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
 

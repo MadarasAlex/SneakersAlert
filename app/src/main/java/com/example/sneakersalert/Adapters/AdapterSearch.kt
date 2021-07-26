@@ -11,15 +11,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.R
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.card_jordan.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 
-class AdapterSearch(private var li: ArrayList<NewShoe>, val onClickListener: OnClickListener) :
+class AdapterSearch(private var li: ArrayList<NewShoe>, private val onClickListener: OnClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
     var search = ArrayList<NewShoe>()
-    lateinit var mcontext: Context
+    private lateinit var mcontext: Context
 
     interface OnClickListener {
         fun onItemClick(position: Int)
@@ -40,9 +42,7 @@ class AdapterSearch(private var li: ArrayList<NewShoe>, val onClickListener: OnC
     }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.apply {
-            search[position].image.let {
-                itemView.findViewById<ImageView>(R.id.jordan_image).setImageResource(it.toInt())
-            }
+            Picasso.get().load(search[position].image).resize(600,400).into(holder.itemView.jordan_image)
             itemView.findViewById<TextView>(R.id.jordan_name).text = search[position].name
             itemView.findViewById<TextView>(R.id.jordan_model).text = search[position].model
             itemView.findViewById<TextView>(R.id.price_jordan).text =
@@ -62,20 +62,20 @@ class AdapterSearch(private var li: ArrayList<NewShoe>, val onClickListener: OnC
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val queryString = constraint.toString()
 
-                if (queryString.isEmpty())
-                    search = li
+                search = if (queryString.isEmpty())
+                    li
                 else {
                     val resultList = ArrayList<NewShoe>()
                     for (it in li) {
                         if (it.name.toLowerCase(Locale.ROOT)
-                                .contains(queryString.toLowerCase()) || it.price.toString()
-                                .contains(queryString.toLowerCase()) ||
+                                .contains(queryString.toLowerCase(Locale.ROOT)) || it.price.toString()
+                                .contains(queryString.toLowerCase(Locale.ROOT)) ||
                             it.model.toLowerCase(Locale.ROOT)
-                                .contains(queryString.toLowerCase())
+                                .contains(queryString.toLowerCase(Locale.ROOT))
                         )
                             resultList.add(it)
                     }
-                    search = resultList
+                    resultList
                 }
                 val filterResults = FilterResults()
                 filterResults.values = search

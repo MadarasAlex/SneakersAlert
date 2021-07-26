@@ -2,6 +2,7 @@ package com.example.sneakersalert
 
 import android.app.Application
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import com.example.sneakersalert.DataClasses.*
 import com.example.sneakersalert.ui.Airmax1Fragment
 import com.example.sneakersalert.ui.Airmax90Fragment
@@ -15,12 +16,22 @@ class Global : Application() {
             PAYPAL, IDEAL, MASTERCARD, APPLEPAY
         }
 
+        val id: Int=0
+        var stock: Int=99
+        var countryInv: String=""
+        var extraInv: String=""
+        var zipInv: String = ""
+        var cityInv: String = ""
+        var streetInv: String = ""
+        var houseNumberInv: Int = 0
+        var saved: Boolean = false
+        var saved2: Boolean = false
+        var saved3:Boolean=false
         var extra: String = ""
         var houseNumber: Int = 0
         var zip: String = ""
         var city: String = ""
         var street: String = ""
-        var saved2: Boolean = false
         var birthday: String = ""
         var type = "1"
         var phone: String = ""
@@ -29,7 +40,6 @@ class Global : Application() {
         var companyName: String = ""
         var vat: String = ""
         var tax: String = ""
-        var saved: Boolean = false
         lateinit var choice: options
         var country: String? = ""
         var shipping: Boolean = false

@@ -5,6 +5,8 @@ import Repositories.OnSwipeTouchListener
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.os.CancellationSignal
+import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -14,15 +16,27 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import com.example.sneakersalert.Adapters.AdapterProductCart
+import com.example.sneakersalert.DataClasses.ProductCart
 import com.example.sneakersalert.Global.Companion.p
+import com.example.sneakersalert.ViewModels.CartViewModel
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header.view.*
+import java.util.function.Consumer
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,8 +45,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var drawerToggle: ActionBarDrawerToggle
-    var open = false
-
+    private var open = false
+    val mAuth = FirebaseAuth.getInstance()
+    private val mUser = mAuth.currentUser
+    var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint(
         "RestrictedApi", "UseCompatLoadingForDrawables", "ResourceAsColor",
@@ -57,23 +73,6 @@ class MainActivity : AppCompatActivity() {
         navigationView.isVerticalScrollBarEnabled = true
         supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home,
-                R.id.nav_sneakers,
-                R.id.nav_airmax1,
-                R.id.nav_jordan,
-                R.id.nav_airmax90,
-                R.id.nav_faq,
-                R.id.nav_cart,
-                R.id.nav_menuLogin,
-                R.id.nav_signup,
-                R.id.nav_login,
-                R.id.nav_orders,
-                R.id.nav_wishlist,
-                R.id.nav_request
-            ), drawerLayout
-        )
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         setupActionBarWithNavController(navController)
         navigationView.setupWithNavController(navController)
@@ -81,23 +80,31 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         actionBar?.setDisplayShowCustomEnabled(true)
         toolbar.setupWithNavController(navController)
-        drawerLayout.setOnTouchListener(@SuppressLint("ClickableViewAccessibility")
-        object : OnSwipeTouchListener(this) {
-            @SuppressLint("ClickableViewAccessibility")
-            override fun onSwipeLeft() {
-                super.onSwipeLeft()
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            }
+        appBarConfiguration= AppBarConfiguration.Builder(navController.graph).build()
+        drawerLayout.performClick()
+        drawerLayout.setOnTouchListener(
+            object : OnSwipeTouchListener(this) {
+                override fun onSwipeLeft() {
+                    super.onSwipeLeft()
+                    drawerLayout.performClick()
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
 
-            override fun onSwipeRight() {
-                super.onSwipeRight()
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
-            }
-        })
+                override fun onSwipeRight() {
+                    super.onSwipeRight()
+                    drawerLayout.performClick()
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
+                }
+
+            },
+        )
+
         count_items.text = p.size.toString()
         navigationView.getHeaderView(0).search.setOnClickListener {
             navController.navigate(R.id.nav_search)
         }
+        if(mUser!=null)
+            getData()
         navController.addOnDestinationChangedListener { _, _, _ ->
             toolbar.setNavigationIcon(R.drawable.short_text_24px)
             if (navController.currentDestination?.id == R.id.nav_search) {
@@ -185,8 +192,10 @@ class MainActivity : AppCompatActivity() {
                 logo.visibility = View.INVISIBLE
                 count_items.visibility = View.INVISIBLE
                 imageButton.visibility = View.INVISIBLE
-            } else if (navController.currentDestination?.id == R.id.nav_cart)
+            } else if (navController.currentDestination?.id == R.id.nav_cart) {
                 logo.visibility = View.INVISIBLE
+
+            }
             else logo.visibility = View.VISIBLE
             if (navController.currentDestination?.id != R.id.nav_signup
                 && navController.currentDestination?.id != R.id.nav_login
@@ -200,7 +209,8 @@ class MainActivity : AppCompatActivity() {
             else
                 toolbar.elevation = 2F
             if (navController.currentDestination?.id != R.id.nav_fill
-                && navController.currentDestination?.id != R.id.nav_fillInvoice
+                && navController.currentDestination?.id != R.id.nav_fillShipping
+
                 && navController.currentDestination?.id != R.id.nav_fillAddress
                 && navController.currentDestination?.id != R.id.nav_details
                 && navController.currentDestination?.id != R.id.nav_orders
@@ -236,7 +246,8 @@ class MainActivity : AppCompatActivity() {
                 || navController.currentDestination?.id == R.id.nav_details
                 || navController.currentDestination?.id == R.id.nav_fill
                 || navController.currentDestination?.id == R.id.nav_fillAddress
-                || navController.currentDestination?.id == R.id.nav_fillInvoice
+                || navController.currentDestination?.id == R.id.nav_fillShipping
+
             ) {
                 toolbar.navigationIcon = resources.getDrawable(R.drawable.back, null)
                 toolbar.setNavigationOnClickListener {
@@ -274,7 +285,8 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
             onSupportNavigateUp()
         }
-        if (navController.currentDestination?.id != R.id.nav_fill && navController.currentDestination?.id != R.id.nav_fillInvoice
+        if (navController.currentDestination?.id != R.id.nav_fill && navController.currentDestination?.id != R.id.nav_fillShipping
+
             && navController.currentDestination?.id != R.id.nav_fillAddress && navController.currentDestination?.id != R.id.nav_details
         ) {
 
@@ -291,12 +303,6 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("ResourceAsColor")
     override fun onBackPressed() {
 
-    }
-
-    fun changeFragment(fragment: Fragment) {
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.nav_host_fragment, fragment).addToBackStack(null)
-        ft.commit()
     }
 
     @SuppressLint("SetTextI18n")
@@ -318,20 +324,68 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun lockDrawer() {
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    private fun getData() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val productsReference = databaseUsers.child(id.toString()).child("Cart")
+        productsReference.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    p.clear()
+                    for (el in snapshot.children) {
+                        val name = el.child("name").getValue(String::class.java)
+                        val model = el.child("model").getValue(String::class.java)
+                        val price = el.child("price").getValue(Int::class.java)
+                        val image = el.child("image").getValue(String::class.java)
+                        val amount = el.child("amount").getValue(Int::class.java)
+                        val idItem=el.child("id").getValue(Int::class.java)
+                        val size = el.child("size").getValue(Int::class.java)
+                        val item = ProductCart(image!!, name!!, model!!, price!!, size!!, amount!!,idItem!!)
+                        println(item)
+                        p.add(item)
+
+                    }
+                    val adapter =
+                        AdapterProductCart(
+                            p,
+                            price_total,
+                            price_final,
+                            your_cart,
+                            count_items
+                        )
+                    adapter.notifyDataSetChanged()
+                    count_items.text= p.size.toString()
+                    val model=ViewModelProvider(this@MainActivity).get(CartViewModel::class.java)
+                    model.getAmount().observe(this@MainActivity, { newAmount ->
+                      "Your Cart ($newAmount)".also { your_cart.text = it }
+                       count_items.text = newAmount.toString()
+                    })
+
+                    adapter.notifyDataSetChanged()
+                    model.getFinal().observe(this@MainActivity, { newPrice ->
+                        Global.total=newPrice
+                    })
+                    adapter.notifyDataSetChanged()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
-    fun unlockDrawer() {
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+    override fun onPerformDirectAction(
+        actionId: String,
+        arguments: Bundle,
+        cancellationSignal: CancellationSignal,
+        resultListener: Consumer<Bundle>
+    ) {
+        super.onPerformDirectAction(actionId, arguments, cancellationSignal, resultListener)
     }
 
-    fun setDrawerLocked(enabled: Boolean) {
-        if (enabled) {
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-        } else {
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        }
+    override fun onActionModeStarted(mode: ActionMode?) {
+        val model=ViewModelProvider(this).get(CartViewModel::class.java)
+        super.onActionModeStarted(mode)
     }
 
 

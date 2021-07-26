@@ -6,7 +6,8 @@ data class ProductCart(
     val model: String,
     var price: Int,
     val size: Int,
-    var amount: Int
+    var amount: Int,
+    var id:Int
 ) :
     Comparable<ProductCart> {
     constructor(image: String, name: String, model: String, price: Int, size: Int) : this(
@@ -15,7 +16,8 @@ data class ProductCart(
         model,
         price,
         size,
-        1
+        1,
+        0
     )
 
     override fun compareTo(other: ProductCart): Int {

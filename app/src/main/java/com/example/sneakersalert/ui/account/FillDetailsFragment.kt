@@ -7,11 +7,15 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import androidx.annotation.NonNull
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -68,35 +72,40 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
         }
         getBirthday()
         getSavedStatus()
+        getPhoneNumber()
+
         if (!Global.saved) {
             watchers()
-        } else {
-            getFirstName()
-            getCountry()
-            getType()
-            getLastName()
-            getPhoneNumber()
-            getBirthday()
-            selectedType = Global.type.toInt()
-            name_section.setText(Global.firstName)
-            last_name.setText(mAuth.currentUser?.email)
-            email.setText(Global.lastName)
-            vat_section.setText(Global.vat)
-            tax_number_section.setText(Global.tax)
-            company_name_section.setText(Global.companyName)
-            println("Phone: ${Global.phone}")
-            if (Global.type == "1")
-                autoCompleteTextView.setText("Personal")
-            else autoCompleteTextView.setText("Business")
-            if (Global.type == "2") {
-                getCompanyName()
-                getTax()
-                getVAT()
-                vat_section.setText(Global.vat)
-                tax_number_section.setText(Global.tax)
-                company_name_section.setText(Global.companyName)
-            }
         }
+        getFirstName()
+        getCountry()
+        getType()
+        getLastName()
+        getPhoneNumber()
+        getBirthday()
+        selectedType = Global.type.toInt()
+        name_section.setText(Global.firstName)
+        last_name.setText(mAuth.currentUser?.email)
+        email.setText(Global.lastName)
+        if(last_name.text.toString().trim()!=mAuth.currentUser!!.email.toString())
+        {
+
+            Global.logged=false
+            mAuth.signOut()
+            findNavController().navigate(R.id.nav_menuLogin)
+        }
+
+        company_name_section.setText(Global.companyName)
+        println("Phone: ${Global.phone}")
+        if (Global.type == "1")
+            autoCompleteTextView.setText("Personal")
+        else autoCompleteTextView.setText("Business")
+        getCompanyName()
+        getVAT()
+        getTax()
+        vat_section.setText(Global.vat)
+        tax_number_section.setText(Global.tax)
+        company_name_section.setText(Global.companyName)
         save_address2.setOnClickListener {
             if (!Global.saved) {
                 if (name_section.text?.isEmpty() == true) {
@@ -170,14 +179,29 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
 
     override fun onStart() {
         super.onStart()
+        if(last_name.text.toString().trim()!=mAuth.currentUser!!.email.toString())
+        {
+            Global.logged=false
+            mAuth.signOut()
+            findNavController().navigate(R.id.nav_menuLogin)
+        }
         your_name.text = Global.firstName + " " + Global.lastName
         getPhoneNumber()
+        getVAT()
+        getTax()
         account_fill_country.text = Global.country
     }
 
     override fun onResume() {
         super.onResume()
+        if(last_name.text.toString().trim()!=mAuth.currentUser!!.email.toString()) {
+            Global.logged=false
+            mAuth.signOut()
+            findNavController().navigate(R.id.nav_menuLogin)
+        }
         getPhoneNumber()
+        getVAT()
+        getTax()
         your_name.text = Global.username + " " + Global.lastName
         account_fill_country.text = Global.country
     }
@@ -394,10 +418,9 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
         val taxNumberReference =
             rootReference.child("Users").child(user?.uid.toString()).child("tax_number")
         nameReference.setValue(name_section.text.toString().trim())
-        mailReference.setValue(last_name.text.toString().trim())
         birthdayReference.setValue(autoCompleteDay.text.toString() + "/" + autoCompleteMonth.text.toString() + "/" + autoCompleteYear.text.toString())
         user!!.verifyBeforeUpdateEmail(last_name.toString())
-        phoneReference.setValue(phonemojiText.text.toString().trim())
+        phoneReference.setValue(phoneText.text.toString().trim())
         lastNameReference.setValue(email.text.toString().trim())
         getSavedStatus()
         if (!Global.saved)
@@ -417,12 +440,16 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
         Global.birthday =
             autoCompleteDay.text.toString() + "/" + autoCompleteMonth.text.toString() + "/" + autoCompleteYear.text.toString()
         savedReference.setValue(true)
-        user.updateEmail(last_name.text.toString().trim()).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d(TAG, "Email successful updated!")
+        if(last_name_section.text.toString()!=user.email) {
+            updateEmail()
+            user.updateEmail(last_name.text.toString().trim()).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "Email successful updated!")
+                }
             }
+            mailReference.setValue(last_name.text.toString().trim())
+            mailReference.push()
         }
-        mailReference.push()
         phoneReference.push()
         nameReference.push()
         lastNameReference.push()
@@ -447,14 +474,16 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
     }
 
     private fun getPhoneNumber() {
-        val phoneNumber = databaseUsers.child(id.toString()).child("phone")
+        val rootReference = database.reference
+        val user = mAuth.currentUser
+        val phoneNumber = rootReference.child("Users").child(user?.uid.toString()).child("phone")
         phoneNumber.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    Global.phone = snapshot.value.toString()
-                    println("Phone: ${Global.phone}")
-                    phonemojiText.setText(snapshot.value.toString())
-                }
+                Global.phone = snapshot.value.toString()
+                println(snapshot.value)
+                println("Phone: ${Global.phone}")
+                phoneText.setText(snapshot.value.toString())
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -500,15 +529,18 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
     }
 
     private fun getVAT() {
+
         getType()
         if (Global.type != "1") {
-            val vat = databaseUsers.child(id.toString()).child("VAT")
+            val rootReference = database.reference
+            val user = mAuth.currentUser
+            val vat = rootReference.child("Users").child(user?.uid.toString()).child("VAT")
             vat.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        Global.vat = snapshot.value.toString()
-                        vat_section.setText(Global.vat)
-                    }
+                    Global.vat = snapshot.value.toString()
+                    println(snapshot.value)
+                    vat_section.setText(snapshot.value.toString())
+
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -522,14 +554,16 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
     private fun getTax() {
         getType()
         if (Global.type != "1") {
-            val tax = databaseUsers.child(id.toString()).child("tax_number")
+            val rootReference = database.reference
+            val user = mAuth.currentUser
+            val tax = rootReference.child("Users").child(user?.uid.toString()).child("tax_number")
             tax.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        Global.tax = snapshot.value.toString()
-                        tax_number_section.setText(Global.tax)
-                    }
+                    Global.tax = snapshot.value.toString()
+                    println(snapshot.value)
+                    tax_number_section.setText(Global.tax)
                 }
+
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.d(TAG, error.toString())
@@ -561,6 +595,7 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
         country.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Global.country = snapshot.value.toString()
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -714,6 +749,58 @@ class FillDetailsFragment : Fragment(R.layout.fragment_fill_details) {
                 }
             }
         }
+
+    }
+    private fun updateEmail()
+    {
+        var user = FirebaseAuth.getInstance().currentUser
+        // Get auth credentials from the user for re-authentication
+        // Get auth credentials from the user for re-authentication
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        var pass=""
+        val username = databaseUsers.child(id.toString()).child("password")
+
+        username.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pass=snapshot.value.toString()
+                val credential = EmailAuthProvider
+                    .getCredential(user?.email.toString(),pass) // Current Login Credentials \\
+
+                // Prompt the user to re-provide their sign-in credentials
+                // Prompt the user to re-provide their sign-in credentials
+                user!!.reauthenticate(credential)
+                    .addOnCompleteListener {
+                        Log.d(TAG, "User re-authenticated.")
+                        //Now change your email address \\
+                        //----------------Code for Changing Email Address----------\\
+                        val user2=mAuth.currentUser
+                        if (user2 != null) {
+                            user2.updateEmail(last_name.text.toString().trim())
+                                ?.addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        Log.d(TAG, "User email address updated.")
+                                    }
+                                }
+                            val rootReference = database.reference
+                            val user = mAuth.currentUser
+                            val mailReference = rootReference.child("Users").child(user?.uid.toString()).child("mail")
+                            mailReference.setValue(last_name.text.toString().trim())
+                            mailReference.push()
+
+                        }
+                        //----------------------------------------------------------\\
+                    }
+                mAuth.signOut()
+                findNavController().navigate(R.id.nav_menuLogin)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(TAG, error.toString())
+            }
+        })
+        println(pass)
+
     }
 
 }

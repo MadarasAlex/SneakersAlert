@@ -11,12 +11,14 @@ data class ValidateInput(
     val email: TextInputEditText,
     val password: TextInputEditText,
     val user: EditText?,
+    val lastname:EditText?,
     val repeatPassword: EditText?
 ) {
     constructor(context: Context, email: TextInputEditText, password: TextInputEditText) : this(
         context,
         email,
         password,
+        null,
         null,
         null
     )
@@ -54,7 +56,19 @@ data class ValidateInput(
         if (userInput.isEmpty()) {
             Toast.makeText(context, "Please enter an username.", Toast.LENGTH_SHORT).show()
             return false
-        } else if (userInput.length < 4) {
+        } else if (userInput.length < 2) {
+            Toast.makeText(context, "Username too short", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+
+    }
+    fun validateLastName(): Boolean {
+        userInput = user?.text.toString().trim()
+        if (userInput.isEmpty()) {
+            Toast.makeText(context, "Please enter an username.", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (userInput.length < 2) {
             Toast.makeText(context, "Username too short", Toast.LENGTH_SHORT).show()
             return false
         }

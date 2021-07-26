@@ -175,10 +175,10 @@
         android:label="fragment_fill_address"
         tools:layout="@layout/fragment_fill_address" />
     <fragment
-        android:id="@+id/nav_fillInvoice"
-        android:name="com.example.sneakersalert.ui.account.FillInvoiceAddress"
-        android:label="fragment_fill_invoice_address"
-        tools:layout="@layout/fragment_fill_invoice_address" />
+        android:id="@+id/nav_fillShipping"
+        android:name="com.example.sneakersalert.ui.account.FillShippingAddress"
+        android:label="fragment_fill_shipping_address"
+        tools:layout="@layout/fragment_fill_shipping_address" />
     <fragment
         android:id="@+id/nav_request"
         android:name="com.example.sneakersalert.ui.request.RequestSneakerFragment"

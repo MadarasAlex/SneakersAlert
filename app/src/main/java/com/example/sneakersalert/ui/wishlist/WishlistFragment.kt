@@ -10,10 +10,14 @@ import com.example.sneakersalert.Adapters.AdapterJordan
 import com.example.sneakersalert.DataClasses.NewShoe
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_wishlist.*
 
 class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
     val w=ArrayList<NewShoe>()
+    private val database = FirebaseDatabase.getInstance()
+    private val databaseProducts = database.getReference("Products")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (Global.w.size == 0) {
@@ -30,12 +34,14 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
             val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewWish)
             recyclerView.layoutManager = GridLayoutManager(context, 2)
             recyclerView.isNestedScrollingEnabled = false
+            val options= FirebaseRecyclerOptions.Builder<NewShoe>().setQuery(databaseProducts,NewShoe::class.java).build()
             recyclerView.adapter = AdapterJordan(Global.w, object : AdapterJordan.OnClickListener {
                 override fun onItemClick(position: Int) {
                     Global.price = Global.w[position].price!!
                     Global.name = Global.w[position].name
                     Global.model = Global.w[position].model
                     Global.sizes = Global.w[position].sizes
+                    Global.stock = Global.w[position].stock
                     Global.pic = Global.w[position].image!!
                     Global.sp = Global.w[position].spec
                     Global.infoText = Global.w[position].text

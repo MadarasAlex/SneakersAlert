@@ -10,6 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/username2"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_text"
+            app:layout_constraintWidth_percent="0.75" />
+
+        <TextView
+            android:id="@+id/user_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="Last name"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/username2" />
+
         <TextView
             android:id="@+id/pass_text2"
             android:layout_width="wrap_content"
@@ -53,7 +78,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_text"
+            app:layout_constraintTop_toBottomOf="@+id/user_text2"
             app:layout_constraintWidth_percent="0.75" />
 
         <com.google.android.material.textfield.TextInputEditText
@@ -129,7 +154,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/lato_bold"
-            android:text="Username"
+            android:text="First name"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/username"
             app:layout_constraintTop_toTopOf="parent" />

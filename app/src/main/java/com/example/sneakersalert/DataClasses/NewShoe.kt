@@ -9,5 +9,6 @@ data class NewShoe(
     var price: Int?,
     val text: String,
     val sizes: ArrayList<Int>,
-    val spec: ArrayList<Spec>
+    val spec: ArrayList<Spec>,
+    val stock:Int
 ) : Serializable

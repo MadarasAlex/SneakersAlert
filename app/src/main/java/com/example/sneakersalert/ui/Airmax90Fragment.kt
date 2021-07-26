@@ -17,19 +17,23 @@ import com.example.sneakersalert.DataClasses.Spec
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_airmax1.*
 import kotlinx.android.synthetic.main.fragment_airmax90.*
 
 
 class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnItemSelectedListener {
     val a = ArrayList<NewShoe>()
     private var sp = ArrayList<Spec>()
+    private val database = FirebaseDatabase.getInstance()
+    private val databaseProducts = database.getReference("Products")
     val adapter = AdapterJordan(a, object : AdapterJordan.OnClickListener {
         override fun onItemClick(position: Int) {
             Global.price = a[position].price!!
             Global.name = a[position].name
             Global.model = a[position].model
             Global.sizes = a[position].sizes
-            Global.pic = a[position].image.toString()
+            Global.pic = a[position].image
+            Global.stock=a[position].stock
             Global.sp = a[position].spec
             Global.infoText = a[position].text
             findNavController().navigate(R.id.buyingProducts)
@@ -41,29 +45,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
         sp.add(Spec(R.drawable.crossing, "Reusable"))
         sp.add(Spec(R.drawable.happy_face, "Pleated at sides for extra comfort"))
         sp.add(Spec(R.drawable.sun, "Wider face coverage for maximum \n" + "protection"))
-        a.add(
-            NewShoe(
-                R.drawable.airmax_90_crock.toString(), "Nike airmax 90", "Croc", 190, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
-        a.add(
-            NewShoe(
-                R.drawable.dance_floor_green.toString(),
-                "Nike airmax 90",
-                "90S Dancefloor Green",
-                190,
-                "",
-                arrayListOf(39, 40, 41),
-                sp
-            )
-        )
-        a.add(
-            NewShoe(
-                R.drawable.duck_camo.toString(), "Nike airmax 90", "Duck Camo Orange", 140, "",
-                arrayListOf(39, 40, 41), sp
-            )
-        )
+
 
         super.onCreate(savedInstanceState)
     }
@@ -87,7 +69,7 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
             // Apply the adapter to the spinner
             spinner.adapter = adapter
         }
-
+        getData()
         spinner.onItemSelectedListener = this
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewAirmax90)
         recyclerView.layoutManager = GridLayoutManager(context, 2)
@@ -98,7 +80,8 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image.toString()
+                Global.pic = a[position].image
+                Global.stock=a[position].stock
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view.findNavController().navigate(R.id.buyingProducts)
@@ -153,7 +136,8 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image.toString()
+                Global.pic = a[position].image
+                Global.stock=a[position].stock
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -177,7 +161,8 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image.toString()
+                Global.pic = a[position].image
+                Global.stock=a[position].stock
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -198,7 +183,8 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
                 Global.name = a[position].name
                 Global.model = a[position].model
                 Global.sizes = a[position].sizes
-                Global.pic = a[position].image.toString()
+                Global.pic = a[position].image
+                Global.stock=a[position].stock
                 Global.sp = a[position].spec
                 Global.infoText = a[position].text
                 view?.findNavController()?.navigate(R.id.buyingProducts)
@@ -235,6 +221,72 @@ class Airmax90Fragment : Fragment(R.layout.fragment_airmax90), AdapterView.OnIte
     private fun setData() {
         val query: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Sneakers")
 
+    }
+    private fun getData() {
+        val productReference = database.reference.child("Products")
+        productReference.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (el in snapshot.children) {
+                        val name = el.child("name").getValue(String::class.java)
+                        val model = el.child("model").getValue(String::class.java)
+                        val price = el.child("price").getValue(Int::class.java)
+                        val type = el.child("type").getValue(String::class.java)
+                        val image = el.child("image").getValue(String::class.java)
+                        val stock = el.child("stock").getValue(Int::class.java)
+                        val text = el.child("text").getValue(String::class.java)
+                        val sizesRef = el.child("sizes").getValue(String::class.java)
+                        val sizes = ArrayList<Int>()
+                        var size = ""
+                        println(sizesRef)
+                        for(i in 0 until sizesRef?.length!!)
+                        {
+
+                            if(sizesRef?.get(i).toString().equals(",") || sizesRef[i].toString().equals(null))
+                            {
+                                sizes.add(size.toInt())
+                                println(size)
+                                size=""
+                            }
+                            else if(i==sizesRef.length-1)
+                            {
+                                size+=sizesRef[sizesRef?.length-1]
+                                sizes.add(size.toInt())
+                                println(size)
+                            }
+                            else
+                            {
+                                size+=sizesRef[i]
+                            }
+
+                        }
+                        if (type == "Air Max 90") {
+                            val item =
+                                NewShoe(image!!, name!!, model!!, price, text!!, sizes, sp, stock!!)
+                            println(item)
+                            a.add(item)
+                        }
+                    }
+                    recyclerViewAirmax90.adapter=AdapterJordan(a,object : AdapterJordan.OnClickListener {
+                        override fun onItemClick(position: Int) {
+                            Global.price = a[position].price!!
+                            Global.name = a[position].name
+                            Global.model = a[position].model
+                            Global.stock = a[position].stock
+                            Global.sizes = a[position].sizes
+                            Global.pic = a[position].image
+                            Global.sp = a[position].spec
+                            Global.infoText = a[position].text
+                            view?.findNavController()?.navigate(R.id.buyingProducts)
+                        }
+                    })
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
 }

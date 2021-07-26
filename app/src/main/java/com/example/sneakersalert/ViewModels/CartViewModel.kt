@@ -1,5 +1,6 @@
 package com.example.sneakersalert.ViewModels
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,12 +8,12 @@ import com.example.sneakersalert.DataClasses.ProductCart
 import com.example.sneakersalert.Global
 
 class CartViewModel : ViewModel() {
-    private val totalPrice = MutableLiveData<Int>()
-    private val finalPrice = MutableLiveData<Int>()
-    private val list = MutableLiveData<ArrayList<ProductCart>>()
-    private val amount = MutableLiveData<Int>()
-    private val country = MutableLiveData<String>()
-    private val name = MutableLiveData<String>()
+    private val totalPrice = MutableLiveData<Int>(0)
+    private val finalPrice = MutableLiveData<Int>(0)
+    private val list = MutableLiveData<ArrayList<LiveData<ProductCart>>>(arrayListOf())
+    private val amount = MutableLiveData<Int>(0)
+    private val country = MutableLiveData<String>("")
+    private val name = MutableLiveData<String>("")
 
     init {
         totalPrice.value = Global.total
@@ -28,15 +29,11 @@ class CartViewModel : ViewModel() {
         name.value = Global.name
     }
 
-    fun calculatePrice() {
-        totalPrice.value = 0
+    private fun calculatePrice() {
         amount.value = Global.p.size
-        for (el in Global.p) {
-            Thread.sleep(500)
-            totalPrice.value = totalPrice.value!! + (el.amount * el.price)
-            finalPrice.value = totalPrice.value
-        }
-
+        println("Final price: ${finalPrice.value}")
+        println("Total price: ${totalPrice.value}")
+        totalPrice.value=Global.total
 
     }
 
@@ -60,6 +57,9 @@ class CartViewModel : ViewModel() {
     fun getFinal(): LiveData<Int> {
         calculatePrice()
         return finalPrice
+    }
+    fun initialize(view:View)
+    {
     }
 
 }

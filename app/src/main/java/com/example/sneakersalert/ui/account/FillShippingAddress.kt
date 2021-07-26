@@ -21,10 +21,10 @@ import com.hbb20.CountryPickerView
 import com.hbb20.countrypicker.models.CPCountry
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.fragment_fill_invoice_address.*
+import kotlinx.android.synthetic.main.fragment_fill_shipping_address.*
 
 
-class FillInvoiceAddress : Fragment(R.layout.fragment_fill_invoice_address) {
+class FillShippingAddress : Fragment(R.layout.fragment_fill_shipping_address) {
     private val mAuth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance()
     private val databaseUsers = database.getReference("Users")
@@ -278,11 +278,13 @@ class FillInvoiceAddress : Fragment(R.layout.fragment_fill_invoice_address) {
         val extraReference =
             rootReference.child("Users").child(user?.uid.toString()).child("extra_address")
         getSavedStatus()
+
         country_selector3.cpViewHelper.selectedCountry.observe(
             viewLifecycleOwner,
             { selectedCountry: CPCountry? ->
                 if (selectedCountry != null) {
-                    countryReference.setValue(selectedCountry.name.toString().trim())
+                    countryReference.setValue(selectedCountry.name.trim())
+                    Global.country=selectedCountry.name.trim()
                 }
             }
         )
@@ -291,6 +293,15 @@ class FillInvoiceAddress : Fragment(R.layout.fragment_fill_invoice_address) {
         zipCodeReference.setValue(postal_section.text.toString().trim())
         cityReference.setValue(place_section.text.toString().trim())
         houseNumberReference.setValue(house_number_section.text.toString().toInt())
+
+        Global.zip=postal_section.text.toString().trim()
+        Global.houseNumber=house_number_section.text.toString().toInt()
+
+        Global.city=place_section.text.toString().trim()
+        Global.street=streetname_section.text.toString().trim()
+        Global.extra=extra_section.text.toString().trim()
+        Global.saved2 = true
+
         savedReference.setValue(true)
         extraReference.push()
         streetReference.push()
@@ -349,7 +360,9 @@ class FillInvoiceAddress : Fragment(R.layout.fragment_fill_invoice_address) {
         street.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Global.street = snapshot.value.toString()
-                streetname_section.setText(snapshot.value.toString())
+                if(snapshot.value.toString()=="" || snapshot.value.toString()=="null" ||snapshot.value.toString().isEmpty())
+                    streetname_section.setText("")
+                else streetname_section.setText(snapshot.value.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -365,6 +378,8 @@ class FillInvoiceAddress : Fragment(R.layout.fragment_fill_invoice_address) {
         city.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Global.city = snapshot.value.toString()
+                if(snapshot.value.toString()=="" || snapshot.value.toString()=="null" ||snapshot.value.toString().isEmpty())
+                    place_section.setText("")
                 place_section.setText(snapshot.value.toString())
             }
 
@@ -380,8 +395,10 @@ class FillInvoiceAddress : Fragment(R.layout.fragment_fill_invoice_address) {
         val zip = databaseUsers.child(id.toString()).child("postal")
         zip.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Global.zip = snapshot.value.toString()
-                postal_section.setText(snapshot.value.toString())
+                if (snapshot.exists()) {
+                    Global.zip = snapshot.value.toString()
+                    postal_section.setText(snapshot.value.toString())
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -396,8 +413,11 @@ class FillInvoiceAddress : Fragment(R.layout.fragment_fill_invoice_address) {
         val houseNumber = databaseUsers.child(id.toString()).child("house_number")
         houseNumber.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists())
+                {
                 Global.houseNumber = snapshot.value.toString().toInt()
                 house_number_section.setText(snapshot.value.toString())
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -412,8 +432,10 @@ class FillInvoiceAddress : Fragment(R.layout.fragment_fill_invoice_address) {
         val extra = databaseUsers.child(id.toString()).child("extra_address")
         extra.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Global.extra = snapshot.value.toString()
-                extra_section.setText(snapshot.value.toString())
+                if(snapshot.exists()) {
+                    Global.extra = snapshot.value.toString()
+                    extra_section.setText(snapshot.value.toString())
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

@@ -33,6 +33,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
             mail,
             password,
             username,
+            username2,
             password2
         )
         register.setOnClickListener {
@@ -57,15 +58,18 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
             mail,
             password,
             username,
+            username2,
             password2
         )
         val emailVerified: Boolean = validateInput.validateEmail()
         val passVerified: Boolean = validateInput.validatePassword()
         val repeatPasswordVerified = validateInput.validateRepeatPassword()
         val userVerified = validateInput.validateUsername()
-        if (emailVerified && passVerified && repeatPasswordVerified && userVerified) {
+        val lastNameVerified=validateInput.validateLastName()
+        if (emailVerified && passVerified && repeatPasswordVerified && userVerified && lastNameVerified) {
             email = mail.text.toString().trim()
-            Global.username = username.text.toString().trim()
+            Global.firstName = username.text.toString().trim()
+            Global.lastName=username2.text.toString().trim()
             passwordText = password.text.toString().trim()
             Global.logged = true
             mAuth.createUserWithEmailAndPassword(email, passwordText).addOnCompleteListener(
@@ -75,7 +79,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(ContentValues.TAG, "signInWithCredential:success")
                     saveData()
-                    val user = mAuth.currentUser
                     findNavController().navigate(R.id.nav_orders)
                 } else {
                     Log.w(ContentValues.TAG, "signInWithCredential:failure", task.exception)
@@ -94,11 +97,14 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
         val database = FirebaseDatabase.getInstance()
         val rootReference = database.reference
         val user = mAuth.currentUser
-        val nameReference = rootReference.child("Users").child(user?.uid.toString()).child("name")
+        val cityReference=rootReference.child("Users").child(user?.uid.toString()).child("city")
+        val countryReference = rootReference.child("Users").child(user?.uid.toString()).child("country")
         val emailReference = rootReference.child("Users").child(user?.uid.toString()).child("mail")
         val passReference =
             rootReference.child("Users").child(user?.uid.toString()).child("password")
         val savedReference = rootReference.child("Users").child(user?.uid.toString()).child("saved")
+        val savedReference2 = rootReference.child("Users").child(user?.uid.toString()).child("saved_2")
+        val savedReference3 = rootReference.child("Users").child(user?.uid.toString()).child("saved_3")
         val birthdayReference =
             rootReference.child("Users").child(user?.uid.toString()).child("birthday")
         val typeCustomerReference =
@@ -106,6 +112,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
         val phoneReference = rootReference.child("Users").child(user?.uid.toString()).child("phone")
         val companyNameReference =
             rootReference.child("Users").child(user?.uid.toString()).child("company_name")
+        val houseNumberReference=rootReference.child("Users").child(user?.uid.toString()).child("house_number")
         val vatReference = rootReference.child("Users").child(user?.uid.toString()).child("VAT")
         val taxNumberReference =
             rootReference.child("Users").child(user?.uid.toString()).child("tax_number")
@@ -114,6 +121,27 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
         val mailReference = rootReference.child("Users").child(user?.uid.toString()).child("mail")
         val firstNameReference =
             rootReference.child("Users").child(user?.uid.toString()).child("firstname")
+        val extraInvReference=rootReference.child("Users").child(user?.uid.toString()).child("extra_address")
+        val postalReference=rootReference.child("Users").child(user?.uid.toString()).child("postal")
+        val streetInvReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("street_invoice")
+        val streetReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("street")
+        val countryInvReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("country_invoice")
+        val zipCodeReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("postal_invoice")
+        val cityInvReference = rootReference.child("Users").child(user?.uid.toString()).child("city_invoice")
+        val savedInvReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("saved_3")
+        val houseNumberInvReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("house_number_invoice")
+        val extraReference =
+            rootReference.child("Users").child(user?.uid.toString()).child("extra_address_invoice")
+        val wishlistReference=rootReference.child("Wishlist")
+        val cartReference=rootReference.child("Cart")
+        countryReference.setValue("")
+        countryInvReference.setValue("")
         firstNameReference.setValue("")
         mailReference.setValue("")
         taxNumberReference.setValue("")
@@ -121,13 +149,55 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), OnBack {
         typeCustomerReference.setValue("1")
         birthdayReference.setValue("")
         phoneReference.setValue("")
+        cityReference.setValue("")
+        cityInvReference.setValue("")
         lastNameReference.setValue("")
         vatReference.setValue("")
+        postalReference.setValue("")
+        zipCodeReference.setValue("")
+        extraReference.setValue("")
+        houseNumberReference.setValue(0)
+        extraInvReference.setValue("")
+        houseNumberInvReference.setValue(0)
+        streetReference.setValue("")
+        streetInvReference.setValue("")
         savedReference.setValue(false)
+        savedReference2.setValue(false)
+        savedReference3.setValue(false)
         passReference.setValue(password.text.toString().trim())
         emailReference.setValue(mail.text.toString().trim())
-        nameReference.setValue(username.text.toString().trim())
+        firstNameReference.setValue(username.text.toString().trim())
+        lastNameReference.setValue(username2.text.toString().trim())
         Global.username = username.text.toString().trim()
+
+        wishlistReference.push()
+        cartReference.push()
+        cityReference.push()
+        postalReference.push()
+        extraReference.push()
+        countryReference.push()
+        firstNameReference.push()
+        mailReference.push()
+        taxNumberReference.push()
+        companyNameReference.push()
+        typeCustomerReference.push()
+        birthdayReference.push()
+        phoneReference.push()
+        lastNameReference.push()
+        vatReference.push()
+        houseNumberReference.push()
+        savedReference.push()
+        savedReference2.push()
+        savedReference3.push()
+        passReference.push()
+        emailReference.push()
+        firstNameReference.push()
+        cityInvReference.push()
+        zipCodeReference.push()
+        extraInvReference.push()
+        houseNumberInvReference.push()
+        streetReference.push()
+        countryInvReference.push()
     }
 
 

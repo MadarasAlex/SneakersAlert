@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -21,10 +22,15 @@ import com.example.sneakersalert.Global.Companion.sizes
 import com.example.sneakersalert.Global.Companion.sp
 import com.example.sneakersalert.R
 import com.example.sneakersalert.R.layout
+import com.ouattararomuald.slider.SliderAdapter
+import com.ouattararomuald.slider.loaders.picasso.PicassoImageLoaderFactory
 import com.smarteist.autoimageslider.SliderView
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.RequestCreator
 import kotlinx.android.synthetic.main.activity_buying_products.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.card_jordan.view.*
 import layout.AdapterSpec
 import kotlin.properties.Delegates
 
@@ -44,26 +50,26 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
             Global.model,
             Global.price,
             Global.infoText, sizes,
-            sp
+            sp,Global.stock
         )
         if (pr in Global.w) {
-            wish.isInvisible = true
-            wish2.isInvisible = false
+            wish.visibility=View.INVISIBLE
+            wish2.visibility=View.VISIBLE
         } else {
-            wish2.isInvisible = true
-            wish.isInvisible = false
+            wish2.visibility=View.INVISIBLE
+            wish.visibility=View.VISIBLE
         }
         when (n) {
             1 -> {
                 buttons.add(size1)
                 size1.text = sizes[0].toString()
-                size2.isInvisible = true
-                size3.isInvisible = true
+                size2.visibility = View.INVISIBLE
+                size3.visibility = View.INVISIBLE
             }
             2 -> {
                 buttons.add(size1)
                 buttons.add(size2)
-                size3.isInvisible = true
+                size3.visibility = View.INVISIBLE
                 size1.text = sizes[0].toString()
                 size2.text = sizes[1].toString()
             }
@@ -77,12 +83,16 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
             }
         }
 
-        val imageList = ArrayList<Int>()
-        imageList.add(Global.pic.toInt())
-        imageList.add(Global.pic.toInt())
-        imageList.add(Global.pic.toInt())
-        LinearLayoutManager.HORIZONTAL
-        setImageInSlider(imageList, shoe_pic)
+        val imageUrls = ArrayList<String>()
+        imageUrls.add(Global.pic)
+        imageUrls.add(Global.pic)
+        imageUrls.add(Global.pic)
+        shoe_pic.adapter = SliderAdapter(
+            this.requireContext(),
+            PicassoImageLoaderFactory(),
+            imageUrls = imageUrls,
+
+        )
         price_shoe.text = Global.price.toString()
         text_home.text = Global.name
         london_text.text = Global.model
@@ -117,13 +127,13 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
         }
 
         wish.setOnClickListener {
-            wish.isInvisible = true
-            wish2.isInvisible = false
+            wish.visibility=View.INVISIBLE
+            wish2.visibility=View.VISIBLE
             Global.w.add(pr)
         }
         wish2.setOnClickListener {
-            wish2.isInvisible = true
-            wish.isInvisible = false
+            wish.visibility=View.VISIBLE
+            wish2.visibility=View.INVISIBLE
             Global.w.remove(pr)
         }
         recyclerViewSpec.adapter = AdapterSpec(sp)
@@ -160,7 +170,7 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
                     spec_title.visibility = View.INVISIBLE
                     add_cart.visibility = View.INVISIBLE
                     recyclerViewSpec.visibility = View.INVISIBLE
-                    item_picture.setImageResource(Global.pic.toInt())
+                    Picasso.get().load(Global.pic).resize(100,50).into(item_picture)
                     name_item.text = Global.name
                     model_item.text = Global.model
                     "€ ${Global.price}".also { price_item.text = it }
@@ -201,8 +211,15 @@ class BuyingProducts : Fragment(layout.activity_buying_products) {
         spec_title.visibility = View.VISIBLE
         add_cart.visibility = View.VISIBLE
         recyclerViewSpec.visibility = View.VISIBLE
+        recyclerViewSpec.adapter=AdapterSpec(sp)
+        recyclerViewSpec.layoutManager=LinearLayoutManager(this.requireContext())
+    }
 
-
+    override fun onResume() {
+        super.onResume()
+        recyclerViewSpec.visibility = View.VISIBLE
+        recyclerViewSpec.adapter=AdapterSpec(sp)
+        recyclerViewSpec.layoutManager=LinearLayoutManager(this.requireContext())
     }
 
     private fun setImageInSlider(images: ArrayList<Int>, imageSlider: SliderView) {

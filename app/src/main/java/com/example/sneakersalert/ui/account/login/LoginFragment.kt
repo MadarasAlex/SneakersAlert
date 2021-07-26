@@ -4,16 +4,15 @@ import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.sneakersalert.DataClasses.ProductCart
 import com.example.sneakersalert.Global
 import com.example.sneakersalert.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -23,20 +22,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     val mAuth = FirebaseAuth.getInstance()
     lateinit var email: String
     lateinit var passwordText: String
-
-// ...
-// Initialize Firebase Auth
-
     var database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loginButton = view.findViewById<Button>(R.id.loginB)
-        val validateInput: ValidateInput
         val usernameEditText = view.findViewById<TextInputEditText>(R.id.mail)
         val passwordEditText = view.findViewById<TextInputEditText>(R.id.password)
-
-        validateInput = ValidateInput(this.requireActivity(), usernameEditText, passwordEditText)
+        val validateInput = ValidateInput(this.requireActivity(), usernameEditText, passwordEditText)
         requireActivity().navigationView.setCheckedItem(R.id.nav_orders)
         if (!requireActivity().navigationView.menu.findItem(R.id.nav_orders).isChecked) {
             requireActivity().navigationView.menu.setGroupCheckable(R.id.gr, true, false)
@@ -61,6 +53,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     fun login() {
         println("here")
+
         val usernameEditText = view?.findViewById<TextInputEditText>(R.id.mail)
         val passwordEditText = view?.findViewById<TextInputEditText>(R.id.password)
         val validateInput = ValidateInput(
@@ -89,6 +82,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     username.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             val userString = snapshot.value.toString()
+                            Global.username=userString
                             println(userString)
                         }
 
@@ -167,6 +161,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         }
                     }
                     Global.logged = true
+                    getData()
                     findNavController().navigate(R.id.nav_orders)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -185,15 +180,32 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
+    private fun getData() {
+        val databaseUsers = database.getReference("Users")
+        val id = mAuth.currentUser?.uid
+        val productsReference = databaseUsers.child(id.toString()).child("Cart")
+        productsReference.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    Global.p.clear()
+                    for (el in snapshot.children) {
+                        val name = el.child("name").getValue(String::class.java)
+                        val model = el.child("model").getValue(String::class.java)
+                        val price = el.child("price").getValue(Int::class.java)
+                        val image = el.child("image").getValue(String::class.java)
+                        val amount = el.child("amount").getValue(Int::class.java)
+                        val size = el.child("size").getValue(Int::class.java)
+                        val id=el.child("id").getValue(Int::class.java)
+                        val item = ProductCart(image!!, name!!, model!!, price!!, size!!, amount!!,id!!)
+                        println(item)
+                        Global.p.add(item)
+                    }
+                }
+            }
 
+            override fun onCancelled(error: DatabaseError) {
 
-        // ...
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val currentUser = mAuth.currentUser
+            }
+        })
     }
 }

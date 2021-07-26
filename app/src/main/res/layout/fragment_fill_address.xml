@@ -15,7 +15,57 @@
 
 
         <TextView
-            android:id="@+id/req_field15"
+            android:id="@+id/req_field20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/fullname_section" />
+
+        <TextView
+            android:id="@+id/req_field21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/postal_section" />
+
+        <TextView
+            android:id="@+id/req_field22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/house_number_section" />
+
+        <TextView
+            android:id="@+id/req_field23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/streetname_section" />
+
+        <TextView
+            android:id="@+id/req_field24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required field"
+            android:textColor="#FF5C5C"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/fullname_section"
+            app:layout_constraintTop_toBottomOf="@+id/place_section" />
+
+        <TextView
+            android:id="@+id/req_field25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Required field"
@@ -23,7 +73,6 @@
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/fullname_section"
             app:layout_constraintTop_toBottomOf="@+id/country_selector3" />
-
         <TextView
             android:id="@+id/place"
             android:layout_width="wrap_content"
@@ -31,7 +80,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/liberation_sans"
-            android:text="Place"
+            android:text="City"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
